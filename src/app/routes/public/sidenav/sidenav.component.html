@@ -1,0 +1,100 @@
+<aside class="sidenav" id="sidenav" [class.slide]="slide">
+    <div class="logo">
+        <a href="javascript:;" routerLink="/goods" (click)="selMenu('/goods')">
+            <img src="../../../../assets/images/T_Smallwithtagline.png" alt="">
+        </a>
+    </div>
+    <a class="close" href="javascript:;" (click)="clickSlide()"><i class="fa fa-times"></i></a>
+    <div class="header_right">
+        <ul>
+            <!--<li>-->
+            <!--<span class="icon"><img src="../../../../assets/images/puzzle-icon-white.png" alt=""></span>-->
+            <!--<span class="text">34</span>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<span class="icon"><img src="../../../../assets/images/trophy-icon-white.png" alt=""></span>-->
+            <!--<span class="text">22</span>-->
+            <!--</li>-->
+            <li>
+                <a class="notify" href="#" data-toggle="dropdown"><img
+                        src="../../../../assets/images/bell-icon-white.png" alt=""><span></span></a>
+                <!--<ul class="dropdown-menu">-->
+                <!--<li><a href="#">First Message</a></li>-->
+                <!--<li><a href="#">Second Message</a></li>-->
+                <!--<li><a href="#">Third Message</a></li>-->
+                <!--</ul>-->
+            </li>
+            <!--<li>-->
+            <!--<a class="avatar" href="#" data-toggle="dropdown"><img src="{{settings.user.avatar}}" alt=""-->
+            <!--onerror="javascript:this.src='../../../../assets/images/user.png'"/></a>-->
+            <!--&lt;!&ndash;<ul class="dropdown-menu">&ndash;&gt;-->
+            <!--&lt;!&ndash;<li><a href="#">Profile</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li><a href="#">Edit</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;<li><a href="#">Logout</a></li>&ndash;&gt;-->
+            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+            <!--</li>-->
+        </ul>
+    </div>
+    <nav class="navbar">
+        <ul>
+            <li *ngFor="let menu of sidenavMenuList">
+                <a *ngIf="menu.isHttp" href="{{menu.url}}" (click)="clickSlide()">
+                    <span class="icon"><i class="fa font22 {{menu.icon}}"></i></span>
+                    <span class="text">{{menu.name}}</span>
+                </a>
+                <a *ngIf="!menu.isHttp" routerLink="{{menu.url}}" (click)="clickSlide()">
+                    <span class="icon"><i class="fa font22 {{menu.icon}}"></i></span>
+                    <span class="text">{{menu.name}}</span>
+                </a>
+            </li>
+            <li class="cursor">
+                <a (click)="loginOut()">
+                    <span class="icon"><i class="fa font22 fa-sign-out"></i></span>
+                    <span class="text">{{'public.sidenav.signOut'|translate}}</span>
+                </a>
+            </li>
+            <!--<li>-->
+            <!--<a href="#">-->
+            <!--<span class="icon"><img src="../../../../assets/images/dashboard-icon.png" alt=""></span>-->
+            <!--<span class="text">DASHBOARD</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="#">-->
+            <!--<span class="icon"><img src="../../../../assets/images/cubes-icon.png" alt=""></span>-->
+            <!--<span class="text">PONDLETS</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="#">-->
+            <!--<span class="icon"><img src="../../../../assets/images/puzzle-icon2.png" alt=""></span>-->
+            <!--<span class="text">PLAY POND</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="#">-->
+            <!--<span class="icon"><img src="../../../../assets/images/piggy-bank-icon.png" alt=""></span>-->
+            <!--<span class="text">PIGGY BANK</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="#">-->
+            <!--<span class="icon"><img src="../../../../assets/images/trophy-icon2.png" alt=""></span>-->
+            <!--<span class="text">ASSESSMENTS</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="#">-->
+            <!--<span class="icon"><img src="../../../../assets/images/favourites-icon.png" alt=""></span>-->
+            <!--<span class="text">ACHIEVEMENTS</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="#">-->
+            <!--<span class="icon"><img src="../../../../assets/images/logout-icon.png" alt=""></span>-->
+            <!--<span class="text">Sign out</span>-->
+            <!--</a>-->
+            <!--</li>-->
+        </ul>
+    </nav>
+</aside>

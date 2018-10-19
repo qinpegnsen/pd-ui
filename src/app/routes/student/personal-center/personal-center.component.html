@@ -1,0 +1,83 @@
+<div class="container-fluid mt-20">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="h4 text-center myTitle">{{'student.personal.info'|translate}}</div>
+				<hr>
+				<div class="row pv-lg">
+					<div class="col-lg-2"></div>
+					<div class="col-lg-8">
+						<form class="form-horizontal" novalidate #studentInfo="ngForm" (ngSubmit)="modifyInfo(studentInfo)">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">{{'student.personal.avator'|translate}}</label>
+								<div class="col-sm-9">
+									<div class="avatar">
+										<img src="{{studentData?.avatar}}" alt="{{studentData.name}}" onerror="javascript:this.src='../../../../assets/images/user.png'" #img/>
+									</div>
+									<label for="file2" class="file-upload">
+										<button class="btn btn-default btn-block">{{'student.personal.changeAvator'|translate}}</button>
+										<input id="file2" type="file" (change)="upload(fileUpload,img)" #fileUpload/>
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="firstName">{{'student.personal.firstName'|translate}}</label>
+								<div class="col-sm-9">
+									<input class="form-control" id="firstName" type="text" maxlength="32" placeholder="{{'student.personal.firstNameTitle'|translate}}"  name="firstName" [(ngModel)]="studentData.firstName" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="lastName">{{'student.personal.lastName'|translate}}</label>
+								<div class="col-sm-9">
+									<input class="form-control" id="lastName" type="text" maxlength="32" name="lastName" placeholder="{{'student.personal.lastNameTitle'|translate}}" [(ngModel)]="studentData.lastName"/>
+								</div>
+							</div>
+							<!--<div class="form-group">-->
+								<!--<label class="col-sm-3 control-label" for="age">{{'student.personal.age'|translate}}</label>-->
+								<!--<div class="col-sm-9">-->
+									<!--<input class="form-control" id="age" type="number" name="age" [(ngModel)]="studentData.age"/>-->
+								<!--</div>-->
+							<!--</div>-->
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="sex">{{'student.personal.sex'|translate}}</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="sex" name="sex" [(ngModel)]="studentData.sex">
+										<option *ngFor="let item of sexList" value="{{item.key}}">{{item.val}}</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="countryCode">{{'student.personal.countryCode'|translate}}</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="countryCode" name="countryCode" [(ngModel)]="studentData.countryCode">
+										<option *ngFor="let item of countryCode" value="{{item.code}}">{{item.country}}</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="timeZone">{{'student.personal.timeZone'|translate}}</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="timeZone" name="timeZone" [(ngModel)]="studentData.timeZone">
+										<option *ngFor="let item of timezones" value="{{item.zoneId}}">{{item.timezone}}</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="introduction">{{'student.personal.introduction'|translate}}</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" id="introduction" name="introduction" maxlength="512" row="4" [(ngModel)]="studentData.introduction"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-4 col-sm-4">
+									<button class="btn btn-info form-control myCustom" type="submit">{{'student.personal.changeInfo'|translate}}</button>
+								</div>
+								<!--学生端没有修改密码的功能，老师端是因为后台增加老师后，老师必须修改-->
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,50 @@
+<!--预约课时完成 begin-->
+<div class="order-component">
+    <div class="order-component-content">
+        <!--订单信息 begin-->
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="w30 text-right text-muted">{{'order.complete.teacher'|translate}}</td>
+                <td>{{successInfo.tutorName}}</td>
+            </tr>
+            <tr>
+                <td class="w30 text-right text-muted">{{'order.complete.student'|translate}}</td>
+                <td>{{successInfo.studentName}}</td>
+            </tr>
+            <tr>
+                <td class="w30 text-right text-muted">{{'order.complete.course'|translate}}</td>
+                <td>{{successInfo.course}}</td>
+            </tr>
+            <tr>
+                <td class="w30 text-right text-muted">{{'order.complete.date'|translate}}</td>
+                <td>{{successInfo.courseTime | moment:"YYYY-MM-DD"}}</td>
+            </tr>
+            <tr>
+                <td class="w30 text-right text-muted">{{'order.complete.startOrEnd'|translate}}</td>
+                <td>
+                    {{successInfo.courseTime | moment:"h:mm a"}} / {{successInfo.courseEndTime | moment:"h:mm a"}}
+                </td>
+            </tr>
+            <tr>
+                <td class="w30 text-right text-muted">{{'order.complete.leaveMsg'|translate}}</td>
+                <td>{{successInfo.leaveMsg}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <!--订单信息 end-->
+        <!--成功提示 begin-->
+        <div class="component-mag text-main">
+            <i class="fa fa-check"></i>
+            {{'order.complete.bookSuccess'|translate}}
+            <div class="component-navigation">
+                {{'order.complete.navigation'|translate}}：
+                <a class="mr-20 ml cursor" (click)="go('/goods')" routerLink="/"><u>{{'order.complete.home'|translate}}</u></a>
+                <a class="cursor" routerLink="/manage/student"><u>{{'order.complete.personalCenter'|translate}}</u></a>
+            </div>
+        </div>
+        <!--成功提示 end-->
+    </div>
+</div>
+<div class="clear"></div>
+<!--预约课时完成 end-->

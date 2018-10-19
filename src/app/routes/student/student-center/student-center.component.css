@@ -1,0 +1,179 @@
+.my-order{
+	padding: 30px 50px;
+}
+@media (max-width: 767px) {
+	.my-order{
+		padding: 20px 5px !important;
+	}
+}
+p{
+	margin:0;
+}
+.now-order{
+	position: relative;
+	text-align: center;
+}
+.cancel-order{
+	border: 1px solid #f50;
+	padding: 0 10px;
+	font-size: 12px;
+	margin: 12px 10px 0 0;
+	color: #f50;
+}
+.time{
+	position: absolute;
+	width: 70px;
+	height: 70px;
+	top: 10px;
+	left:10px;
+	border-radius: 5px;
+}
+.user-pic{
+	margin-top: 60px;
+}
+.user-pic>div{
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.user-pic>div>img{
+	width: 100px;
+	height: 100px;
+}
+.tutor-name{
+	color: rgb(249,181,83);
+}
+.tutor-job{
+	color: rgb(237,109,69);
+
+	border-bottom: 1px solid rgb(229,229,229);
+	padding-bottom: 10px;
+	font-size: 20px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.tutor-info{
+	overflow: hidden;
+	padding: 10px 5px;
+}
+.tutor-info div p:first-child{
+	font-size: 20px;
+	color: rgb(62,171,185);
+}
+.btn-oval{
+	 border-radius: 50px;
+ }
+.agree{
+	background: rgb(50,168,182);
+	color: #fff;
+}
+.disagree{
+	background: rgb(188,35,38);
+	color: #fff;
+}
+.now-order .time{
+	background: rgb(233,236,241);
+	color: rgb(118,191,203);
+}
+.btn{
+	border: none !important;
+}
+btn:focus, btn:active, btn:hover{
+	outline: none !important;
+	outline-offset: 0 !important;
+}
+.leaveMsg{
+	text-align: left;
+	border-top: 1px solid rgb(242,242,242);
+	border-bottom: 1px solid rgb(242,242,242);
+	padding: 5px 20px;
+	line-height:20px;
+	height: 50px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.card{
+	background: rgb(249,181,83);
+	color: #fff;
+	border-radius: 50%;
+	padding: 8px 7px;
+	font-size: 18px;
+}
+.class .panel-footer{
+	background: #fff;
+}
+.panel-footer{
+	background: rgb(229,229,229);
+}
+.panel-footer .state{
+	font-size: 26px;
+	color: rgb(67,67,67);
+}
+.more{
+	margin-right: 10px;
+	margin-top: 10px;
+	font-size: 16px;
+	color: rgb(191,191,191);
+}
+.collection i{
+	color: rgb(241,169,167);
+}
+.pv-lg{
+	padding-top: 15px !important;
+	padding-bottom: 15px !important;
+}
+.row-table {
+	display: table;
+	table-layout: fixed;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+.row-table > [class*="col-"] {
+	display: table-cell;
+	float: none;
+	table-layout: fixed;
+	vertical-align: middle;
+}
+.widget{
+	color: #fff;
+}
+.my-order .more{
+	color: rgb(62,171,185);
+}
+
+.no-message1{
+	width: 100%;
+	height: 300px;
+	position: relative;
+}
+.poCenter{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top:0;
+	bottom: 0;
+	margin: auto;
+	width: 150px;
+	height:150px;
+}
+.border-main{
+	border:1px solid #81c3cb;
+}
+.myFont{
+	font-family: "Microsoft YaHei";
+	color: #babdc2;
+}
+.myCustomButton{
+	color:#31a4b2;
+	background-color: #ecf1f5;
+	border-radius: 40px;
+	border:1px solid #31a4b2 !important;
+
+}
+.line-height-150{
+    line-height: 150px!important;
+}

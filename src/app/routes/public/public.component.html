@@ -1,0 +1,14 @@
+<!--页面头部信息 begin-->
+<app-header (slideChange)="slideChange()"></app-header>
+<!--页面头部信息 end-->
+<!--页面侧边导航栏 begin-->
+<app-sidenav [slide]="slide" (slideChange)="slideChange()"></app-sidenav>
+<!--页面侧边导航栏 end-->
+<!--内容 begin-->
+<section class="content_wrapper" id="content_wrapper">
+    <router-outlet></router-outlet>
+</section>
+<!--内容 begin-->
+<!--页面底部信息 begin-->
+<app-footer class="hidden-xs"></app-footer>
+<!--页面底部信息 end-->

@@ -1,0 +1,57 @@
+.myTitle {
+    color: #31a4b2;
+    font-weight: bold;
+    line-height: 24px;
+}
+
+.form-group i {
+    color: red;
+}
+
+input[type='raido'] {
+    width: 25% !important;
+}
+
+.checkbox input {
+    width: 16px;
+    height: 16px;
+}
+
+.pl-25 {
+    padding-left: 25px;
+}
+
+.p0 {
+    padding: 0px !important;
+}
+
+.form-group m > div {
+    padding: 0px !important;
+}
+.myCustom1 {
+    background-color: #23b7e5!important;
+    color: #fff!important;
+}
+.btn-rounded-lg {
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+.btn-rounded-lg {
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+.btn-green {
+    background-color: #31a7b6;
+    color: #fff;
+}
+.btn-gray {
+    background-color: #dde3e4;
+    color: #565656;
+}
+.panel{
+    box-shadow: 0 0px 1px rgba(0, 0, 0, 0.05);
+}

@@ -1,0 +1,235 @@
+.course-detail{
+	padding: 30px 50px;
+}
+@media (max-width: 767px) {
+	.course-detail{
+		padding: 20px 5px;
+	}
+	.goback{
+		margin-right: 20px;
+	}
+}
+.course-table{
+	width: 100%;
+	margin-top: 20px;
+	background: #fff;
+	border: 1px solid #fff;
+}
+.course-table thead{
+	background: rgb(235,245,247);
+}
+.course-table thead tr{
+	height: 40px;
+	line-height: 40px;
+}
+.course-table tbody tr{
+	padding: 20px 0;
+}
+.course-table tbody td{
+	height: 120px;
+	position: relative;
+	/*border-right: 1px dashed rgb(214,214,214);*/
+}
+.course-table tbody td:after{
+	content: "";
+	position: absolute;
+	top: 50%;
+	right:0;
+	height: 60%;
+	width: 1px;
+	border-right: 1px dashed rgb(214,214,214);
+	transform: translateY(-50%);
+}
+.course-table tbody td:last-child:after{
+	border: none;
+}
+.students-box{
+	text-align: center;
+}
+.students{
+	display: inline-block;
+}
+.students .pic{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+.students .pic img{
+	width: 50px;
+	height: 50px;
+}
+.students .name{
+	font-size: 12px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: center;
+}
+.order-class{
+	padding: 10px 20px;
+	background: rgb(243,249,249);
+}
+table{
+	width: 100%;
+	border: none;
+}
+table td{
+	border: 1px solid #fff;
+	padding: 5px 0;
+}
+table tr:first-child td{
+	border-top: none;
+}
+table tr:last-child td{
+	border-bottom: none;
+}
+table tr td:first-child{
+	border-left: none;
+}
+table tr td:last-child{
+	border-right: none;
+}
+.leaveMsg{
+	background: rgb(243,249,249);
+	padding: 10px;
+}
+.myBottomBorder{
+	border-bottom: 1px solid #fff;
+}
+.order-result{
+	overflow: hidden;
+	padding: 5px 0;
+}
+.order-result p{
+	width: 50%;
+	float: left;
+	margin: 0;
+}
+.examine-tutor{
+	border-right: 1px solid rgb(224,224,224);
+}
+.course-record{
+	padding: 10px 20px;
+	background: rgb(243,249,249);
+}
+.timeline td{
+	text-indent: 20px;
+}
+.timeline-separator:before{
+	border-radius: 5px;
+	background: rgb(177,214,223) !important;
+	color: rgb(85,85,81) !important;
+}
+.btn-oval{
+	border-radius: 50px;
+}
+.agree{
+	background: rgb(50,168,182);
+	color: #fff;
+}
+.bg{
+	background: rgb(243,249,249);
+}
+.btn{
+	border: none !important;
+}
+btn:focus, btn:active, btn:hover{
+	outline: none !important;
+	outline-offset: 0 !important;
+}
+@media (max-width: 700px) {
+	.table-box{
+		overflow-x: scroll;
+	}
+}
+.table-box>table{
+	min-width: 700px;
+}
+.assess{
+	background: rgb(243,249,249);
+	padding: 10px;
+}
+.form-group,
+.popover-content{
+	overflow: hidden;
+}
+.feedback-item{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 0;
+	border-bottom: 1px solid #ccc; 
+}
+.feedback-item:last-child{
+	border-bottom: none;
+}
+.feedback-item button{
+	margin: 0 !important;
+	font-size: 14px;
+}
+.rating-box{
+	width: 100%;
+	display: inline-block;
+}
+.rating-box span{
+	margin-left: 15px;
+}
+.form-control{
+	margin-top: 20px;
+}
+.breakAll{
+	-ms-word-break:break-all;
+	word-break:break-all;
+}
+.fontBold{
+	font-weight: bold;
+}
+.border-bottom-w0{
+	border-bottom: 0px;
+}
+.border0{
+	border: 0px;
+}
+.borderBottom{
+	border-bottom: 1px dotted #eee;
+}
+.myBg{
+	background: #fafbfc;
+}
+.relative {
+	position: relative !important;
+}
+.positonLeft{
+	position: relative;
+	left: 0px;
+}
+.positonRight{
+	position: relative;
+	right: 0px;
+}
+.floatRight{
+	float: right;
+}
+.messageBox li{
+	padding: 10px 0px;
+}
+.messagePic{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+.myTime{
+	background: #DADADA;
+	color: white;
+	border-radius: 3px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+.lineHeight30{
+	line-height:30px!important;
+}

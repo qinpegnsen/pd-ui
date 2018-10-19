@@ -1,0 +1,114 @@
+<div class="wrapper-no-sidebar wrapper-gray ">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+				<div class="simple-form">
+					<div class="form-header text-center">
+						<img src="../../../../assets/images/T_Smallwithtagline.png" class="height65" alt="LOGO">
+					</div>
+					<div class="panel panel-transparent">
+						<tabset class="bg-white p0" justified="true" #studentTabs>
+							<!--学生登录 start-->
+							<tab>
+								<ng-template tabHeading>
+									<em class="fa fa-sign-in fa-fw mr-5"></em>{{'pages.login.login'|translate}}
+								</ng-template>
+								<div class="form-body p-20">
+									<h2 class="text-center">{{'pages.login.student-login'|translate}}</h2>
+									<form novalidate="novalidate" #studentLogin="ngForm" (ngSubmit)="studentLoginIn(studentLogin)">
+										<div class="form-group">
+											<label class="control-label" for="student-username">{{'pages.login.username'|translate}}</label>
+											<input class="form-control required" id="student-username" maxlength="75" name="student-username" ngModel placeholder="{{'pages.login.username-title'|translate}}" required="required" title="{{'pages.login.username-title'|translate}}" type="text" />
+										</div>
+										<div class="form-group">
+											<label class="control-label" for="student-password">{{'pages.login.password'|translate}}</label>
+											<input class="form-control required" id="student-password" name="student-password" minlength="6" maxlength="16" ngModel placeholder="{{'pages.login.password-title'|translate}}" required="required" title="{{'pages.login.password-title'|translate}}" type="password" />
+										</div>
+										<div class="text-center">
+											<button class="btn btn-green btn-rounded-lg ladda-button" type="submit"
+											data-style="expand-right"><span class="ladda-label">{{'pages.login.login'|translate}}</span><span
+											class="ladda-spinner"></span></button>
+											<button class="btn btn-gray btn-rounded-lg btn-cancel" routerLink="/goods">{{'pages.login.cancel'|translate}}</button>
+										</div>
+										<div class="text-left">
+											<p class="forgot-password mt-15">
+												<a routerLink="/pages/tutorLogin" class="pull-left" title="{{'pages.login.tutorLoginEntry'|translate}}">{{'pages.login.tutor-login'|translate}}
+													<i class="fa fa-send ml-5"></i>
+												</a>
+												<!--<a href="/accounts/password/reset/" class="pull-right" title="Forgot your password?">{{'pages.login.forgot-password'|translate}}</a>-->
+												<a routerLink="/pages/send" [queryParams]="{role:'stu'}" class="pull-right gray" title="{{'pages.login.forgot-password'|translate}}">{{'pages.login.forgot-password'|translate}}
+												</a>
+											</p>
+										</div>
+									</form>
+								</div>
+							</tab>
+							<!--学生登录 end-->
+							<!--学生注册 start-->
+							<tab>
+								<ng-template tabHeading>
+									<em class="fa fa-pencil-square-o fa-fw mr-5"></em>{{'pages.login.register'|translate}}
+								</ng-template>
+								<!--<div class="form-body p-20">-->
+									<!--<h2 class="text-center">{{'pages.login.student-register'|translate}}</h2>-->
+									<!--<form novalidate #Register="ngForm" (ngSubmit)="studentRegister(Register)">-->
+										<!--<div class="form-group col-md-6 student-name">-->
+											<!--<label class="control-label" for="firstName">{{'pages.login.firstName'|translate}}</label>-->
+											<!--<input class="form-control required" name="firstName" id="firstName" maxlength="32" ngModel placeholder="{{'pages.login.firstName-title'|translate}}" required="required" title="{{'pages.login.firstName-title'|translate}}" type="text" />-->
+										<!--</div>-->
+										<!--<div class="form-group col-md-6 student-name">-->
+											<!--<label class="control-label" for="lastName">{{'pages.login.lastName'|translate}}</label>-->
+											<!--<input class="form-control required" name="lastName" id="lastName" maxlength="32" ngModel placeholder="{{'pages.login.lastName-title'|translate}}" required="required" title="{{'pages.login.lastName-title'|translate}}" type="text" />-->
+										<!--</div>-->
+										<!--<div class="form-group">-->
+											<!--<label class="control-label" for="email">{{'pages.login.email'|translate}}</label>-->
+											<!--<input class="form-control required" [pattern]="patterns.email" name="email" maxlength="50" id="email" ngModel placeholder="{{'pages.login.email-title'|translate}}" required="required" title="{{'pages.login.email-title'|translate}}" type="text" #email="ngModel" />-->
+											<!--<div [hidden]="email.valid||email.untouched"-->
+												 <!--class="text-danger">-->
+												<!--{{'ts.swat.e103'|translate}}-->
+											<!--</div>-->
+										<!--</div>-->
+										<!--<div class="form-group">-->
+											<!--<label class="control-label" for="password">{{'pages.login.password'|translate}}</label>-->
+											<!--<input class="form-control required" name="password" id="password" placeholder="{{'pages.login.password-title'|translate}}" ngModel required="required" title="{{'pages.login.password-title'|translate}}" type="password"  minlength="6" maxlength="16" #password="ngModel"/>-->
+											<!--<div [hidden]="password.valid||password.untouched"-->
+												 <!--class="text-danger">-->
+												<!--{{'ts.swat.e249'|translate}}-->
+											<!--</div>-->
+										<!--</div>-->
+										<!--<div class="form-group">-->
+											<!--<label class="control-label" for="timeZone">{{'pages.login.timeZone'|translate}}</label>-->
+											<!--<select class="form-control" name="timeZone" id="timeZone" required ngModel>-->
+												<!--<option *ngFor="let item of timezones" value="{{item.zoneId}}">{{item.timezone}}</option>-->
+											<!--</select>-->
+										<!--</div>-->
+										<!--<div class="form-group">-->
+											<!--<label class="control-label mr-15">{{'pages.login.learnType'|translate}}</label>-->
+											<!--&lt;!&ndash;<label class="radio-inline c-radio" *ngFor="let item of learnType">&ndash;&gt;-->
+												<!--&lt;!&ndash;<input id="inlineradio1" type="radio" name="studyType" value="{{item.key}}" required ngModel />&ndash;&gt;-->
+												<!--&lt;!&ndash;<span class="fa fa-circle"></span>{{item.val}}&ndash;&gt;-->
+											<!--&lt;!&ndash;</label>&ndash;&gt;-->
+											<!--<select class="form-control" name="studyType" id="studyType" required ngModel>-->
+												<!--<option *ngFor="let item of learnType" value="{{item.key}}">{{item.val}}</option>-->
+											<!--</select>-->
+										<!--</div>-->
+										<!--<div class="text-center">-->
+											<!--<button class="btn btn-green btn-rounded-lg ladda-button" type="submit"-->
+											<!--data-style="expand-right" title="{{'pages.login.register'|translate}}"><span class="ladda-label">{{'pages.login.register'|translate}}</span><span-->
+											<!--class="ladda-spinner"></span></button>-->
+											<!--<a class="btn btn-gray btn-rounded-lg btn-cancel" href="/#/goods" title="{{'pages.login.cancel'|translate}}">{{'pages.login.cancel'|translate}}</a>-->
+										<!--</div>-->
+									<!--</form>-->
+								<!--</div>-->
+								<!--后来修改的 start-->
+								<app-register-total (priceChange)="getTab($event)"></app-register-total>
+								<!--后来修改的 end-->
+							</tab>
+							<!--学生注册 end-->
+						</tabset>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

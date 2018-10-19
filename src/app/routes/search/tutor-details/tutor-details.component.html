@@ -1,0 +1,111 @@
+<!--教师详情 begin-->
+<div class="tutor-details mt">
+    <p class="text-right">
+        <u>
+            <span class="cursor" (click)="toBack()">{{'search.tutorDetail.back'|translate}}</span>
+        </u>
+    </p>
+    <!--教师基本信息 begin-->
+    <div class="tutor-info">
+        <div class="col-sm-3 head-portrait">
+            <div class="avator-box">
+                <img src="{{tutor?.avatar}}" onerror="javascript:this.src='../../../../assets/images/user.png'" />
+            </div>
+        </div>
+        <div class="col-sm-7 pr0 pl0">
+            <h3 class="text-main">{{tutor.name}}</h3>
+            <p>{{'search.tutorDetail.nativeLanguage'|translate}}：{{tutor.nativeLanguage}}</p>
+            <div class="tutor-count">
+                <ul>
+                    <li class="col-xs-3 pr">
+                        <div>
+                            <i class="fa fa-bar-chart mr-5 text-main"></i>
+                            <b>{{tutor.classroomTutor?.classroomTutorTotal}}</b>
+                            {{'search.tutorDetail.courseHour'|translate}}
+                        </div>
+                    </li>
+                    <li class="col-xs-3 pr">
+                        <div>
+                            <i class="fa fa-comments-o mr-5 text-main"></i>
+                            <b>{{tutor.classroomFeedback?.feedbackTotal}}</b>
+                            {{'search.tutorDetail.feedback'|translate}}
+                        </div>
+                    </li>
+                    <li class="col-xs-3 pr">
+                        <div>
+                            <i class="fa fa-heart mr-5 text-main"></i>
+                            <b>{{tutor.tutorFavorite?.favoriteTotal}}</b> {{'search.tutorDetail.favorite'|translate}}
+                        </div>
+                    </li>
+                    <li class="col-xs-3 pr0">
+                        <div>
+                            <i class="fa fa-star mr-5 text-main"></i>
+                            <b>{{tutor?.starLevel || 0 *20}}%</b> {{'search.tutorDetail.Applause'|translate}}
+                        </div>
+                    </li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="col-sm-2 tutor-order">
+            <span class="btn bg-pay" (click)="toBespoke()">{{'search.tutorDetail.bespoke'|translate}}</span>
+        </div>
+        <div class="tutor-collection" *ngIf="!isFavorite" (click)="toFavorite()">
+            <i class="fa fa-heart-o text-money mr-5"></i>{{'search.tutorDetail.favorite'|translate}}</div>
+        <div class="tutor-collection" *ngIf="isFavorite">
+            <i class="fa fa-heart text-money mr-5"></i>{{'search.tutorDetail.isFavorite'|translate}}</div>
+        <div class="clear"></div>
+    </div>
+    <!--教师基本信息 end-->
+    <!--教师简介 begin-->
+    <div class="tutor-content">
+        <!-- <h4><i class="fa fa-newspaper-o mr ml-5 text-main"></i>{{'search.tutorDetail.introduction'|translate}}</h4>
+        <hr class="mt mb"/>
+        <div class="content">
+            <div [innerHTML]="tutor.introduction"></div>
+        </div> -->
+        <md-tab-group>
+            <md-tab #class label="{{'search.tutorDetail.introduction'|translate}}">
+                <div class="content">
+                    <div>{{tutor.introduction || 'search.tutorDetail.NoTutorDetail'|translate}}</div>
+                </div>
+            </md-tab>
+            <md-tab #buy label="{{'search.tutorDetail.coruseMark'|translate}}( {{feedbackData.totalRow}} )">
+                <div class="content">
+                    <ul *ngIf="feedbackData.voList && feedbackData.voList.length > 0" class="container-fluid">
+                        <li class="row border-bottom-ccc"  *ngFor="let feedback of feedbackData.voList;let i=index;">
+                            <div class="col-sm-3 ">
+                                <div class="avatar text-center avator-box">
+                                    <img src="{{feedback?.studentQuery && feedback?.studentQuery?.avatar}}" onerror="javascript:this.src='../../../../assets/images/user.png'" alt="">
+                                </div>
+                                <p class="name text-center">{{feedback.studentName}}</p>
+                            </div>
+                            <div class="col-sm-9 pt">
+                                <p class="workBreak"
+                                   [innerHTML]="feedback.remark |questionSplit :true |safeHtml"></p>
+                                <div class="rating_box">
+                                    <rating [(ngModel)]="feedback.starLevel" [max]="5" [readonly]="isReadonly" stateOn="fa fa-star" stateOff="fa fa-star-o"  style="color: #f5e61b; font-size: 20px"></rating>
+                                    <div>{{feedback.createTimeString}}</div>
+                                </div>
+                                <!--<div class="workBreak">{{feedback.feedback}}</div>-->
+                                <p class="workBreak" [ngClass]="{'borderBottom':i!=feedbackData.voList.length-1}"
+                                   [innerHTML]="feedback.feedback |questionSplit |safeHtml"></p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="w100 mt-20">
+                        <button class="form-control" *ngIf="!feedbackData.lastPage" (click)="loadMore()">
+                            +{{'search.search.loadMore'|translate}} （{{'search.search.row'|translate}} {{feedbackData.totalRow}}
+                            {{'search.search.strip'|translate}}）
+                        </button>
+                        <button disabled class="form-control" *ngIf="feedbackData.lastPage">
+                            <span class="text-muted">{{'search.search.loadAll'|translate}} （{{'search.search.row'|translate}} {{feedbackData.totalRow}} {{'search.search.strip'|translate}}）</span>
+                        </button>
+                    </div>
+                </div>
+            </md-tab>
+        </md-tab-group>
+    </div>
+    <!--教师简介 end-->
+</div>
+<!--教师详情 end-->

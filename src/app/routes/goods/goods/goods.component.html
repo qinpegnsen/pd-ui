@@ -1,0 +1,57 @@
+<!--banner 图片 begin-->
+<div class="w100">
+    <img width="100%" src="../../../../assets/images/ponddyBanner.jpg">
+</div>
+<!--banner 图片 end-->
+
+<!--商品中心 begin-->
+<div class="goods mb-20">
+    <div class="col-sm-4" *ngFor="let goods of goodsList">
+        <div class="goods-list mt-20">
+            <div class="goods-img">
+                <img width="100%" src="{{goods.mainImage}}"
+                     onerror="javascript:this.src='../../../../assets/images/noImg.png'"/>
+            </div>
+            <div class="text-center text-info p-20 goods-tit" title="{{goods.goodsName}}">
+                <h4>{{goods.goodsName}}</h4>
+            </div>
+            <div class="goods-info pt-15 pb-15 ml-20 mr-20">
+                <a class="show-more font12 pl-5 pr-5 cursor" href="{{goods.detailLink}}"  target="_blank" >
+                    <i class="fa fa-file-text-o"></i> {{'goods.goods.detail' | translate}}
+                </a>
+                <!--<div class="content">-->
+                    <!--<div class="editor-content" [innerHTML]="goods.ad"></div>-->
+                <!--</div>-->
+            </div>
+            <div class="pt pb ml-20 mr-20 text-center text-money">
+                <!--<h3 *ngIf="goods.courseHourType!='Common'">-->
+                    <!--${{goods.promotionPrice}}-->
+                    <!--<span *ngIf="goods.promotionPrice != goods.goodsPrice" class="font14 text-muted"><del>$ {{goods.goodsPrice}}</del></span>-->
+                <!--</h3>-->
+                <h3>
+                    ${{goods.goodsPrice}}
+                </h3>
+            </div>
+            <div class="pt pb-20 ml-20 mr-20 mb goods-pay">
+                <a class="w100 bg-pay border-none pt pb font18" (click)="payGoods(goods.goodsCode)">{{'goods.goods.buy' | translate}}</a>
+            </div>
+            <div class="p goods-details" *ngIf="goods['isShow']" [class.showDetail]="goods.showDetails">
+                <div class="text-right font16">
+                    <span class="cursor" (click)="showDetail(goods)"><i class="fa fa-close"></i>{{'goods.goods.close' | translate}}</span>
+                </div>
+                <div class="details-content">
+                    <div class="editor-content" [innerHTML]="goods.ad"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="load-more mt-20 mb-20 ml-15 mr-15" *ngIf="!page.lastPage" (click)="loadMore()">
+        + {{'goods.goods.loadMore' | translate}}
+    </div>
+</div>
+<!--商品中心 end-->
+
+<!--路由 begin-->
+<router-outlet></router-outlet>
+<!--路由 begin-->

@@ -1,0 +1,41 @@
+<div class="wrapper-no-sidebar wrapper-gray ">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+				<div class="simple-form">
+					<div class="form-header text-center">
+						<img src="../../../../assets/images/logo.b90301619d64.png" alt="LOGO">
+					</div>
+					<div class="panel panel-transparent">
+						<div class="form-body">
+							<p class="text-orange" *ngIf="isFirstLogin">
+								<i class="fa fa-volume-up mr"></i>{{'pages.tutor-init.fristLoginMsg'|translate}}
+							</p>
+							<h2 class="text-center">{{'pages.tutor-init.midofyPassword'|translate}}</h2>
+							<form novalidate="novalidate" #tutorInit="ngForm" (ngSubmit)="tutorMidofy(tutorInit)">
+								<div class="form-group">
+									<label class="control-label" for="oldPassword">{{'pages.tutor-init.oldPassword'|translate}}</label> <input
+								class="form-control required" id="oldPassword" name="oldPassword" ngModel placeholder="{{'pages.tutor-init.oldPasswordTitle'|translate}}"
+								required="required" type="password"/>
+								</div>
+								<div class="form-group">
+									<label class="control-label" for="password">{{'pages.tutor-init.newPassword'|translate}}</label>
+									<input class="form-control required" id="password" name="password" maxlength="16" ngModel placeholder="{{'pages.tutor-init.newPasswordTitle'|translate}}" required="required" title="" type="password"/>
+								</div>
+								<div class="text-center">
+									<button class="btn btn-green btn-rounded-lg ladda-button" type="submit" data-style="expand-right">
+										<span class="ladda-label">{{'pages.tutor-init.submit'|translate}}</span>
+										<span class="ladda-spinner"></span>
+									</button>
+									<button class="btn btn-gray btn-rounded-lg btn-cancel" routerLink="/manage/tutor/info" *ngIf="!isInit">{{'pages.tutor-login.cancel'|translate}}</button>
+
+
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

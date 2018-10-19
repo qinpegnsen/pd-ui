@@ -1,0 +1,51 @@
+<div class="wrapper-no-sidebar wrapper-gray ">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="simple-form">
+          <div class="form-header text-center">
+            <img src="../../../../assets/images/logo.b90301619d64.png" alt="LOGO">
+          </div>
+          <div class="panel panel-transparent">
+            <div class="form-body">
+              <h2 class="text-center">{{'pages.tutor-login.tutor-login'|translate}}</h2>
+              <form novalidate="novalidate" #tutorLogin="ngForm" (ngSubmit)="tutorLoginIn(tutorLogin)">
+                <!--账号 start-->
+                <div class="form-group">
+                  <label class="control-label" for="username">{{'pages.tutor-login.username'|translate}}</label>
+                  <input class="form-control required" id="username"  name="username" ngModel placeholder="{{'pages.tutor-login.usernameTitle'|translate}}" required="required" title="{{'pages.tutor-login.usernameTitle'|translate}}" type="text" />
+                </div>
+                <!--账号 end-->
+                <!--密码 start-->
+                <div class="form-group">
+                  <label class="control-label" for="password">{{'pages.tutor-login.password'|translate}}</label>
+                  <input class="form-control required" id="password" name="password" maxlength="16" ngModel placeholder="{{'pages.tutor-login.passwordTitle'|translate}}" required="required" title="{{'pages.tutor-login.passwordTitle'|translate}}" type="password" />
+                </div>
+                <!--密码 end-->
+                <!--登录取消 start-->
+                <div class="text-center">
+                  <button class="btn btn-green btn-rounded-lg ladda-button" type="submit"
+                  data-style="expand-right"><span class="ladda-label">{{'pages.tutor-login.login'|translate}}</span><span
+                  class="ladda-spinner"></span></button>
+                  <a class="btn btn-gray btn-rounded-lg btn-cancel" href="/#/goods">{{'pages.tutor-login.cancel'|translate}}</a>
+                </div>
+                <!--登录取消 end-->
+                <!--切换用户 start-->
+                <div class="text-left">
+                  <p class="forgot-password mt-15">
+                    <a routerLink="/pages/login" class="pull-left" title="{{'pages.tutor-login.studentLoginEntry'|translate}}">{{'pages.tutor-login.studentLogin'|translate}}
+                      <i class="fa fa-send ml-5"></i>
+                    </a>
+                    <a routerLink="/pages/send" [queryParams]="{role:'tutor'}" class="pull-right gray" title="{{'pages.login.forgot-password'|translate}}">{{'pages.login.forgot-password'|translate}}
+                    </a>
+                  </p>
+                </div>
+                <!--切换用户 end-->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

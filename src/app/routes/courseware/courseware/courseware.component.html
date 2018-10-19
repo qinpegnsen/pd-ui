@@ -1,0 +1,33 @@
+<!--课件内容 begin-->
+<div class="courseware">
+    <iframe id="courseware" width="100%" [src]="iframeUrl | safe" scrolling="no" frameborder="0">
+    </iframe>
+    <div class="operation">
+        <ul>
+            <li title="Back" (click)="back()"><i class="fa fa-reply"></i></li>
+            <li title="Full screen" (click)="fullScreen()"><i class="fa fa-desktop"></i></li>
+        </ul>
+    </div>
+</div>
+<!--课件内容 end-->
+
+<!--左侧消息 begin-->
+<div class="left-msg" *ngIf="showLiftMsg" style="max-width: 300px">
+    <i class="fa fa-minus-circle left-msg-close fa-2x text-warning" (click)="showMsg()"></i>
+    <p class="mb0"><strong><i class="fa fa-files-o mr-5"></i>{{'courseware.courseware.courseList' | translate}}</strong></p>
+    <hr class="mt-5 mb-5"/>
+    <ul>
+        <li *ngFor="let ware of coursewareList" (click)="selWare(ware)">{{ware.courseWare.title}}</li>
+    </ul>
+    <p class="mb0 mt-20"><strong><i class="fa fa-files-o mr-5"></i>{{'courseware.courseware.prompt' | translate}}</strong></p>
+    <hr class="mt-5 mb-5"/>
+    <span class="text-muted">{{'courseware.courseware.courseDuration' | translate}}：</span>
+    <p class="text-center"><span class="font18 text-main"><strong>{{courseDuration}}</strong></span> m</p>
+    <span class="text-muted">{{'courseware.courseware.wareNum' | translate}}：</span>
+    <p class="text-center"><span class="font18 text-main"><strong>{{coursewareList.length}}</strong></span></p>
+    <span class="font12 text-warning">* {{'courseware.courseware.msg' | translate}}</span>
+</div>
+<div *ngIf="!showLiftMsg" class="left-msg-min" (click)="showMsg()">
+    <i class="fa fa-file-text-o"></i>
+</div>
+<!--左侧消息 end-->

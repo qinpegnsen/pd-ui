@@ -1,0 +1,91 @@
+<div class="container-fluid mt-20">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="h4 text-center">{{'tutor.personal.info'|translate}}</div>
+				<hr>
+				<div class="row pv-lg">
+					<div class="col-lg-2"></div>
+					<div class="col-lg-8">
+						<form class="form-horizontal" novalidate #tutorInfo="ngForm" (ngSubmit)="modifyInfo(tutorInfo)">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">{{'tutor.personal.avator'|translate}}</label>
+								<div class="col-sm-9">
+									<div class="avatar">
+										<img src="{{tutorData?.avatar}}" alt="{{tutorData.name}}" onerror="javascript:this.src='../../../../assets/images/user.png'" #img/>
+									</div>
+									<label for="file2" class="file-upload">
+										<button class="btn btn-default btn-block">{{'tutor.personal.changeAvator'|translate}}</button>
+										<input id="file2" type="file" (change)="upload(fileUpload,img)" #fileUpload/>
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="name">{{'tutor.personal.name'|translate}}</label>
+								<div class="col-sm-9">
+									<input class="form-control" id="name" maxlength="32" type="text" placeholder="{{'tutor.personal.nameTitle'|translate}}"  name="name" [(ngModel)]="tutorData.name" required="required"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="eName">{{'tutor.personal.eName'|translate}}</label>
+								<div class="col-sm-9">
+									<input class="form-control" id="eName" maxlength="64" type="text" placeholder="{{'tutor.personal.eNameTitle'|translate}}"  name="eName" [(ngModel)]="tutorData.eName" required="required"/>
+								</div>
+							</div>
+							<!--<div class="form-group">-->
+								<!--<label class="col-sm-3 control-label" for="age">{{'tutor.personal.age'|translate}}</label>-->
+								<!--<div class="col-sm-9">-->
+									<!--<input class="form-control" id="age" type="number" name="age" [(ngModel)]="tutorData.age"/>-->
+								<!--</div>-->
+							<!--</div>-->
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="sex">{{'tutor.personal.sex'|translate}}</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="sex" name="sex" [(ngModel)]="tutorData.sex">
+										<option *ngFor="let item of sexList" value="{{item.key}}">{{item.val}}</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="nativeLanguage">{{'tutor.personal.nativeLanguage'|translate}}</label>
+								<div class="col-sm-9">
+									<input class="form-control" id="nativeLanguage" type="text" name="nativeLanguage" placeholder="{{'tutor.personal.nativeLanguageTitle'|translate}}" [(ngModel)]="tutorData.nativeLanguage"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="countryCode">{{'tutor.personal.countryCode'|translate}}</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="countryCode" name="countryCode" [(ngModel)]="tutorData.countryCode">
+										<option *ngFor="let item of countryCode" value="{{item.code}}">{{item.country}}</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="timeZone">{{'tutor.personal.timeZone'|translate}}</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="timeZone" name="timeZone" [(ngModel)]="tutorData.timeZone">
+										<option *ngFor="let item of timezones" value="{{item.zoneId}}">{{item.timezone}}</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="introduction">{{'tutor.personal.introduction'|translate}}</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" id="introduction" placeholder="{{'tutor.personal.introduction'|translate}}" name="introduction" row="4" maxlength="512" [(ngModel)]="tutorData.introduction"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-4">
+									<button class="btn btn-info form-control" type="submit">{{'tutor.personal.changeInfo'|translate}}</button>
+								</div>
+								<div class="col-sm-4">
+									<button class="btn btn-primary form-control" type="button" routerLink="/pages/tutorInit">{{'pages.tutor-init.midofyPassword'|translate}}</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

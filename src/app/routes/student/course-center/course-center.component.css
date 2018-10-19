@@ -1,0 +1,122 @@
+.course-center{
+	padding: 30px 50px;
+}
+@media (max-width: 767px) {
+	.course-center{
+		padding: 20px 5px !important;
+	}
+	.course-hour-info li{
+		border-bottom:  1px solid #e2e2e2;
+	}
+}
+.course-hour-info{
+	background: #fff;
+	margin: 30px 0 30px;
+}
+.course-hour-info li{
+	padding: 10px 0;
+	border-right: 1px solid #e2e2e2;
+}
+.course-hour-info p{
+	margin: 0;
+}
+.course-hour-info span{
+	font-size: 26px;
+	color: #30a4b1;
+}
+.panel{
+	border: none;
+}
+.agree{
+	background: rgb(50,168,182);
+	color: #fff;
+}
+.disagree{
+	background: rgb(188,35,38);
+	color: #fff;
+}
+button:focus{
+	outline: none !important;
+}
+button:active{
+	outline: none !important;
+}
+.time{
+	overflow: hidden;
+}
+.time>div{
+	float: left;
+}
+.students-box{
+	text-align: left;
+}
+.btn-oval{
+	border-radius: 50px;
+}
+.students{
+	display: inline-block;
+	width: 33.3%;
+}
+.students .pic{
+	 width: 50px;
+	 height: 50px;
+	 border-radius: 50%;
+	 overflow: hidden;
+	 margin: 0 auto;
+}
+.students .pic img{
+	width: 50px;
+	height: 50px;
+}
+.students .name{
+	font-size: 12px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: center;
+}
+
+.tab{
+	position: relative;
+}
+.page{
+	position: absolute;
+	right: 20px;
+	top:10px;
+}
+.tab-content{
+	padding-top: 30px;
+}
+.no-message{
+	width: 100%;
+	height: 300px;
+	background: url("/assets/images/no-message.png") no-repeat center;
+	background-size: 150px 150px;
+}
+
+.content-heading {
+	font-size: 16px;
+	line-height: 1.1;
+	color: #807676;
+	margin-bottom: 10px;
+	padding: 10px;
+	font-weight: normal;
+	background-color: #fff;
+	overflow: hidden;
+}
+.content-heading p{
+	margin-bottom: 0;
+	padding: 10px;
+}
+.customColor{
+	background: rgba(102, 187, 102, 0.75);
+	color: #fff;
+}
+@media screen and (max-width: 768px){
+	.cellDisplay{
+		display: none;
+	}
+}
+.badgeBg{
+	background: rgb(50,168,182);
+}

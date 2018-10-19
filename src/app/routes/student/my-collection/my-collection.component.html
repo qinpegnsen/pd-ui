@@ -1,0 +1,46 @@
+<div class="my-collection">
+	<p class="font24">
+		{{'student.collection.myCollection'|translate}} <span class="pull-right font14">{{'student.collection.row'|translate}}
+			<i class="text-orange">{{favoriteData.totalRow || '0'}}</i>{{'student.collection.strip'|translate}}
+		</span>
+	</p>
+	<ul class="container-fluid" *ngIf="favoriteData.voList && favoriteData.voList.length !== 0">
+		<li class="row tutor-item mt-15" *ngFor="let tutor of favoriteData.voList">
+			<div class="col-md-3 tutor-pic-box">
+				<div class="tutor-pic">
+					<img src="{{tutor.tutor?.avatar}}" alt="{{tutor.tutor.name}}" onerror="javascript:this.src='../../../../assets/images/user.png'"/>
+				</div>
+			</div>
+			<div class="col-md-7">
+				<p class="tutor-name mb0">{{tutor.tutor.name}}</p>
+				<p class="tutor-job">
+					<i class="fa fa-graduation-cap mr-5"></i>{{tutor.tutor.nativeLanguage}}
+				</p>
+				<p class="tutor-summary text-muted">{{tutor.tutor.introduction}}</p>
+				<p class="tutor-info">
+					<span class="w30 pull-left">
+						<i class="fa fa-bar-chart"></i>{{tutor.classroomTutor ? tutor.classroomTutor.classroomTutorTotal : '0'}}{{'student.collection.courseHour'|translate}}
+					</span>
+					<span class="w30 pull-left">
+						<i class="fa fa-comments"></i>{{tutor.classroomFeedback ? tutor.classroomFeedback.feedbackTotal : '0'}}{{'student.collection.feedback'|translate}}
+					</span>
+					<span class="w30 pull-left">
+						<i class="fa fa-heart-o"></i>{{tutor.tutorFavorite ? tutor.tutorFavorite.favoriteTotal : '0'}}{{'student.collection.favorite'|translate}}
+					</span>
+					<span class="pull-right tutor-more" routerLink="/search/details" [queryParams]="{code: tutor.tutorCode}"><i class="fa fa-file-text-o"></i>{{'student.collection.detail'|translate}}</span>
+				</p>
+			</div>
+			<div class="col-md-2 btn-box">
+				<button class="form-control btn btn-oval" routerLink="/order/timetable" [queryParams]="{code: tutor.tutorCode}">{{'student.collection.bespoke'|translate}}</button>
+			</div>
+			<ng-container [ngSwitch]="tutor.state">
+				<span class="collection" *ngSwitchCase="'Delete'">{{'student.collection.isCancel'|translate}}</span>
+				<span class="collection cursor" *ngSwitchDefault (click)="delFavorite(tutor)"><i class="fa fa-minus-circle mr-5 text-warning"></i>{{'student.collection.delFavorite'|translate}}</span>
+			</ng-container>
+		</li>
+	</ul>
+	<div class="no-message" *ngIf="!favoriteData.voList || favoriteData.voList.length === 0"></div>
+	<div class="w100">
+		<button class="form-control" *ngIf="!favoriteData.lastPage" (click)="loadMore()">+{{'student.collection.loadMore'|translate}}</button>
+	</div>
+</div>

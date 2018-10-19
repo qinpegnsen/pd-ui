@@ -1,0 +1,163 @@
+<div class="order-box container-fluid p-20">
+    <!--待处理预约信息 begin-->
+    <p class="font24">{{'tutor.orderHandle.orderHandle'|translate}}
+        <span class="pull-right font14">{{'tutor.orderHandle.row'|translate}}
+        <i class="text-orange">{{classroomData.classrooms.length || 0}}</i>{{'tutor.orderHandle.strip'|translate}}
+    </span>
+    </p>
+    <ul class="row text-center" *ngIf="classroomData.classrooms && classroomData.classrooms.length > 0">
+        <li class="col-lg-3 col-md-4 col-sm-6" *ngFor="let classroom of classroomData.classrooms">
+            <div class="order-handle panel" [ngClass]="{'border-main': classroom.type==custom}">
+                <div class="time" tooltip="Class time">
+                    <p class="font14 mt-5 mb0">{{classroom.startTime | moment:"MM-DD"}}</p>
+                    <p class="font22 mb0">{{classroom.startTime | moment:"HH:mm"}}</p>
+                </div>
+                <!--<span class="pull-right more cursor" title="{{'student.studentCenter.lookComments'|translate}}"-->
+                <!--(click)="lookComment(classroom.classroomCode)">-->
+                <!--<i class="fa fa-comment"></i>-->
+                <!--</span>-->
+                <!--定制课程-->
+                <ng-container *ngIf="classroom.type == custom">
+                  <span class="pull-right more">
+                      {{'student.studentCenter.customizedCourse'|translate}}
+                  </span>
+                </ng-container>
+                <!--<div class="text-center user-pic">-->
+                <!--<div>-->
+                <!--<img src="{{classroom.classroomStudentses[0].student.avatar}}" alt="{{classroom.classroomStudentses[0].studentName}}" onerror="javascript:this.src='../../../../assets/images/user.png'"/>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<p class="tutor-name">{{classroom.classroomStudentses[0].studentName}}</p>-->
+                <div class="text-center user-pic">
+                    <ng-container *ngFor="let item of classroom.classroomStudentses;let i = index">
+                        <div class="user_box 40">
+                            <div class="user_laout">
+                                <div>
+                                    <img src="{{item.student?.avatar}}"
+                                         alt="{{item.studentName}}"
+                                         onerror="javascript:this.src='../../../../assets/images/user.png'"/>
+                                </div>
+                            </div>
+                            <p class="tutor-name">{{item.studentName}}</p>
+                        </div>
+                    </ng-container>
+                </div>
+                <p class="tutor-job mt-5" tooltip="{{classroom.course}}">
+                    <i class="fa fa-book mr-5"></i>{{classroom.course}}
+                </p>
+                <span *ngIf="classroom.classroomLeavemessages && classroom.classroomLeavemessages.length == 0">
+                    <p class="leaveMsg">
+                        {{'tutor.tutorCenter.leaveMsg'|translate}}：
+                        <span class="text-muted">Nothing</span>
+                    </p>
+                </span>
+                <span *ngIf="classroom.classroomLeavemessages && classroom.classroomLeavemessages.length > 0">
+                    <p class="leaveMsg" *ngIf="this.getBol(classroom.classroomLeavemessages,classroom.studentCode)">
+                        {{'tutor.tutorCenter.leaveMsg'|translate}}：
+                    {{(this.getBol(classroom.classroomLeavemessages,classroom.studentCode)).leaveMessage}}
+                    </p>
+                    <p class="leaveMsg" *ngIf="!this.getBol(classroom.classroomLeavemessages,classroom.studentCode)">
+                        {{'tutor.tutorCenter.leaveMsg'|translate}}：
+                        <span class="text-muted">Nothing</span>
+                    </p>
+                </span>
+                <!--<p class="leaveMsg">{{'tutor.orderHandle.leaveMsg'|translate}}：{{classroom.classroomLeavemessage && classroom.classroomLeavemessage.leaveMessage}}</p>-->
+                <p class="mt-20">
+                    <button class="btn w30 btn-oval customColor mr-15 "
+                            (click)="cancelOrder(classroom.classroomStudentses,classroom.classroomCode,classroom.type == custom )">
+                        {{'tutor.orderHandle.refuse'|translate}}
+                    </button>
+                    <button class="btn w30 btn-oval agree ml-15"
+                            (click)="confirmed(classroom.classroomStudentses,classroom.classroomCode,classroom.type == custom )">
+                        {{'tutor.orderHandle.agree'|translate}}
+                    </button>
+                </p>
+            </div>
+        </li>
+    </ul>
+    <div class="no-message" *ngIf="!classroomData.classrooms || classroomData.classrooms.length == 0"></div>
+    <!--待处理预约信息 end-->
+
+    <!--已被取消的预约信息 begin-->
+    <p class="font24">{{'tutor.orderHandle.cancelOrder'|translate}}
+        <span class="pull-right font14">{{'tutor.orderHandle.row'|translate}}
+    <i class="text-orange">{{cancelClassroomPage.totalRow || 0}}</i>{{'tutor.orderHandle.strip'|translate}}
+    </span>
+    </p>
+    <ul class="row text-center" *ngIf="cancelClassroomList && cancelClassroomList.length > 0">
+        <li class="col-lg-3 col-md-4 col-sm-6" *ngFor="let classroom of cancelClassroomList">
+            <div class="order-handle panel">
+                <div class="time">
+                    <p class="font14 mt-5 mb0">{{classroom.classroom.startTime | moment:"MM-DD"}}</p>
+                    <p class="font22 mb0">{{classroom.classroom.startTime | moment:"HH:mm"}}</p>
+                </div>
+                <div class="text-center user-pic">
+                    <div>
+                        <ng-container *ngFor="let stu of classroom.classroom.classroomStudentses">
+                            <ng-container *ngIf="stu.studentCode==classroom.studentCode">
+                                <div class="user_box">
+                                    <div class="user_laout">
+                                        <div>
+                                            <img src="{{stu?.student?.avatar}}"
+                                                 alt="{{stu.studentName}}"
+                                                 onerror="javascript:this.src='../../../../assets/images/user.png'"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+                <ng-container *ngFor="let stu of classroom.classroom.classroomStudentses">
+                    <ng-container *ngIf="stu.studentCode==classroom.studentCode">
+                        <p class="tutor-name">{{stu.studentName}}</p>
+                    </ng-container>
+                </ng-container>
+                <p class="tutor-job mt-5" tooltip="{{classroom.classroom.course}}">
+                    <i class="fa fa-book mr-5"></i>{{classroom.classroom.course}}
+                </p>
+                <ng-container *ngFor="let stu of classroom.classroom.classroomLeavemessages;let i=index;">
+                    <ng-container *ngIf="stu.studentCode==classroom.studentCode">
+                        <p class="leaveMsg">{{'tutor.orderHandle.leaveMsg'|translate}}：{{
+                            stu?.leaveMessage}}</p>
+                    </ng-container>
+                </ng-container>
+                <ng-container *ngIf="!getLeaveMsg(classroom.classroom.classroomLeavemessages,classroom.studentCode)">
+                    <p class="leaveMsg">{{'tutor.orderHandle.leaveMsg'|translate}}：</p>
+                </ng-container>
+                <p class="mt-20">
+                    <ng-container *ngFor="let stu of classroom.classroom.classroomStudentses;let i=index;">
+                        <ng-container *ngIf="stu.studentCode==classroom.studentCode">
+                            <!--下面的一个是为了处理之前的数据-->
+                            <ng-container *ngIf="!stu.operateType">
+                                <button class="btn w80 btn-oval" disabled *ngIf="stu.state!='StuCancel'">
+                                    {{'student.order.alreadyCancel'|translate}}
+                                </button>
+                                <button class="btn w80 btn-oval" disabled *ngIf="stu.state=='StuCancel'">
+                                    {{'student.order.stuCancel'|translate}}
+                                </button>
+                            </ng-container>
+                            <button class="btn w80 btn-oval" disabled *ngIf="stu.operateType=='STUDENT'">
+                                {{'enum.operateType.student'|translate}}
+                            </button>
+                            <button class="btn w80 btn-oval" disabled *ngIf="stu.operateType=='TUTOR'">
+                                {{'enum.operateType.tutor'|translate}}
+                            </button>
+                            <button class="btn w80 btn-oval" disabled *ngIf="stu.operateType=='ASSISTANT'">
+                                {{'enum.operateType.assis'|translate}}
+                            </button>
+                            <button class="btn w80 btn-oval" disabled *ngIf="stu.operateType=='SYS'">
+                                {{'enum.operateType.sys'|translate}}
+                            </button>
+                        </ng-container>
+                    </ng-container>
+                </p>
+            </div>
+        </li>
+    </ul>
+    <div class="no-message" *ngIf="!cancelClassroomList || cancelClassroomList.length == 0"></div>
+    <button class="form-control" *ngIf="!cancelClassroomPage.lastPage" (click)="orderLoadMore()">
+        +{{'student.center.loadMore'|translate}}（{{'student.center.row'|translate}}<i class="text-orange">{{cancelClassroomPage.totalRow}}</i>{{'student.center.strip'|translate}}）
+    </button>
+    <!--&lt;!&ndash;已被取消的预约信息 end&ndash;&gt;-->
+</div>

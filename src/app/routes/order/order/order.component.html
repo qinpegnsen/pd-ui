@@ -1,0 +1,14 @@
+<div class="order-public">
+  <div class="order-step">
+    <div class="col-xs-6" [class.sel]="stepConfirm"></div>
+    <div class="col-xs-6" [class.sel]="stepOK"></div>
+
+    <div class="step-one sel">{{'order.order.selete'|translate}}</div>
+    <div class="step-two" [class.sel]="stepConfirm">{{'order.order.confirm'|translate}}</div>
+    <div class="step-three" [class.sel]="stepOK">{{'order.order.complete'|translate}}</div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+<!--页面切换-->
+<router-outlet></router-outlet>

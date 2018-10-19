@@ -1,0 +1,84 @@
+.goods{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.goods .goods-list{
+    background: white;
+    box-shadow: 2px 2px 1px #d4d3d3;
+    position: relative;
+}
+.goods .goods-list:hover{
+    box-shadow: 4px 4px 2px #ccc;
+}
+.goods .goods-list .goods-tit h4{
+    color: #30a4b6;
+    word-break:keep-all;           /* 不换行 */
+    white-space:nowrap;          /* 不换行 */
+    overflow:hidden;               /* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;         /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+.goods .goods-list .goods-pay a{
+    display: block;
+    font-weight: 600;
+    /*letter-spacing:5px;*/
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+.goods .goods-list .goods-info{
+    /*border-top: 1px solid #ecf1f5;*/
+    border-bottom: 1px solid #ecf1f5;
+    position: relative;
+}
+.goods .goods-list .goods-img{
+    background: #f5f5f5;
+}
+.goods .goods-list .goods-info .show-more{
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+    border: 1px solid #30a4b6;
+    color: #30a4b6;
+    border-radius: 3px;
+    background: white;
+    z-index: 99;
+}
+.goods .goods-list .goods-info .content{
+    height: 70px;
+    overflow:hidden;               /* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;         /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+.goods .goods-list .goods-details{
+    position: absolute;
+    top:50%;
+    left:50%;
+    width: 0%;
+    height:0%;
+    background-color:rgba(0,0,0,0.8);
+    color:white;
+    z-index: 100;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+.goods .goods-list .showDetail{
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+}
+.goods .goods-list .goods-details span{
+    /*letter-spacing:3px;*/
+}
+
+.load-more{
+    padding: 10px;
+    cursor: pointer;
+    background: white;
+    text-align: center;
+    font-size: 15px;
+    /*letter-spacing: 2px;*/
+    color: #666;
+}
+.op0{
+    opacity: 0;
+}

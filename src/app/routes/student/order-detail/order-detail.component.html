@@ -1,0 +1,248 @@
+<div class="container-fluid course-detail">
+	<p class="title-back"><button class="pull-right mr-20  cursor btn btn-info" (click)="goBack()"><i class="fa fa-mail-reply mr-5"></i>{{'student.orderDetail.back'|translate}}</button>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-6">
+	<p class="lead bb font18 text-info"><i class="fa fa-file-text-o mr-5"></i>{{'student.orderDetail.orderInfo'|translate}}</p>
+	<form class="form-horizontal p-20">
+		<div class="form-group">
+			<div class="col-sm-4">{{'student.orderDetail.consumerName'|translate}}:</div>
+			<div class="col-sm-8">
+				<strong>{{orderData.consumerName}}</strong>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4">{{'student.orderDetail.email'|translate}}:</div>
+			<div class="col-sm-8">
+				<strong>{{orderData.consumerEmail}}</strong>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4">{{'student.orderDetail.courseNum'|translate}}:</div>
+			<div class="col-sm-8 text-warning font18">
+				<strong>{{orderData.orderGoodses[0].goods && orderData.orderGoodses[0].goods.courseHour}}</strong>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4">{{'student.orderDetail.orderState'|translate}}:</div>
+			<div class="col-sm-8">
+				<ng-container [ngSwitch]="orderData.state">
+					<strong class="text-muted" *ngSwitchCase="'Cancel'">
+						{{orderData.state | state:orderState}}
+					</strong>
+					<strong class="text-muted" *ngSwitchCase="'Expired'">
+						{{orderData.state | state:orderState}}
+					</strong>
+					<strong class="text-warning" *ngSwitchCase="'Refunding'">
+						{{orderData.state | state:orderState}}
+					</strong>
+					<strong class="text-info" *ngSwitchCase="'Pay'">
+						{{orderData.state | state:orderState}}
+					</strong>
+					<strong class="text-info" *ngSwitchCase="'Pending'">
+						{{orderData.state | state:orderState}}
+					</strong>
+					<strong class="text-success" *ngSwitchDefault>
+						{{orderData.state | state:orderState}}
+					</strong>
+				</ng-container>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4">{{'student.orderDetail.orderTimeZone'|translate}}:</div>
+			<div class="col-sm-8">
+				<strong>{{orderData.timeZone}}</strong>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4">{{'student.orderDetail.orderSource'|translate}}:</div>
+			<div class="col-sm-8">
+				<strong>{{orderData.orderSource}}</strong>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4">{{'student.orderDetail.createTime'|translate}}:</div>
+			<div class="col-sm-8">
+				<strong>{{orderData.createTime}}</strong>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="col-md-6">
+	<p class="lead bb font18 text-info"><i class="fa fa-paypal mr-5"></i>{{'student.orderDetail.payInfo'|translate}}</p>
+	<form class="form-horizontal p-20">
+		<div class="form-group">
+			<div class="col-sm-4">{{'student.orderDetail.goods'|translate}}:</div>
+			<div class="col-sm-8">
+				<strong>{{orderData.orderGoodses[0].goodsName}}</strong>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4">{{'student.orderDetail.payPrice'|translate}}:</div>
+			<div class="col-sm-8 text-warning font18">
+				<strong>${{orderData.orderPrice}}</strong>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4">{{'student.orderDetail.payType'|translate}}:</div>
+			<div class="col-sm-8">
+				<strong *ngIf="orderData.payType">{{orderData.payType}}</strong>
+				<strong *ngIf="!orderData.payType">{{'student.center.unpaid'|translate}}</strong>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4">{{'student.orderDetail.payTime'|translate}}:</div>
+			<div class="col-sm-8">
+				<strong *ngIf="orderData.payedTime">{{orderData.payedTime}}</strong>
+				<strong *ngIf="!orderData.payedTime">{{'student.center.unpaid'|translate}}</strong>
+			</div>
+		</div>
+	</form>
+</div></div></div></div>
+<!--<div class="w100 table-box">-->
+<!--<table class="course-table text-center">-->
+	<!--<thead>-->
+	<!--<tr>-->
+		<!--<td>{{'student.orderDetail.goods'|translate}}</td>-->
+		<!--<td>{{'student.orderDetail.time'|translate}}</td>-->
+		<!--<td>{{'student.orderDetail.price'|translate}}</td>-->
+		<!--<td>{{'student.orderDetail.state'|translate}}</td>-->
+	<!--</tr>-->
+	<!--</thead>-->
+	<!--<tbody>-->
+	<!--<tr>-->
+		<!--<td>{{orderData.orderGoodses[0].goodsName}}</td>-->
+		<!--<td>{{orderData.updateTime}}</td>-->
+		<!--<td>${{orderData.orderPrice}}</td>-->
+		<!--<ng-container [ngSwitch]="orderData.state">-->
+			<!--<td class="text-success" *ngSwitchCase="'Finish'">{{'student.orderDetail.isEnd'|translate}}</td>-->
+			<!--<td class="text-success" *ngSwitchDefault>{{'student.orderDetail.creatOrder'|translate}}</td>-->
+		<!--</ng-container>-->
+	<!--</tr>-->
+	<!--</tbody>-->
+<!--</table>-->
+<!--</div>-->
+	<!-- START timeline-->
+<ul [ngClass]="timelineAlt ? 'timeline-alt' : 'timeline'" class="mt-20">
+	<li class="timeline-separator" data-datetime="Start"></li>
+	<!-- START 创建订单-->
+	<li>
+		<div class="timeline-badge primary">
+			<em class="fa fa-calendar"></em>
+		</div>
+		<div class="timeline-panel">
+			<div class="popover left">
+				<h4 class="popover-title text-right">
+					{{'student.orderDetail.creatOrder'|translate}} <span class="text-muted pull-left"></span>
+				</h4>
+				<div class="arrow"></div>
+				<div class="popover-content">
+					<div class="order-class">
+						<table>
+							<tbody>
+							<tr>
+								<td>{{'student.orderDetail.goods'|translate}}</td>
+								<td>{{orderData.orderGoodses[0].goodsName}}</td>
+							</tr>
+							<tr>
+								<td>{{'student.orderDetail.consumerName'|translate}}</td>
+								<td>{{orderData.consumerName}}</td>
+							</tr>
+							<tr>
+								<td>{{'student.orderDetail.price'|translate}}</td>
+								<td>${{orderData.orderPrice}}</td>
+							</tr>
+							<tr>
+								<td>{{'student.orderDetail.orderNo'|translate}}</td>
+								<td>{{orderData.orderSource}}</td>
+							</tr>
+							<tr>
+								<td>{{'student.orderDetail.time'|translate}}</td>
+								<td>{{orderData.createTime}}</td>
+							</tr>
+							<tr>
+								<td>{{'student.orderDetail.orderSource'|translate}}</td>
+								<td>{{orderData.orderSource}}</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</li>
+	<!-- END 创建订单-->
+	<!-- START 支付结果-->
+	<li class="timeline-inverted">
+		<div class="timeline-badge success">
+			<em class="fa fa-comment-o"></em>
+		</div>
+		<div class="timeline-panel">
+			<div class="popover right">
+				<h4 class="popover-title text-left">{{'student.orderDetail.payOver'|translate}} <span class="text-muted pull-right"></span>
+				</h4>
+				<div class="arrow"></div>
+				<div class="popover-content">
+					<div class="order-result text-center">
+						<p class="examine-tutor">{{'student.orderDetail.payOver'|translate}}:</p>
+						<p class="examine-result text-warning" *ngIf="orderData.state=='Cancel' || orderData.state=='Pay' || orderData.state=='Expired' || orderData.state=='Pending'">
+							<i class="rzh-icon-error mr-5"></i>
+							{{'student.orderDetail.waitPay'|translate}}
+						</p>
+
+						<p class="examine-result text-success" *ngIf="orderData.state=='Refunding' || orderData.state=='Paid' || orderData.state=='Finish' || orderData.state=='Refunded'">
+							<i class="rzh-icon-success mr-5"></i>
+							{{'student.orderDetail.paySuccess'|translate}}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</li>
+	<!-- END 支付结果-->
+	<!-- START 支付信息-->
+	<li class="timeline-inverted" *ngIf="orderData.orderPayments.length > 0">
+		<div class="timeline-badge info">
+			<em class="fa fa-file-text-o"></em>
+		</div>
+		<div class="timeline-panel">
+			<div class="popover right">
+				<h4 class="popover-title text-right">
+					{{'student.orderDetail.payInfo'|translate}} <span class="text-muted pull-left"></span>
+				</h4>
+				<div class="arrow"></div>
+				<div class="popover-content">
+					<div class="course-record">
+						<table>
+							<tbody>
+							<tr>
+								<td>{{'student.orderDetail.price'|translate}}</td>
+								<td>$ {{orderData.orderPrice}}</td>
+							</tr>
+							<tr>
+								<td>{{'student.orderDetail.payType'|translate}}</td>
+								<td>{{orderData.payType}}</td>
+							</tr>
+							<tr>
+								<td>{{'student.orderDetail.orderNo'|translate}}</td>
+								<td>{{orderData.orderNo}}</td>
+							</tr>
+							<tr>
+								<td>{{'student.orderDetail.payTime'|translate}}</td>
+								<td>{{orderData.payedTime}}</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</li>
+	<!-- END 支付信息-->
+	<!-- START timeline item-->
+	<li class="timeline-end">
+		<a class="timeline-badge"> <em class="fa fa-power-off"></em> </a>
+	</li>
+	<!-- END timeline item-->
+</ul><!-- END timeline--></div>

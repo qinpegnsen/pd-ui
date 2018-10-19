@@ -1,0 +1,211 @@
+<div class="my-order">
+    <div class="row">
+        <div class="col-md-4">
+            <!-- START widget-->
+            <div class="panel widget" style="background: rgba(89,181,194,0.5)">
+                <div class="row row-table cursor" routerLink="/manage/student/center" style="outline: none">
+                    <div class="col-xs-4 text-center pv-lg" style="background: rgb(89,181,194)">
+                        <em class="fa fa-table fa-3x"></em>
+                    </div>
+                    <div class="col-xs-8 pv-lg">
+                        <div class="h3 mt0 mb0" [ngClass]="{'col-xs-6':courseHourShare > 0}">
+                            {{allCourseHour}}
+                            <p class="font12 mt-5">（{{'student.studentCenter.Surplus'|translate}}）</p>
+                            <!--<p class="col-xs-6">{{allCourseHour}} <span class="font12">（剩余）</span></p>-->
+                            <!--<p class="col-xs-6">{{allCourseHour}} <span class="font12">（企业）</span></p>-->
+                        </div>
+                        <div class="h3 mt0 mb0 col-xs-6" *ngIf="courseHourShare > 0">
+                            {{courseHourShare}}
+                            <p class="font12 mt-5 ">（{{'student.studentCenter.enterprise'|translate}}）</p>
+                        </div>
+                        <!--<div class="text-uppercase">{{'student.studentCenter.courseCenter'|translate}}</div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!-- START widget-->
+            <div class="panel widget" style="background: rgba(79,163,235,0.5)">
+                <div class="row row-table cursor" routerLink="/manage/student/order" style="outline: none">
+                    <div class="col-xs-4 text-center pv-lg" style="background: rgb(79,163,235)">
+                        <em class="fa fa-tty fa-3x"></em>
+                    </div>
+                    <div class="col-xs-8 pv-lg">
+                        <div class="h3 mt0 mb0">{{bookClassromm ? bookClassromm.length : '0'}}
+                            <p class="font12 mt-5">（{{'student.studentCenter.iSOrder'|translate}}）</p>
+                        </div>
+                        <!--<div class="text-uppercase">{{'student.studentCenter.myOrder'|translate}}</div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!-- START widget-->
+            <div class="panel widget" style="background: rgba(170,187,23,0.5)">
+                <div class="row row-table cursor" routerLink="/manage/student/collection" style="outline: none">
+                    <div class="col-xs-4 text-center pv-lg" style="background: rgb(170,187,23)">
+                        <em class="rzh-icon-star fa-3x"></em>
+                    </div>
+                    <div class="col-xs-8 pv-lg">
+                        <div class="h3 mt0 mb0">{{studentData.tutorFavorites ? studentData.tutorFavorites.length : '0'}}
+                            <p class="font12 mt-5">（{{'student.studentCenter.iSCollection'|translate}}）</p>
+                        </div>
+                        <!--<div class="text-uppercase">{{'student.studentCenter.myCollection'|translate}}</div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="class">
+        <p class="font24">
+            {{'student.studentCenter.goClassroom'|translate}}
+        </p>
+        <ul class="row" *ngIf="confirmedClassroom.classrooms && confirmedClassroom.classrooms.length !== 0">
+            <li class="col-md-4 col-lg-3 col-sm-6" *ngFor="let classroom of confirmedClassroom.classrooms">
+                <div class="now-order panel" [ngClass]="{'border-main': classroom.type==custom}">
+                    <div class="time" tooltip="Class time">
+                        <p class="font14 mt-5 mb0">{{classroom.startTime | moment:"MM-DD"}}</p>
+                        <p class="font22 mb0">{{classroom.startTime | moment:"HH:mm"}}</p>
+                    </div>
+                    <!--定制课程-->
+                    <ng-container *ngIf="classroom.type == custom">
+                        <span class="pull-right more">
+							{{'student.studentCenter.customizedCourse'|translate}}
+						</span>
+                    </ng-container>
+                    <!--<span class="pull-right more" title="详情" ><i class="fa fa-file-text-o"></i></span>-->
+                    <!--定制课程-->
+
+
+                    <ng-container *ngIf="classroom.type == custom">
+                        <ng-container *ngFor="let tutor of classroom.classroomTutors">
+                            <ng-container *ngIf="tutor.state == attend">
+                                <div class="text-center user-pic">
+                                    <div><img src="{{tutor.tutor?.avatar}}"
+                                              alt="{{tutor.tutor.name}}"
+                                              onerror="javascript:this.src='../../../../assets/images/user.png'"/></div>
+                                </div>
+                                <p class="tutor-name">{{tutor.tutor.name}}</p>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                    <!--课表课程-->
+                    <ng-container *ngIf="classroom.type != custom">
+                        <div class="text-center user-pic">
+                            <div><img
+                                    src="{{classroom.classroomTutors[0].tutor && classroom.classroomTutors[0].tutor?.avatar}}"
+                                    alt="{{classroom.classroomTutors[0].tutor && classroom.classroomTutors[0].tutor.name}}"
+                                    onerror="javascript:this.src='../../../../assets/images/user.png'"/></div>
+                        </div>
+                        <p class="tutor-name">{{classroom.classroomTutors[0].tutor &&
+                            classroom.classroomTutors[0].tutor.name}}</p>
+                    </ng-container>
+
+                    <p class="tutor-job mt-5" title="{{classroom.course}}"><i class="fa fa-home mr-5"></i>{{classroom.course}}
+                    </p>
+                    <div class="tutor-info">
+                        <div class="w33 pull-left">
+                            <p>{{classroom.tutorInfo ? classroom.tutorInfo.classroom : '0'}}</p>
+                            <p>{{'student.studentCenter.courseHour'|translate}}</p>
+                        </div>
+                        <div class="w33 pull-left">
+                            <p>{{classroom.tutorInfo ? classroom.tutorInfo.feedback : '0'}}</p>
+                            <p>{{'student.studentCenter.feedback'|translate}}</p>
+                        </div>
+                        <div class="w33 pull-left">
+                            <p>{{classroom.tutorInfo ? classroom.tutorInfo.favorite : '0'}}</p>
+                            <p>{{'student.studentCenter.favorite'|translate}}</p>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <a class="btn btn-oval w60 agree" (click)="goDetail(classroom.classroomCode)">{{'student.studentCenter.detail'|translate}}</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="no-message1"
+             *ngIf="!confirmedClassroom.classrooms || confirmedClassroom.classrooms.length === 0">
+            <div class="poCenter">
+                <p class="text-center mb-5 myFont">{{'student.studentCenter.noGoClass'|translate}}</p>
+                <img src="/assets/images/flight.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="order">
+        <p class="font24">
+            {{'student.studentCenter.currentOrder'|translate}}
+            <!--<span class="pull-right font14" *ngIf="bookClassromm.classrooms && bookClassromm.classrooms.length > 4">{{'student.studentCenter.lookMore'|translate}}</span>-->
+        </p>
+        <ul class="row" *ngIf="bookClassromm || bookClassromm.length !== 0">
+            <ng-container *ngFor="let classroom of bookClassromm">
+                <li class="col-md-4 col-lg-3 col-sm-6">
+                    <div class="now-order panel" [ngClass]="{'border-main': classroom.classroom.type==custom}">
+                        <div class="time" tooltip="Class time">
+                            <!--{{classroom.classroom.startTime }}-->
+                            <p class="font14 mt-5 mb0">{{classroom.classroom.startTime | moment:"MM-DD"}}</p>
+                            <p class="font22 mb0">{{classroom.classroom.startTime | moment:"HH:mm"}}</p>
+                        </div>
+                        <!--<span class="pull-right cursor cancel-order" (click)="cancelOrder(classroom.classroomCode)" *ngIf="classroom.isCancel=='Y'">-->
+                        <!--取消预约<i class="fa fa-minus-circle ml-5"></i>-->
+                        <!--</span>-->
+
+                        <!--课表课程-->
+                        <ng-container *ngIf="classroom.classroom.type != custom">
+						<span class="pull-right more cursor" title="{{'student.studentCenter.lookMore'|translate}}"
+                              (click)="goDetail(classroom.classroom.classroomCode)">
+							<i class="fa fa-file-text-o"></i>
+						</span>
+                            <div class="text-center user-pic">
+                                <div><img
+                                        src="{{classroom.classroom.classroomTutors[0].tutor && classroom.classroom.classroomTutors[0].tutor?.avatar}}"
+                                        alt="{{classroom.classroom.classroomTutors[0].tutor && classroom.classroom.classroomTutors[0].tutor.name}}"
+                                        onerror="javascript:this.src='../../../../assets/images/user.png'"/></div>
+                            </div>
+                            <p class="tutor-name">{{classroom.classroom.classroomTutors[0].tutor &&
+                                classroom.classroom.classroomTutors[0].tutor.name}}</p>
+                        </ng-container>
+                        <!--定制课程-->
+                        <ng-container *ngIf="classroom.classroom.type == custom">
+						<span class="pull-right more">
+							{{'student.studentCenter.customizedCourse'|translate}}
+						</span>
+                            <div class="text-center user-pic">
+                                <div><img src="../../../../assets/images/user.png"/></div>
+                            </div>
+                            <p class="tutor-name">{{'student.studentCenter.courseTutor'|translate}}</p>
+                        </ng-container>
+
+                        <p class="tutor-job mt-5" title="{{classroom.classroom.course}}"><i
+                                class="fa fa-mortar-board mr-5"></i>{{classroom.classroom.course}}
+                        </p>
+                        <!--<div class="tutor-info">-->
+                        <!--<div class="w33 pull-left">-->
+                        <!--<p>{{classroom.classroom.tutorInfo ? classroom.classroom.tutorInfo.classroom : '0'}}</p>-->
+                        <!--<p>{{'student.studentCenter.courseHour'|translate}}</p>-->
+                        <!--</div>-->
+                        <!--<div class="w33 pull-left">-->
+                        <!--<p>{{classroom.classroom.tutorInfo ? classroom.classroom.tutorInfo.feedback : '0'}}</p>-->
+                        <!--<p>{{'student.studentCenter.feedback'|translate}}</p>-->
+                        <!--</div>-->
+                        <!--<div class="w33 pull-left">-->
+                        <!--<p>{{classroom.classroom.tutorInfo ? classroom.classroom.tutorInfo.favorite : '0'}}</p>-->
+                        <!--<p>{{'student.studentCenter.favorite'|translate}}</p>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="panel-footer">
+                            <!--<p class="text-center">-->
+                            <!--{{'student.studentCenter.leaveMsg'|translate}}：{{classroom.classroom.classroomLeavemessage &&-->
+                            <!--classroom.classroom.classroomLeavemessage.leaveMessage}}</p>-->
+                            <p class="state">{{'student.studentCenter.inProcess'|translate}}...</p>
+                        </div>
+                    </div>
+                </li>
+            </ng-container>
+        </ul>
+        <div class="no-message1" *ngIf="!bookClassromm || bookClassromm.length === 0">
+            <div class="poCenter line-height-150">
+                <button class="btn btn-info form-control myCustomButton" type="submit" routerLink="/search">{{'student.studentCenter.nowOrder'|translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

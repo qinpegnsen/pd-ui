@@ -1,0 +1,121 @@
+.record-box{
+	padding: 20px;
+}
+@media (max-width: 767px) {
+	.record-box{
+		padding: 20px 5px;
+	}
+}
+.panel{
+	border: none;
+}
+.agree{
+	background: rgb(50,168,182);
+	color: #fff;
+}
+.disagree{
+	background: rgb(188,35,38);
+	color: #fff;
+}
+button:focus{
+	outline: none !important;
+}
+button:active{
+	outline: none !important;
+}
+.time{
+	overflow: hidden;
+}
+.time>div{
+	float: left;
+}
+.students-box{
+	text-align: left;
+	overflow-x:scroll;white-space: nowrap
+}
+
+/*滚动条样式*/
+.students-box::-webkit-scrollbar {/*滚动条整体样式*/
+	height: 4px;
+
+}
+.students-box::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+	border-radius: 5px;
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+	background: rgba(0,0,0,0.1);
+}
+
+.students-box::-webkit-scrollbar-track {/*滚动条里面轨道*/
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+	border-radius: 0;
+	background: rgba(0,0,0,0.000000000000001);
+}
+
+.students{
+	display: inline-block;
+}
+.students .pic{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+.students .pic img{
+	width: 50px;
+	height: 50px;
+}
+.students .name{
+	font-size: 12px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: center;
+}
+.no-message{
+	width: 100%;
+	height: 300px;
+	background: url("/assets/images/no-message.png") no-repeat center;
+	background-size: 150px 150px;
+}
+.badgeBg{
+	background: rgb(50,168,182);
+}
+.page{
+	position: absolute;
+	right: 20px;
+	top:10px;
+}
+@media screen and (max-width: 768px){
+	.cellDisplay{
+		display: none;
+	}
+}
+.tab{
+	position: relative;
+}
+.myHeight{
+	height:16px;
+	font-size: 12px;
+}
+.noWrite{
+	height:16px;
+	font-size: 12px;
+	color:#0bbf43 !important;
+}
+.pointer{
+	cursor: pointer;
+}
+.myw20{
+	width: 20% !important;
+}
+.myw15{
+	width: 15% !important;
+}
+.myw10{
+	width: 10% !important;
+}
+.mymiddle{
+	position:relative;
+	bottom:30px;
+}

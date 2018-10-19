@@ -1,0 +1,214 @@
+<div class="search">
+    <h4 class="mb0 text-main"><i class="fa fa-search mr ml"></i>{{'search.search.searchTeacher'|translate}}</h4>
+    <!--搜索信息 begin-->
+    <div class="search-info box-shadow-2">
+        <table width="100%">
+            <tbody>
+            <!--<tr>-->
+                <!--<td class="width100 pl-20 text-muted">{{'search.search.courseTranslate'|translate}}：</td>-->
+                <!--<td>-->
+                    <!--<ng-container *ngFor="let info of courseTranslate">-->
+                        <!--&lt;!&ndash;经沟通现在只所有这个类型&ndash;&gt;-->
+                        <!--<label class="radio-inline" *ngIf="info.key=='Course'">-->
+                            <!--<input type="radio" name="course" value="{{info.key}}" (change)="selTranslate(info.key)"-->
+                                   <!--[checked]="info.key==selCourseTranslate"> {{info.val}}-->
+                        <!--</label>-->
+                    <!--</ng-container>-->
+                <!--</td>-->
+            <!--</tr>-->
+            <!--<tr *ngIf="translateIsCourse">-->
+                <!--<td class="width100 pl-20 text-muted">{{'search.search.courseType'|translate}}：</td>-->
+                <!--<td class="select-course-type">-->
+                    <!--<input class="form-control width238" (click)="showOrHideSelectType()" [value]="selectCourseTypeInfo"-->
+                           <!--placeholder="{{'search.search.selectCourseType'|translate}}"/>-->
+                    <!--<div class="type-info" *ngIf="showSelectType">-->
+                        <!--<div *ngFor="let info of coursesTypeList">-->
+                            <!--<button *ngIf="info.children.length > 0" disabled class="btn btn-default form-control">-->
+                                <!--{{info.category}}-->
+                            <!--</button>-->
+                            <!--<button *ngIf="info.children.length < 1"-->
+                                    <!--(click)="selectCourseType(info.categoryCode,info.category)"-->
+                                    <!--class="btn btn-default form-control">{{info.category}}-->
+                            <!--</button>-->
+                            <!--<div *ngIf="info.children.length > 0" class="ml-15">-->
+                                <!--<div *ngFor="let children of info.children">-->
+                                    <!--<button *ngIf="children.children.length > 0" disabled-->
+                                            <!--class="btn btn-default form-control">-->
+                                        <!--{{children.category}}-->
+                                    <!--</button>-->
+                                    <!--<button *ngIf="children.children.length < 1"-->
+                                            <!--(click)="selectCourseType(children.categoryCode,info.category+' - '+children.category)"-->
+                                            <!--class="btn btn-default form-control">-->
+                                        <!--<i class="fa fa-level-up mr transform-90deg"></i>{{children.category}}-->
+                                    <!--</button>-->
+                                    <!--<div *ngIf="children.children.length > 0" class="ml-15">-->
+                                        <!--<button *ngFor="let grandson of children.children"-->
+                                                <!--(click)="selectCourseType(grandson.categoryCode,info.category+' - '+children.category+' - '+grandson.category)"-->
+                                                <!--class="btn btn-default form-control">-->
+                                            <!--<i class="fa fa-level-up mr transform-90deg"></i>{{grandson.category}}-->
+                                        <!--</button>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</td>-->
+            <!--</tr>-->
+            <tr>
+                <td class="width100 pl-20 text-muted">{{'search.search.hotCourse'|translate}}：</td>
+                <td>
+                    <ng-container *ngFor="let course of hotCourseList">
+                        <span (click)="selCourse(course,true)"
+                              [ngClass]="{'sel':course.sel}"
+                              class="mb-sm btn-sm btn btn-default m-3">{{course.course}}
+                        </span>
+                        <span class="badge badgeBg">hot</span>
+                    </ng-container>
+                    <!--<select class="form-control width238 mbl-show" [(ngModel)]="courseBySelect" (change)="selCourseBySelect()">-->
+                    <!--<option *ngFor="let course of courseList" [value]="course.courseCode">{{course.course}}</option>-->
+                    <!--</select>-->
+                </td>
+            </tr>
+            <tr *ngIf="courseList.length > 0">
+                <td class="width100 pl-20 text-muted">{{'search.search.course'|translate}}：</td>
+                <td>
+                    <span *ngFor="let course of courseList" (click)="selCourse(course)" [ngClass]="{'sel':course.sel}"
+                          class="mb-sm btn-sm btn btn-default m-3">{{course.course}}</span>
+                    <!--<select class="form-control width238 mbl-show" [(ngModel)]="courseBySelect" (change)="selCourseBySelect()">-->
+                    <!--<option *ngFor="let course of courseList" [value]="course.courseCode">{{course.course}}</option>-->
+                    <!--</select>-->
+                </td>
+            </tr>
+            <tr>
+                <td class="width100 pl-20 text-muted">{{'search.search.time'|translate}}：</td>
+                <td>
+                    <div class="form-group width238 pull-left mr">
+                        <div class="input-group">
+                            <input type="text" readonly class="form-control" [(ngModel)]="selDate" bsDatepicker
+                                   #dp="bsDatepicker" [bsConfig]="bsConfig" [minDate]="minDate">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" (click)="dp.show()">Date</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-left">
+                        <div class="width100 pull-left mr">
+                            <select class="form-control" [(ngModel)]="selStartTime">
+                                <option *ngFor="let time of timeList" value="{{time.val}}">{{time.val}}</option>
+                            </select>
+                        </div>
+                        <div class="pull-left ml mr">~</div>
+                        <div class="width100 pull-left">
+                            <select class="form-control" [(ngModel)]="selEndTime">
+                                <option *ngFor="let time of timeList" value="{{time.val}}">{{time.val}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="width100 pl-20 text-muted">{{'search.search.timeZone'|translate}}：</td>
+                <td>
+                    <select class="form-control width238" [(ngModel)]="selTimeZone">
+                        <option *ngFor="let info of timeZone" value="{{info.zoneId}}">
+                            {{info.timezone}}
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr *ngIf="alreadySelectCourse.length > 0">
+                <td class="width100 pl-20 text-muted">{{'search.search.alreadySelectCourse'|translate}}：</td>
+                <td>
+                    <span *ngFor="let course of alreadySelectCourse"
+                          class="mb-sm btn-sm btn btn-default m-3 already-sel">
+                        {{course.course}}<i class="fa fa-remove text-danger ml-5" (click)="delSelCourse(course)"></i>
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button class="btn pull-right m bg-pay text-white" (click)="toSel()"><i class="fa fa-search mr"></i>{{'search.search.search'|translate}}
+        </button>
+        <button class="btn pull-right m bg-pay btn-default" (click)="toReset()">
+            <span class="text-alpha-inverse"><i class="fa fa-refresh mr"></i>{{'search.search.reset'|translate}}</span>
+        </button>
+
+        <!--暂时注释掉这个功能-->
+
+        <!--<button class="btn pull-right m bg-pay btn-default" *ngIf="isShowCustom" (click)="goCustom()">-->
+        <!--<i class="fa fa-pencil-square-o mr-5"></i>-->
+        <!--{{'search.search.customCourse'|translate}}-->
+        <!--</button>-->
+        <div class="clear"></div>
+    </div>
+    <!--搜索信息 end-->
+    <!--教师信息 begin-->
+    <div class="search-tutor" *ngIf="tutorList.length>0">
+        <ul class="container-fluid">
+            <li class="row tutor-item box-shadow-2 mb-15" *ngFor="let tutor of tutorList">
+                <div class="col-md-3 tutor-pic-box">
+                    <div class="tutor-pic">
+                        <img src="{{tutor.tutor?.avatar}}"
+                             onerror="javascript:this.src='../../../../assets/images/user.png'"/>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <p class="tutor-name mb0">{{tutor.tutor.name}}</p>
+                    <p class="tutor-job"><i class="fa fa-language mr-5"></i>
+                        {{tutor.tutor.nativeLanguage}}
+                    </p>
+                    <p class="tutor-summary text-muted" *ngIf="tutor.tutor.introduction">
+                        {{tutor.tutor.introduction}}
+                    </p>
+                    <p class="tutor-summary text-muted" *ngIf="!tutor.tutor.introduction">
+                        {{'search.search.notIntroduction'|translate}}
+                    </p>
+                    <p class="tutor-info">
+                        <span class="w25 pull-left"><i class="fa fa-bar-chart"></i>{{tutor.classroomTutor.classroomTutorTotal}} {{'search.search.courseHour'|translate}}</span>
+                        <span class="w25 pull-left"><i class="fa fa-comments"></i>{{tutor.classroomFeedback.feedbackTotal}} {{'search.search.feedback'|translate}}</span>
+                        <span class="w25 pull-left"><i class="fa fa-heart-o"></i>{{tutor.tutorFavorite.favoriteTotal}} {{'search.search.favorite'|translate}}</span>
+                        <span class="w25 pull-left"><i class="fa fa-star"></i>{{tutor.tutor.starLevel*20}}% {{'search.search.Applause'|translate}}</span>
+                    </p>
+                    <!--<p>-->
+                    <!--<span class="contact rzh-icon-contact"></span>-->
+                    <!--<span class="schedule rzh-icon-schedule"></span>-->
+                    <!--</p>-->
+                </div>
+                <div class="col-md-2 btn-box">
+                    <button class="form-control btn btn-oval" (click)="toBespoke(tutor.tutor.tutorCode)">
+                        {{'search.search.bespoke'|translate}}
+                    </button>
+                </div>
+                <span class="collection" (click)="toDetails(tutor.tutor.tutorCode)">
+                    <i class="fa fa-file-text-o mr-5"></i>{{'search.search.detail'|translate}}
+                </span>
+            </li>
+        </ul>
+        <div class="w100 mt-20">
+            <button class="form-control" *ngIf="!page.lastPage" (click)="loadMore()">
+                +{{'search.search.loadMore'|translate}} （{{'search.search.row'|translate}} {{page.totalRow}}
+                {{'search.search.strip'|translate}}）
+            </button>
+            <button disabled class="form-control" *ngIf="page.lastPage">
+                <span class="text-muted">{{'search.search.loadAll'|translate}} （{{'search.search.row'|translate}} {{page.totalRow}} {{'search.search.strip'|translate}}）</span>
+            </button>
+        </div>
+    </div>
+    <div class="search-tutor" *ngIf="tutorList.length<1">
+        <ul class="container-fluid" *ngIf="isShowCustom">
+            <li class="row tutor-item box-shadow-2 mb-15 text-center pb-20">
+                <span class="font18">{{'search.search.notSearch'|translate}}：</span>
+                <button class="btn" (click)="goCustom()">{{'search.search.customCourse'|translate}}
+                    <i class="fa fa-arrow-right ml"></i>
+                </button>
+            </li>
+        </ul>
+        <ul class="container-fluid" *ngIf="!isShowCustom">
+            <li class="row tutor-item box-shadow-2 mb-15 text-center pb-20">
+                <h3>{{'ts.swat.e212'|translate}}</h3>
+            </li>
+        </ul>
+    </div>
+    <!--教师信息 end-->
+</div>

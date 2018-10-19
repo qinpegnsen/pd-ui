@@ -1,0 +1,13 @@
+<div class="l-header">
+    <div class="logo pull-left">
+        <img routerLink="/home" height="26px" src="../../../../../assets/images/logo-simple.png">
+    </div>
+    <div class="menu pull-right cursor" (click)="clickSlide()">
+        <i class="fa fa-navicon mr-5"></i>Menu
+    </div>
+    <div class="pull-right mr-20" *ngIf="home">
+        <span class="text-muted cursor" [routerLink]="home">
+            <u><i class="fa fa-user mr-5"></i>{{'public.pubile-little.header.home' | translate}}</u>
+        </span>
+    </div>
+</div>

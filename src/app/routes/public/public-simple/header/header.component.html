@@ -1,0 +1,25 @@
+<div class="simple-header">
+    <div class="logo pull-left lineHeight80">
+        <img routerLink="/goods" class="mt0 height42" (click)="go('/goods')" src="../../../../../assets/images/headLogo.png">
+    </div>
+    <!--如果登录的话才能看到老师们的信息，这是为了保护老师的隐私-->
+    <div class="navigation pull-left">
+        <span [class.select]="menu.sel" *ngFor="let menu of settings.menuList" (click)="go(menu.url)"
+              routerLink="{{menu.url}}">{{menu.name}}</span>
+    </div>
+    <div class="menu pull-right">
+        <img (click)="clickSlide()" src="../../../../../assets/images/toggle.png">
+    </div>
+    <div class="pull-right mr-20 line-height font14">
+
+        <ng-container *ngIf="isLogin">
+            <strong><span class="cursor" (click)="goHome()"><u>{{'pages.login.home'|translate}}</u></span></strong>
+        </ng-container>
+        <ng-container *ngIf="!isLogin">
+            <strong><span class="cursor"
+                          routerLink="/pages/login"><u>{{'pages.login.login'|translate}}</u></span></strong>
+            /
+            <strong><span class="cursor" routerLink="/pages/login" [queryParams]="{u:'register'}"><u>{{'pages.login.register'|translate}}</u></span></strong>
+        </ng-container>
+    </div>
+</div>

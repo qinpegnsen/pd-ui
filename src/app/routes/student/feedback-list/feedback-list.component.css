@@ -1,0 +1,80 @@
+.avatar{
+    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+    position: relative;
+}
+.addPic{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+}
+.addPic img{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.file-upload [type=file] {
+    cursor: pointer;
+    display: block;
+    filter: alpha(opacity=0);
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+}
+#introduction{
+    min-height: 150px;
+}
+
+.indent{
+    text-indent:2em;
+}
+label,:host /deep/.mat-radio-label{
+    font-weight: normal;
+}
+.fontWeight{
+    font-weight: 600;
+}
+.myTitle{
+    color: #31a4b2;
+    font-weight: bold;
+    line-height:24px;
+}
+.lineHeight24{
+    line-height:24px;
+}
+.pl-30{
+    padding:30px!important;
+}
+.myQuestion{
+    font-size: 14px;
+    color: #444444;
+    font-weight:bold;
+    line-height:20px;
+}
+.dash{
+    margin-bottom: 20px;
+    border-bottom: 1px dashed #ccc!important;
+}
+:host/deep/.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    background: #31a4b2;
+}
+.myCustom{
+    background: #31a4b2 !important;
+    border-color: #31a4b2 !important;
+}
+.font15{
+    font-size: 15px;
+}
+
+

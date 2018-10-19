@@ -1,0 +1,515 @@
+<div class="container-fluid p0">
+    <div class="col-md-12 p0">
+        <div class="panel panel-default" style="border: 0px!important;">
+            <div class="panel-body pl-30 p0">
+                <h2 class="text-center">{{'pages.login.student-register'|translate}}</h2>
+                <form class="form-validate form-horizontal" [formGroup]="valForm"
+                      (submit)="submitForm()"
+                      novalidate>
+                    <fieldset>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">1. First Name<i>*</i> </label>
+                                <div class="w100">
+                                    <input class="form-control" placeholder="Your answer" type="text"
+                                           formControlName="firstName" maxlength="32"/>
+                                    <span class="text-danger"
+                                          *ngIf="valForm.controls['firstName'].hasError('required') && (valForm.controls['firstName'].dirty || valForm.controls['firstName'].touched)">Required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">2. Last Name<i>*</i> </label>
+                                <div class="w100">
+                                    <input class="form-control" placeholder="Your answer" type="text"
+                                           formControlName="lastName" maxlength="32"/>
+                                    <span class="text-danger"
+                                          *ngIf="valForm.controls['lastName'].hasError('required') && (valForm.controls['lastName'].dirty || valForm.controls['lastName'].touched)">Required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">3. Chinese Name</label>
+                                <div class="w100">
+                                    <input class="form-control" placeholder="Your answer" type="text"
+                                           formControlName="chineseName" maxlength="32"/>
+                                    <!--<span class="text-danger"-->
+                                          <!--*ngIf="valForm.controls['ChineseName'].hasError('required') && (valForm.controls['ChineseName'].dirty || valForm.controls['ChineseName'].touched)">Required</span>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">4. E-mail <i>*</i> </label>
+                                <div class="w100">
+                                    <input class="form-control" placeholder="Your answer" type="email"
+                                           formControlName="email" maxlength="50"/>
+                                    <span class="text-danger"
+                                          *ngIf="valForm.controls['email'].hasError('required') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">Required</span>
+                                    <span class="text-danger"
+                                          *ngIf="valForm.controls['email'].hasError('email') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">The mail format is incorrect.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div formGroupName="passwordInfo">
+                            <div class="form-group m">
+                                <div class="col-md-12">
+                                    <label class="ccontrol-label height-35">5. Password <i>*</i> </label>
+                                    <div class="w100">
+                                        <input class="form-control" placeholder="Your answer
+" type="password"
+                                               formControlName="password" maxlength="16" minlength="6"/>
+                                        <span class="text-danger"
+                                              *ngIf="valForm['controls']['passwordInfo']['controls']['password'].hasError('required') && (valForm['controls']['passwordInfo']['controls']['password'].dirty || valForm['controls']['passwordInfo']['controls']['password'].touched)">Required</span>
+                                        <span class="text-danger"
+                                              *ngIf="valForm['controls']['passwordInfo']['controls']['password'].hasError('minlength') && (valForm['controls']['passwordInfo']['controls']['password'].dirty || valForm['controls']['passwordInfo']['controls']['password'].touched)">Please enter a password of at least 6 digits!</span>
+                                        <!--<span class="text-danger"-->
+                                        <!--*ngIf="valForm.hasError('required','passwordInfo.password') && (valForm.get('password').dirty || valForm.get('password').touched)">Required</span>-->
+
+                                        <!--<span class="text-danger"-->
+                                        <!--*ngIf="valForm.hasError('minlength','passwordInfo.password') && (valForm.get('password').dirty || valForm.get('password').touched)">Please enter a password of at least 6 digits!</span>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group m">
+                                <div class="col-md-12">
+                                    <label class="ccontrol-label height-35">6. Password (confirm) <i>*</i> </label>
+                                    <div class="w100">
+                                        <input class="form-control" placeholder="Your answer" type="password"
+                                               formControlName="passwordConfirm" maxlength="16" minlength="6"/>
+                                        <span class="text-danger"
+                                              *ngIf="valForm['controls']['passwordInfo']['controls']['passwordConfirm'].hasError('required') && (valForm['controls']['passwordInfo']['controls']['passwordConfirm'].dirty || valForm['controls']['passwordInfo']['controls']['passwordConfirm'].touched)">Required</span>
+                                        <span class="text-danger"
+                                              *ngIf="valForm['controls']['passwordInfo']['controls']['passwordConfirm'].hasError('minlength') && (valForm['controls']['passwordInfo']['controls']['passwordConfirm'].dirty || valForm['controls']['passwordInfo']['controls']['passwordConfirm'].touched)">Please enter a password of at least 6 digits!</span>
+                                        <!--<span class="text-danger"-->
+                                        <!--*ngIf="valForm.hasError('required','passwordInfo.passwordConfirm') && (valForm.get('passwordConfirm').dirty || valForm.get('passwordConfirm').touched)">Required</span>-->
+
+                                        <!--<span class="text-danger"-->
+                                        <!--*ngIf="valForm.hasError('minlength','passwordInfo.passwordConfirm') && (valForm.get('passwordConfirm').dirty || valForm.get('passwordConfirm').touched)">Please enter a password of at least 6 digits!</span>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-danger pl-25"
+                             *ngIf="valForm['controls']['passwordInfo'].hasError('password') && (valForm['controls']['passwordInfo'].dirty || valForm['controls']['passwordInfo'].touched)">
+                            Password inconsistent
+                        </div>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">7. Time Zone <i>*</i> </label>
+                                <div class="w100">
+                                    <select class="form-control" formControlName="timeZone">
+                                        <option style="display: none">Choice</option>
+                                        <option *ngFor="let item of timezones;let i=index;" value="{{item.zoneId}}">
+                                            {{item.timezone}}
+                                        </option>
+                                    </select>
+                                    <span class="text-danger"
+                                          *ngIf="valForm['controls']['timeZone'].hasError('required') && (valForm['controls']['timeZone'].dirty || valForm['controls']['timeZone'].touched)">Required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">8. Nationality<i>*</i> </label>
+                                <div class="w100">
+                                    <input class="form-control" placeholder="Your answer" type="text"
+                                           formControlName="nationality"/>
+                                    <span class="text-danger"
+                                          *ngIf="valForm.controls['nationality'].hasError('required') && (valForm.controls['nationality'].dirty || valForm.controls['nationality'].touched)">Required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">9. Your mother tongue is: <i>*</i> </label>
+                                <div class="w100">
+                                    <input class="form-control" placeholder="Your answer" type="text"
+                                           formControlName="nativeLanguage" maxlength="32"/>
+                                    <span class="text-danger"
+                                          *ngIf="valForm.controls['nativeLanguage'].hasError('required') && (valForm.controls['nativeLanguage'].dirty || valForm.controls['nativeLanguage'].touched)">Required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">10. Gender <i>*</i> </label>
+                                <div class="w100">
+                                    <select class="form-control" formControlName="sex">
+                                        <option style="display: none">Choice</option>
+                                        <option *ngFor="let item of genders;let i=index;">
+                                            {{item}}
+                                        </option>
+                                    </select>
+                                    <span class="text-danger"
+                                          *ngIf="valForm.controls['sex'].hasError('required') && (valForm.controls['sex'].dirty || valForm.controls['sex'].touched)">Required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">11. Age <i>*</i> </label>
+                                <div class="w100">
+                                    <select class="form-control" formControlName="ageRange">
+                                        <
+                                        <option style="display: none">Choice</option>
+                                        <option *ngFor="let item of ages;let i=index;">
+                                            {{item}}
+                                        </option>
+                                    </select>
+                                    <span class="text-danger"
+                                          *ngIf="valForm.controls['ageRange'].hasError('required') && (valForm.controls['ageRange'].dirty || valForm.controls['ageRange'].touched)">Required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-container
+                                *ngIf="valForm.controls['ageRange'].value!='18 to 25'&&valForm.controls['ageRange'].value!='Over 25'&&valForm.controls['ageRange'].value">
+                            <div class="form-group m">
+                                <div class="col-md-12">
+                                    <label class="ccontrol-label height-35">Parent's/Guardian's name<i>*</i>
+                                    </label>
+                                    <div class="w100">
+                                        <input class="form-control" placeholder="Your answer" type="text"
+                                               formControlName="guardianName"/>
+                                        <span class="text-danger"
+                                              *ngIf="!valForm.controls['guardianName'].dirty"
+                                        >Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group m">
+                                <div class="col-md-12">
+                                    <label class="ccontrol-label height-35">Parent's/Guardian's email<i>*</i>
+                                    </label>
+                                    <div class="w100">
+                                        <input class="form-control" placeholder="Your answer" type="text"
+                                               formControlName="guardianEmail"/>
+                                        <span class="text-danger"
+                                              *ngIf="!valForm.controls['guardianEmail'].dirty"
+                                        >Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group m">
+                                <div class="col-md-12">
+                                    <label class="ccontrol-label height-35">Parent's/Guardian's phone<i>*</i>
+                                    </label>
+                                    <div class="w100">
+                                        <input class="form-control" placeholder="Your answer" type="text"
+                                               formControlName="guardianPhone"/>
+                                        <span class="text-danger"
+                                              *ngIf="!valForm.controls['guardianPhone'].dirty"
+                                        >Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">12. Current Status <i>*</i> </label>
+                                <div class="w100">
+                                    <select class="form-control" formControlName="currentStatus">
+                                        <option style="display: none">Choice</option>
+                                        <option *ngFor="let item of Status;let i=index;">
+                                            {{item}}
+                                        </option>
+                                    </select>
+                                    <ng-container *ngIf="valForm.controls['currentStatus'].value=='Other'">
+                                        <input type="text" maxlength="56" class="form-control mt"
+                                               formControlName="currentStatusOther" placeholder="Your answer">
+                                        <span class="text-danger"
+                                              *ngIf="!valForm.controls['currentStatusOther'].dirty"
+                                        >Required</span>
+                                    </ng-container>
+                                    <span class="text-danger"
+                                          *ngIf="valForm.controls['currentStatus'].hasError('required') && (valForm.controls['currentStatus'].dirty || valForm.controls['currentStatus'].touched)">Required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-container
+                                *ngIf="valForm.controls['currentStatus'].value!='Professional'&&valForm.controls['currentStatus'].value!='Other'&&valForm.controls['currentStatus'].value">
+                            <div class="form-group m">
+                                <div class="col-md-12">
+                                    <label class="ccontrol-label height-35">Name of your school<i>*</i>
+                                    </label>
+                                    <div class="w100">
+                                        <input class="form-control" placeholder="Your answer" type="text"
+                                               formControlName="schoolName" maxlength="32"/>
+                                        <span class="text-danger"
+                                              *ngIf="!valForm.controls['schoolName'].dirty">Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">13. Have you ever studied Chinese?<i>*</i>
+                                </label>
+                                <div class="w100">
+                                    <select class="form-control" formControlName="study">
+                                        <option style="display: none">Choice</option>
+                                        <option *ngFor="let item of studys;let i=index;">
+                                            {{item}}
+                                        </option>
+                                    </select>
+                                    <span class="text-danger"
+                                          *ngIf="valForm.controls['study'].hasError('required') && (valForm.controls['study'].dirty || valForm.controls['study'].touched)">Required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-container *ngIf="valForm.controls['study'].value=='Yes'">
+                            <div class="form-group m">
+                                <div class="col-md-12">
+                                    <label class="ccontrol-label height-35">What is your instructional
+                                        background <i>*</i> </label>
+                                    <div class="w100">
+                                        <div formArrayName="eduBackGround">
+                                            <div *ngFor="let item of backgrounds;let i=index;">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input [formControlName]="i" type="checkbox">
+                                                        {{item}}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ng-container *ngIf="getBol(valForm.get('eduBackGround').value)">
+                                            <input type="text" maxlength="56" class="form-control mt"
+                                                   formControlName="eduBackGroundOther" placeholder="Your answer"
+                                            >
+                                            <span class="text-danger"
+                                                  *ngIf="!valForm.controls['eduBackGroundOther'].dirty"
+                                            >Required</span>
+                                        </ng-container>
+                                        <span class="text-danger"
+                                              *ngIf="!getOneBol(valForm.get('eduBackGround').value)">Please choose at least one.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group m">
+                                <div class="col-md-12">
+                                    <label class="ccontrol-label height-35">Years of learning Chinese <i>*</i>
+                                    </label>
+                                    <div class="w100">
+                                        <select class="form-control" formControlName="learningYear">
+                                            <option style="display: none">Choice</option>
+                                            <option *ngFor="let item of learnLengths;let i=index;">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                        <span class="text-danger"
+                                              *ngIf="valForm.controls['learningYear'].hasError('required') && (valForm.controls['learningYear'].dirty || valForm.controls['learningYear'].touched)">Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">14. I want to learn <i>*</i> </label>
+                                <div class="w100">
+                                    <select class="form-control" formControlName="wantToLearn">
+                                        <option style="display: none">Choice</option>
+                                        <option *ngFor="let item of learnTypes;let i=index;">
+                                            {{item}}
+                                        </option>
+                                    </select>
+                                    <span class="text-danger"
+                                          *ngIf="valForm.controls['wantToLearn'].hasError('required') && (valForm.controls['wantToLearn'].dirty || valForm.controls['wantToLearn'].touched)">Required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">15. Which of the following skills would you like
+                                    to improve the most? <i>*</i> </label>
+                                <div class="w100">
+                                    <div formArrayName="skills">
+                                        <div *ngFor="let item of skills;let i=index;">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input [formControlName]="i" type="checkbox">
+                                                    {{item}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="text-danger"
+                                          *ngIf="valForm.controls['skills'].hasError('moreOne') && (valForm.controls['skills'].dirty || valForm.controls['skills'].touched)">Please choose at least one.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">16. Do you need to learn how to write/type in
+                                    Chinese? <i>*</i> </label>
+                                <div class="w100">
+                                    <select class="form-control" formControlName="isNeedWrite">
+                                        <option style="display: none">Choice</option>
+                                        <option *ngFor="let item of hows;let i=index;">
+                                            {{item}}
+                                        </option>
+                                    </select>
+                                    <!--<ng-container *ngIf="valForm.controls['isNeedWrite'].value=='Other'">-->
+                                        <!--<input type="text" maxlength="56" class="form-control mt"-->
+                                               <!--formControlName="isNeedWriteOther" placeholder="Your answer">-->
+                                        <!--<span class="text-danger"-->
+                                              <!--*ngIf="!valForm.controls['isNeedWriteOther'].dirty"-->
+                                        <!--&gt;Required</span>-->
+                                    <!--</ng-container>-->
+                                    <span class="text-danger"
+                                          *ngIf="valForm.controls['isNeedWrite'].hasError('required') && (valForm.controls['isNeedWrite'].dirty || valForm.controls['isNeedWrite'].touched)">Required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">17. Study goal<i>*</i> </label>
+                                <div class="w100">
+                                    <select class="form-control" formControlName="studyGoal">
+                                        <option style="display: none">Choice</option>
+                                        <option *ngFor="let item of learnGoals;let i=index;">
+                                            {{item}}
+                                        </option>
+                                    </select>
+                                    <!--<div formArrayName="studyGoal">-->
+                                    <!--<div *ngFor="let item of learnGoals;let i=index;">-->
+                                    <!--<div class="checkbox">-->
+                                    <!--<label>-->
+                                    <!--<input [formControlName]="i" type="checkbox">-->
+                                    <!--{{item}}-->
+                                    <!--</label>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <ng-container *ngIf="valForm.controls['studyGoal'].value=='Other'">
+                                        <input type="text" maxlength="56" class="form-control mt"
+                                               formControlName="studyGoalOther" placeholder="Your answer">
+                                        <span class="text-danger"
+                                              *ngIf="!valForm.controls['studyGoalOther'].dirty"
+                                        >Required</span>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-container *ngIf="valForm.controls['studyGoal'].value=='AP Course'">
+                            <div class="form-group m">
+                                <div class="col-md-12">
+                                    <label class="ccontrol-label height-35">For AP Chinese, I plan to take <i>*</i>
+                                    </label>
+                                    <div class="w100">
+                                        <select class="form-control" formControlName="plan">
+                                            <option style="display: none">Choice</option>
+                                            <option *ngFor="let item of plans;let i=index;">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                        <ng-container *ngIf="valForm.controls['plan'].value=='Other'">
+                                            <input type="text" maxlength="56" class="form-control mt"
+                                                   formControlName="planOther" placeholder="Your answer">
+                                            <span class="text-danger"
+                                                  *ngIf="!valForm.controls['planOther'].dirty"
+                                            >Required</span>
+                                        </ng-container>
+                                        <span class="text-danger"
+                                              *ngIf="!valForm.controls['plan'].dirty"
+                                        >Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group m">
+                                <div class="col-md-12">
+                                    <label class="ccontrol-label height-35">For AP Chinese, I plan to take the AP
+                                        exam
+                                        right after the course
+                                        <i>*</i> </label>
+                                    <div class="w100">
+                                        <select class="form-control" formControlName="isExam">
+                                            <option style="display: none">Choice</option>
+                                            <option *ngFor="let item of exams;let i=index;">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                        <span class="text-danger"
+                                              *ngIf="!valForm.controls['isExam'].dirty">Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-container
+                                *ngIf="valForm.controls['studyGoal'].value!='AP Course'&&valForm.controls['studyGoal'].value">
+                            <div class="form-group m">
+                                <div class="col-md-12">
+                                    <label class="ccontrol-label height-35">For general tutoring, I plan to take
+                                        <i>*</i> </label>
+                                    <div class="w100">
+                                        <div formArrayName="coachPlan">
+                                            <div *ngFor="let item of wasteTimes;let i=index;">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input [formControlName]="i" type="checkbox">
+                                                        {{item}}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ng-container *ngIf="getBol(valForm.get('coachPlan').value)">
+                                            <input type="text" maxlength="56" class="form-control mt"
+                                                   formControlName="coachPlanOther" placeholder="Your answer">
+                                            <span class="text-danger"
+                                                  *ngIf="!valForm.controls['coachPlanOther'].dirty"
+                                            >Required</span>
+                                        </ng-container>
+                                        <span class="text-danger" *ngIf="!getOneBol(valForm.get('coachPlan').value)">Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">18. How did you hear about us/our course?
+                                    <i>*</i> </label>
+                                <div class="w100">
+                                    <select class="form-control" formControlName="underStandWay">
+                                        <option style="display: none">Choice</option>
+                                        <option *ngFor="let item of sources;let i=index;">
+                                            {{item}}
+                                        </option>
+                                    </select>
+                                    <ng-container *ngIf="valForm.controls['underStandWay'].value=='Other'">
+                                        <input type="text" maxlength="56" class="form-control mt"
+                                               formControlName="underStandWayOther" placeholder="Your answer"
+                                        >
+                                        <span class="text-danger"
+                                              *ngIf="!valForm.controls['underStandWayOther'].dirty"
+                                        >Required</span>
+                                    </ng-container>
+                                    <span class="text-danger"
+                                          *ngIf="valForm.controls['underStandWay'].hasError('required') && (valForm.controls['underStandWay'].dirty || valForm.controls['underStandWay'].touched)">Please choose at least one.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m">
+                            <div class="col-md-12">
+                                <label class="ccontrol-label height-35">19. Promo Code</label>
+                                <div class="w100">
+                                    <input class="form-control" placeholder="Your answer" type="text"
+                                           formControlName="promoCode" maxlength="64"/>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="text-center mb-15 mt-5">
+                        <button class="btn btn-green btn-rounded-lg ladda-button" type="submit"
+                                [disabled]="valForm.invalid"
+                                data-style="expand-right"><span class="ladda-label">Submit</span><span
+                                class="ladda-spinner"></span></button>
+                        <a class="btn btn-gray btn-rounded-lg btn-cancel" href="/#/goods"
+                        >Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

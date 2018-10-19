@@ -1,0 +1,81 @@
+.simple-header{
+    height: 80px;
+    width: 100%;
+    background: #30a4b6;
+}
+.line-height{
+    line-height: 80px;
+    color: white;
+}
+/*logo*/
+.simple-header .logo{
+    margin-left: 10%;
+    cursor: pointer;
+}
+.simple-header .logo img{
+    height: 68px;
+    margin-top: 6px;
+}
+
+/*导航*/
+.simple-header .navigation{
+    margin-left: 20px;
+}
+.simple-header .navigation span{
+    cursor: pointer;
+    float: left;
+    display: block;
+    background: none;
+    color: white;
+    margin: 20px 0 20px 30px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+    font-size: 15px;
+    font-weight: 600;
+    /*letter-spacing:3px;*/
+    border: none;
+}
+.simple-header .navigation span:hover{
+    text-decoration:underline;
+}
+.simple-header .navigation span:focus{
+    border: none;
+}
+.simple-header .navigation span.select{
+    background: white;
+    color: #30a4b6;
+    border-radius: 20px;
+}
+
+/*menu*/
+.simple-header .menu{
+    width: 113px;
+    margin-top: 23px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .simple-header{
+        height: 50px;
+    }
+    .simple-header .navigation{
+        display: none;
+    }
+    .simple-header .line-height{
+        line-height: 50px;
+    }
+    .simple-header .logo img{
+        height: 38px;
+    }
+    .simple-header .menu{
+        margin-top: 10px;
+    }
+}
+.lineHeight80{
+    line-height: 80px;
+}
+.height42{
+    height:42px !important;
+}

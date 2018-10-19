@@ -1,0 +1,26 @@
+.footer{
+    padding: 40px 0;
+    background: white;
+}
+.footer .container{
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+    font-family: 'OpenSans-Light';
+    font-size: 14pt;
+    color: #606060;
+    text-align: center;
+    position: relative;
+}
+.footer .sel-language{
+    position: absolute;
+    right: 50px;
+    top: 10px;
+    font-size: 12px;
+}
+
+@media screen and (max-width:768px) {
+    .footer .sel-language{
+        position:static;
+    }
+}

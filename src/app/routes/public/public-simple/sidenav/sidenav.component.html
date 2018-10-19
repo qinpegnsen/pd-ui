@@ -1,0 +1,31 @@
+<!--侧边栏导航 begin-->
+<div class="sidenav" [class.slide]="slide">
+    <ul>
+        <li class="tit">
+            <a class="nav-close" (click)="clickSlide()">X</a>
+        </li>
+        <li *ngFor="let menu of setting.sidenavMenu">
+            <a *ngIf="menu.isHttp" href="{{menu.url}}" (click)="selMenu(menu)">{{menu.name}}</a>
+            <a *ngIf="!menu.isHttp" routerLink="{{menu.url}}" (click)="selMenu(menu)">{{menu.name}}</a>
+        </li>
+    </ul>
+
+    <div class="user-info">
+        <img src="{{userInfo?.avatar}}" *ngIf="isLogin"
+             onerror="javascript:this.src='../../../../assets/images/user.png'" class="cursor" (click)="goHome()"/>
+        <img src="../../../../assets/images/user.png" class="cursor" *ngIf="!isLogin" routerLink="/pages/login"/>
+        <p class="text-center cursor" *ngIf="!isLogin" routerLink="/pages/login">
+            {{'public.pubile-simple.sidenav.login'|translate}}
+        </p>
+        <div *ngIf="isLogin">
+            <p class="text-center cursor">{{userInfo.name}}</p>
+            <p class="text-center cursor" (click)="goHome()">
+                {{'public.pubile-simple.sidenav.center'|translate}}<i class="fa fa-arrow-circle-right ml"></i>
+            </p>
+            <p class="text-center cursor" (click)="loginOut()">
+                {{'public.pubile-simple.sidenav.signOut'|translate}}
+            </p>
+        </div>
+    </div>
+</div>
+<!--侧边栏导航 end-->

@@ -1,0 +1,164 @@
+<div class="my-order">
+    <p class="font24">
+        {{'student.order.myOrder'|translate}}
+        <span class="pull-right font14">{{'student.order.row'|translate}}
+			<i class="text-orange">{{bookClassromm ? bookClassromm.length : '0' }}</i>{{'student.order.strip'|translate}}
+		</span>
+    </p>
+    <ul class="row" *ngIf="bookClassromm && bookClassromm.length !== 0">
+        <li class="col-md-4 col-lg-3 col-sm-6" *ngFor="let classroom of bookClassromm">
+            <div class="now-order panel" *ngIf="classroom.classroom"
+                 [ngClass]="{'border-main': classroom.classroom.type==custom}">
+                <div class="time">
+                    <p class="font14 mt-5 mb0">{{classroom.classroom.startTime | moment:"MM-DD"}}</p>
+                    <p class="font22 mb0">{{classroom.classroom.startTime | moment:"HH:mm"}}</p>
+                </div>
+                <!--课表课程-->
+                <ng-container *ngIf="classroom.classroom.type != custom">
+          <span class="pull-right mr mt-15 text-info cursor" title="{{'student.studentCenter.lookMore'|translate}}"
+                (click)="goDetail(classroom.classroom.classroomCode)">
+              <i class="fa fa-file-text-o"></i>
+          </span>
+                    <div class="text-center user-pic">
+                        <div><img src="{{classroom.classroom.classroomTutors[0].tutor?.avatar}}"
+                                  alt="{{classroom.classroom.classroomTutors[0].tutorName}}"
+                                  onerror="javascript:this.src='../../../../assets/images/user.png'"/></div>
+                    </div>
+                    <p class="tutor-name">{{classroom.classroom.classroomTutors[0].tutorName}}</p>
+                </ng-container>
+                <!--定制课程-->
+                <ng-container *ngIf="classroom.classroom.type == custom">
+          <span class="pull-right mr mt-15 text-info">
+              {{'student.studentCenter.customizedCourse'|translate}}
+          </span>
+                    <div class="text-center user-pic">
+                        <div><img src="../../../../assets/images/user.png"/></div>
+                    </div>
+                    <p class="tutor-name">{{'student.studentCenter.courseTutor'|translate}}</p>
+                </ng-container>
+
+                <!--<span class="pull-right mr mt-15 text-info cursor" (click)="goDetail(classroom.classroomCode)" title="{{'student.order.lookMore'|translate}}"><i class="fa fa-file-text-o"></i></span>-->
+                <!--<div class="text-center user-pic">-->
+                <!--<div><img src="{{classroom.classroomTutors[0].tutor.avatar}}" alt="{{classroom.classroomTutors[0].tutor.name}}"-->
+                <!--onerror="javascript:this.src='../../../../assets/images/user.png'"/></div>-->
+                <!--</div>-->
+                <!--<p class="tutor-name">{{classroom.classroomTutors[0].tutor.name}}</p>-->
+                <p class="tutor-job mt-5" title="{{classroom.classroom.course}}"><i class="fa fa-mortar-board mr-5"></i>{{classroom.classroom.course}}
+                </p>
+                <!--<div class="tutor-info">-->
+                <!--<div class="w33 pull-left">-->
+                <!--<p>{{classroom.classroom.tutorInfo ? classroom.classroom.tutorInfo.classroom : '0'}}</p>-->
+                <!--<p>{{'student.order.courseHour'|translate}}</p>-->
+                <!--</div>-->
+                <!--<div class="w33 pull-left">-->
+                <!--<p>{{classroom.classroom.tutorInfo ? classroom.classroom.tutorInfo.feedback : '0'}}</p>-->
+                <!--<p>{{'student.order.feedback'|translate}}</p>-->
+                <!--</div>-->
+                <!--<div class="w33 pull-left">-->
+                <!--<p>{{classroom.classroom.tutorInfo ? classroom.classroom.tutorInfo.favorite : '0'}}</p>-->
+                <!--<p>{{'student.order.favorite'|translate}}</p>-->
+                <!--</div>-->
+                <!--</div>-->
+                <div class="panel-footer">
+                    <p class="state" *ngIf="classroom.classroom.state != overdue">
+                        {{'student.order.inProcess'|translate}}...</p>
+                    <p class="state" *ngIf="classroom.classroom.state == overdue">
+                        {{'student.order.overdue'|translate}}</p>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="no-message1" *ngIf="!bookClassromm || bookClassromm.length === 0">
+        <div class="poCenter line-height-150">
+            <button class="btn btn-info form-control myCustomButton" type="submit" routerLink="/search">{{'student.studentCenter.nowOrder'|translate}}</button>
+        </div>
+    </div>
+
+    <p class="font24">
+        {{'student.order.cancelOrder'|translate}}
+        <span class="pull-right font14">{{'student.order.row'|translate}}
+			<i class="text-orange">{{ cancelClassrommPage?.totalRow || '0' }}</i>{{'student.order.strip'|translate}}
+		</span>
+    </p>
+    <ul class="row" *ngIf="cancelClassromm && cancelClassromm.length !== 0">
+        <li class="col-md-4 col-lg-3 col-sm-6" *ngFor="let classroom of cancelClassromm">
+            <div class="now-order panel">
+                <div class="time">
+                    <p class="font14 mt-5 mb0">{{classroom.classroom.startTime | moment:"MM-DD"}}</p>
+                    <p class="font22 mb0">{{classroom.classroom.startTime | moment:"HH:mm"}}</p>
+                </div>
+
+                <!--课表课程-->
+                <ng-container *ngIf="classroom.classroom.type != custom">
+                    <!--<span class="pull-right mr mt-15 text-info cursor" title="{{'student.studentCenter.lookMore'|translate}}"-->
+                    <!--(click)="goDetail(classroom.classroom.classroomCode)">-->
+                    <!--<i class="fa fa-file-text-o"></i>-->
+                    <!--</span>-->
+                    <div class="text-center user-pic">
+                        <div><img src="{{classroom.classroom.classroomTutors[0]?.tutor?.avatar}}"
+                                  alt="{{classroom.classroom.classroomTutors[0].tutorName}}"
+                                  onerror="javascript:this.src='../../../../assets/images/user.png'"/></div>
+                    </div>
+                    <p class="tutor-name">{{classroom.classroom.classroomTutors[0].tutorName}}</p>
+
+                </ng-container>
+                <!--定制课程-->
+                <ng-container *ngIf="classroom.classroom.type == custom">
+						<span class="pull-right mr mt-15 text-info">
+							{{'student.studentCenter.customizedCourse'|translate}}
+						</span>
+                    <div class="text-center user-pic">
+                        <div><img src="../../../../assets/images/user.png"/></div>
+                    </div>
+                    <p class="tutor-name">{{'student.studentCenter.courseTutor'|translate}}</p>
+                </ng-container>
+                <!--<span class="pull-right mr mt-15 text-info cursor" (click)="goDetail(classroom.classroomCode)" title="{{'student.order.lookMore'|translate}}"><i class="fa fa-file-text-o"></i></span>-->
+                <!--<div class="text-center user-pic">-->
+                <!--<div><img src="{{classroom.classroomTutors[0].tutor.avatar}}" alt="{{classroom.classroomTutors[0].tutor.name}}"-->
+                <!--onerror="javascript:this.src='../../../../assets/images/user.png'"/></div>-->
+                <!--</div>-->
+                <!--<p class="tutor-name">{{classroom.classroomTutors[0].tutor.name}}</p>-->
+                <p class="tutor-job mt-5"><i class="fa fa-mortar-board mr-5"></i>{{classroom.classroom.classroomTutors[0].tutor
+                    && classroom.classroom.classroomTutors[0].tutor.nativeLanguage}}</p>
+                <!--<div class="tutor-info">-->
+                <!--<div class="w33 pull-left">-->
+                <!--<p>{{classroom.classroom.tutorInfo ? classroom.classroom.tutorInfo.classroom : '0'}}</p>-->
+                <!--<p>{{'student.order.courseHour'|translate}}</p>-->
+                <!--</div>-->
+                <!--<div class="w33 pull-left">-->
+                <!--<p>{{classroom.classroom.tutorInfo ? classroom.classroom.tutorInfo.feedback : '0'}}</p>-->
+                <!--<p>{{'student.order.feedback'|translate}}</p>-->
+                <!--</div>-->
+                <!--<div class="w33 pull-left">-->
+                <!--<p>{{classroom.classroom.tutorInfo ? classroom.classroom.tutorInfo.favorite : '0'}}</p>-->
+                <!--<p>{{'student.order.favorite'|translate}}</p>-->
+                <!--</div>-->
+                <!--</div>-->
+                <div class="panel-footer">
+                    <!--<p class="text-center">{{'student.order.leaveMsg'|translate}}：{{classroom.classroomLeavemessage && classroom.classroomLeavemessage.leaveMessage}}</p>-->
+                    <ng-container *ngFor="let item of classroom.classroom.classroomStudentses">
+                        <ng-container *ngIf="item.studentCode==studentCode">
+                            <!--下面的一个是为了处理之前的数据-->
+                            <p class="font20 text-warning" *ngIf="!item.operateType">
+                                {{'student.order.alreadyCancel'|translate}}</p>
+                            <p class="font20 text-warning" *ngIf="item.operateType=='STUDENT'">
+                                {{'enum.operateType.student'|translate}}</p>
+                            <p class="font20 text-warning" *ngIf="item.operateType=='TUTOR'">
+                                {{'enum.operateType.tutor'|translate}}</p>
+                            <p class="font20 text-warning" *ngIf="item.operateType=='ASSISTANT'">
+                                {{'enum.operateType.assis'|translate}}</p>
+                            <p class="font20 text-warning" *ngIf="item.operateType=='SYS'">
+                                {{'enum.operateType.sys'|translate}}</p>
+                        </ng-container>
+                    </ng-container>
+                </div>
+
+            </div>
+        </li>
+    </ul>
+    <div class="no-message" *ngIf="!cancelClassromm || cancelClassromm.length === 0"></div>
+    <button class="form-control" *ngIf="!cancelClassrommPage.lastPage" (click)="orderLoadMore()">
+        +{{'student.center.loadMore'|translate}}（{{'student.center.row'|translate}}<i class="text-orange">{{cancelClassrommPage.totalRow}}</i>{{'student.center.strip'|translate}}）
+    </button>
+
+</div>

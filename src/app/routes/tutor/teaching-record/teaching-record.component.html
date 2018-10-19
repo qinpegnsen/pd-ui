@@ -1,0 +1,219 @@
+<div class="record-box container-fluid tab pt0">
+    <md-tab-group selectedIndex={{selectedIndex}}>
+        <md-tab #record label="{{'tutor.teachingRecord.teachingRecord'|translate}}">
+            <div class="container-fluid tab-content">
+                <ul class="row" *ngIf="classroomData.voList">
+                    <li class="col-lg-4 col-md-6 col-sm-6" *ngFor="let classroom of classroomData.voList">
+                        <ul class="panel list-group">
+                            <li class="list-group-item text-center font16 text-overflow">{{classroom.course}}</li>
+                            <li class="list-group-item font16 time">
+                                <div class="w20 text-right">{{'tutor.teachingRecord.time'|translate}}</div>
+                                <div class="w80 pl-20">{{classroom.startTime|moment:'YYYY-MM-DD HH:mm'}}</div>
+                            </li>
+                            <li class="list-group-item font16 time">
+                                <div class="w20 text-right" style="height: 70px; line-height: 70px;">
+                                    {{'tutor.teachingRecord.student'|translate}}
+                                </div>
+                                <div class="w80 pl-20" >
+                                    <ul class="students-box" *ngIf="classroom.classroomStudentses">
+                                        <ng-container  *ngFor="let student of classroom.classroomStudentses;let i=index;">
+                                            <li class="students w20">
+                                                <div class="pic"><img src="{{student.student?.avatar}}"
+                                                                      onerror="javascript:this.src='../../../../assets/images/user.png'">
+                                                </div>
+                                                <p class="name mb0">{{student.studentName}}</p>
+                                                <div *ngIf="student.state=='Absent'" class="myHeight name">
+                                                    {{'tutor.teachingRecord.absent'|translate}}
+                                                </div>
+                                                <div *ngIf="student.state=='Cancel'||student.state=='StuCancel'" class="myHeight name">
+                                                    {{'tutor.teachingRecord.cancel'|translate}}
+                                                </div>
+                                                <div *ngIf="student.state=='Attend'&&student.isTutorFeedback=='N'"
+                                                     class="noWrite name pointer"
+                                                     (click)="goWrite(classroom.classroomTutors[0].classroomCode,classroom.classroomTutors[0].tutorCode,student.studentCode)"
+                                                     title="{{'tutor.teachingRecord.goWriteDesc'|translate}}">
+                                                    {{'tutor.teachingRecord.goWrite'|translate}}
+                                                </div>
+                                                <div *ngIf="student.state=='Attend'&&student.isTutorFeedback=='Y'"
+                                                     class="myHeight name">
+                                                    {{'tutor.teachingRecord.write'|translate}}
+                                                </div>
+                                            </li>
+                                            <!--<li *ngIf="classroom.classroomStudentses.length>3&&i==classroom.classroomStudentses.length-1"-->
+                                                <!--class="w15 students mymiddle text-center">-->
+                                                <!--<a (click)="goDetail(classroom.classroomCode)">...</a>-->
+                                            <!--</li>-->
+                                        </ng-container>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="list-group-item font16 time">
+                                <div class="w20 text-right">{{'tutor.teachingRecord.state'|translate}}</div>
+                                <ng-container [ngSwitch]="classroom.state">
+                                    <div class="w80 pl-20 text-muted" *ngSwitchCase="'Cancel'">
+                                        <i class="rzh-icon-error mr-5"></i>
+                                        {{'enum.classroomState.Cancel'|translate}}
+                                        <!--{{classroom.state | state:classroomState}}-->
+                                    </div>
+                                    <div class="w80 pl-20 text-muted" *ngSwitchCase="'Overdue'">
+                                        <i class="rzh-icon-error mr-5"></i>
+                                        {{'enum.classroomState.Overdue'|translate}}
+                                        <!--{{classroom.state | state:classroomState}}-->
+                                    </div>
+                                    <div class="w80 pl-20 text-muted" *ngSwitchCase="'AssistantCancel'">
+                                        <i class="rzh-icon-error mr-5"></i>
+                                        {{'enum.classroomState.AssistantCancel'|translate}}
+                                        <!--{{classroom.state | state:classroomState}}-->
+                                    </div>
+                                    <div class="w80 pl-20 text-info" *ngSwitchCase="'Started'">
+                                        {{'enum.classroomState.Started'|translate}}
+                                        <!--{{classroom.state | state:classroomState}}-->
+                                    </div>
+                                    <div class="w80 pl-20 text-info" *ngSwitchCase="'CustomBook'">
+                                        {{'enum.classroomState.CustomBook'|translate}}
+                                        <!--{{classroom.state | state:classroomState}}-->
+                                    </div>
+                                    <div class="w80 pl-20 text-success" *ngSwitchCase="'Confirmed'">
+                                        {{'enum.classroomState.Confirmed'|translate}}
+                                        <!--{{classroom.state | state:classroomState}}-->
+                                    </div>
+                                    <div class="w80 pl-20 text-success" *ngSwitchCase="'Ended'">
+                                        <i class="rzh-icon-success mr-5"></i>
+                                        {{'enum.classroomState.Ended'|translate}}
+                                        <!--{{classroom.state | state:classroomState}}-->
+                                    </div>
+                                    <div class="w80 pl-20 text-success" *ngSwitchCase="'Premature'">
+                                        <i class="rzh-icon-success mr-5"></i>
+                                        {{'enum.classroomState.Premature'|translate}}
+                                        <!--{{classroom.state | state:classroomState}}-->
+                                    </div>
+                                </ng-container>
+                            </li>
+                            <li class="panel-footer list-group-item font16 text-center">
+                                <button class="btn w60 btn-oval agree" (click)="goDetail(classroom.classroomCode)">
+                                    {{'tutor.teachingRecord.detail'|translate}}
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="no-message" *ngIf="!classroomData.voList || classroomData.voList.length == 0"></div>
+            <button class="form-control" *ngIf="!classroomData.lastPage" (click)="roomLoadMore()">
+                +{{'tutor.teachingRecord.loadMore'|translate}}（{{'student.center.row'|translate}}<i class="text-orange">{{classroomData.totalRow}}</i>{{'student.center.strip'|translate}}）
+            </button>
+        </md-tab>
+        <md-tab #questionnaire>
+            <ng-template mat-tab-label>
+                {{'student.center.question'|translate}}<span
+                    class="badge badgeBg">{{classroomNoWriteData.totalRow}}</span>
+            </ng-template>
+            <div class="container-fluid tab-content">
+                <ul class="row" *ngIf="classroomNoWriteData.voList">
+                    <li class="col-lg-4 col-md-6 col-sm-6" *ngFor="let classroom of classroomNoWriteData.voList">
+                        <ul class="panel list-group">
+                            <li class="list-group-item text-center font16 text-overflow">{{classroom.course}}</li>
+                            <li class="list-group-item font16 time">
+                                <div class="w20 text-right">{{'tutor.teachingRecord.time'|translate}}</div>
+                                <div class="w80 pl-20">{{classroom.startTime|moment:'YYYY-MM-DD HH:mm'}}</div>
+                            </li>
+                            <li class="list-group-item font16 time">
+                                <div class="w20 text-right" style="height: 70px; line-height: 70px;">
+                                    {{'tutor.teachingRecord.student'|translate}}
+                                </div>
+                                <div class="w80 pl-20">
+                                    <ul class="students-box" *ngIf="classroom.classroomStudentses;">
+                                        <ng-container  *ngFor="let student of classroom.classroomStudentses;let i=index;">
+                                            <li class="students w20" *ngIf="i<3" >
+                                                <div class="pic"><img src="{{student.student?.avatar}}"
+                                                                      onerror="javascript:this.src='../../../../assets/images/user.png'">
+                                                </div>
+                                                <p class="name mb0">{{student.studentName}}</p>
+                                                <div *ngIf="student.state=='Absent'" class="myHeight name">
+                                                    {{'tutor.teachingRecord.absent'|translate}}
+                                                </div>
+                                                <div *ngIf="student.state=='Cancel'||student.state=='StuCancel'" class="myHeight name">
+                                                    {{'tutor.teachingRecord.cancel'|translate}}
+                                                </div>
+                                                <div *ngIf="student.state=='Attend'&&student.isTutorFeedback=='N'"
+                                                     class="noWrite name pointer"
+                                                     (click)="goWrite(classroom.classroomTutors[0].classroomCode,classroom.classroomTutors[0].tutorCode,student.studentCode)"
+                                                     title="{{'tutor.teachingRecord.goWriteDesc'|translate}}">
+                                                    {{'tutor.teachingRecord.goWrite'|translate}}
+                                                </div>
+
+                                                <div *ngIf="student.state=='Attend'&&student.isTutorFeedback=='Y'"
+                                                     class="myHeight name">
+                                                    {{'tutor.teachingRecord.write'|translate}}
+                                                </div>
+
+                                            </li>
+                                            <li *ngIf="classroom.classroomStudentses.length>3&&i==classroom.classroomStudentses.length-1"
+                                                class="w15 students mymiddle text-center">
+                                                <a (click)="goDetail(classroom.classroomCode)">...</a>
+                                            </li>
+                                        </ng-container>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="list-group-item font16 time">
+                                <div class="w20 text-right">{{'tutor.teachingRecord.state'|translate}}</div>
+                                <ng-container [ngSwitch]="classroom.state">
+                                    <div class="w80 pl-20 text-muted" *ngSwitchCase="'Cancel'">
+                                        <i class="rzh-icon-error mr-5"></i>
+                                        {{'enum.classroomState.Cancel'|translate}}
+                                        <!--{{classroom.state | state:classroomState}}-->
+                                    </div>
+                                    <div class="w80 pl-20 text-muted" *ngSwitchCase="'Overdue'">
+                                        <i class="rzh-icon-error mr-5"></i>
+                                        {{'enum.classroomState.Overdue'|translate}}
+                                        <!--{{classroom.state | state:classroomState}}-->
+                                    </div>
+                                    <div class="w80 pl-20 text-muted" *ngSwitchCase="'AssistantCancel'">
+                                        <i class="rzh-icon-error mr-5"></i>
+                                        {{'enum.classroomState.AssistantCancel'|translate}}
+                                        <!--{{classroom.state | state:classroomState}}-->
+                                    </div>
+                                    <div class="w80 pl-20 text-info" *ngSwitchCase="'Started'">
+                                        {{'enum.classroomState.Started'|translate}}
+                                        <!--{{classroom.state | state:classroomState}}-->
+                                    </div>
+                                    <div class="w80 pl-20 text-info" *ngSwitchCase="'CustomBook'">
+                                        {{'enum.classroomState.CustomBook'|translate}}
+                                        <!--{{classroom.state | state:classroomState}}-->
+                                    </div>
+                                    <div class="w80 pl-20 text-success" *ngSwitchCase="'Confirmed'">
+                                        {{'enum.classroomState.Confirmed'|translate}}
+                                        <!--{{classroom.state | state:classroomState}}-->
+                                    </div>
+                                    <div class="w80 pl-20 text-success" *ngSwitchCase="'Ended'">
+                                        <i class="rzh-icon-success mr-5"></i>
+                                        {{'enum.classroomState.Ended'|translate}}
+                                        <!--{{classroom.state | state:classroomState}}-->
+                                    </div>
+                                    <div class="w80 pl-20 text-success" *ngSwitchCase="'Premature'">
+                                        <i class="rzh-icon-success mr-5"></i>
+                                        {{'enum.classroomState.Premature'|translate}}
+                                        <!--{{classroom.state | state:classroomState}}-->
+                                    </div>
+                                </ng-container>
+                            </li>
+                            <li class="panel-footer list-group-item font16 text-center">
+                                <button class="btn w60 btn-oval agree" (click)="goDetail(classroom.classroomCode)">
+                                    {{'tutor.teachingRecord.detail'|translate}}
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="no-message"
+                 *ngIf="!classroomNoWriteData.voList || classroomNoWriteData.voList.length == 0"></div>
+            <button class="form-control" *ngIf="!classroomNoWriteData.lastPage" (click)="questionLoadMore()">
+                +{{'tutor.teachingRecord.loadMore'|translate}}（{{'student.center.row'|translate}}<i class="text-orange">{{classroomNoWriteData.totalRow}}</i>{{'student.center.strip'|translate}}）
+            </button>
+        </md-tab>
+    </md-tab-group>
+    <span class="page cellDisplay">{{'student.center.row'|translate}}<i class="text-orange">{{record.isActive ? classroomData.totalRow :classroomNoWriteData.totalRow}}</i>{{'student.center.strip'|translate}}</span>
+</div>
+

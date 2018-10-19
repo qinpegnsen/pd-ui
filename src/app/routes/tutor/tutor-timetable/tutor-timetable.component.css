@@ -1,0 +1,204 @@
+/*课程表样式*/
+.time-div {
+	border-radius: 2px;
+	background: white;
+	overflow: hidden;
+	color: #6c6e71;
+	min-height: 500px;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+.time-div .timetable-submit-top{
+	color: white;
+	border-radius: 18px;
+	/*letter-spacing: 10px;*/
+	padding: 6px 20px 6px 30px;
+}
+.time-div .timetable-submit{
+	margin: 30px auto;
+	width: 280px;
+}
+.time-div .timetable-submit .timetable-submit-bottom{
+	color: white;
+	font-size: 16px;
+	border-radius: 25px;
+	/*letter-spacing: 10px;*/
+	height: 50px;
+	padding: 15px 20px 6px 30px;
+	background: #30a4b6;
+}
+
+.time-table table tbody tr td p {
+	height: 30px;
+	line-height: 30px;
+	position: relative;
+}
+
+.time-table table thead tr td div {
+	height: 45px;
+}
+
+.time-table table thead tr td div.lineh {
+	line-height: 45px;
+}
+
+.timetableData > div {
+	width: 14.285714%;
+}
+
+/*课程可选样式*/
+.times-disabled {
+	background: #89dcbb;
+}
+
+/*选中课程样式*/
+.times-select {
+	background: rgba(102, 187, 102, 0.75);
+}
+.times-unavailable{
+	background: #d8d8d8;
+}
+
+/*选择课程隐藏复选框*/
+.times-input {
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/*课程预约页面，老师信息及课程状态信息样式*/
+.teacher-warpper {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.teacher-box {
+	width: 100%;
+	background: #fff;
+	box-sizing: border-box;
+	border-radius: 2px;
+	border-radius: 2px;
+	padding: 10px 30px;
+}
+
+.teacher-info {
+	background: #f9f9f9;
+	padding: 10px 0;
+}
+.teacher-info .course-list{
+	overflow: hidden;
+	margin-bottom: 0;
+}
+.teacher-info .course-list li{
+	border: 1px dashed #ccc;
+	margin-right: 10px;
+	padding: 2px 10px;
+	float: left;
+}
+
+.timetable-status p {
+	margin: 0;
+	padding-left: 42%;
+	position: relative;
+}
+
+.timetable-status p:before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	width: 38%;
+	height: 60%;
+	background: rgba(188, 206, 234, 0.74);
+}
+
+.timetable-status li:nth-of-type(2) p:before {
+	background: rgba(102, 187, 102, 0.75);
+}
+
+.timetable-status li:nth-of-type(3) p:before {
+	background: #d8d8d8;
+}
+
+.table-lyout {
+	min-height: 500px;
+	background: #f3f2f2;
+}
+
+/*不同像素下样式调整*/
+@media (min-width: 768px) {
+	.time-div {
+		margin: 20px auto;
+		padding: 10px 15px;
+	}
+}
+
+/*手机和电脑分开显示*/
+.time-table tbody tr td p .web-show{
+	display: block;
+}
+.time-table tbody tr td p .mbl-show{
+	display: none;
+}
+
+@media (max-width: 768px) {
+	.time-table-info .btn {
+		padding: 6px 0px;
+	}
+	.time-table-info button span .ml{
+		margin-left: 2px;
+	}
+
+	.time-div {
+		padding: 5px 2px;
+	}
+
+	/*.time-table tbody tr td p .web-show{*/
+	/*display: none;*/
+	/*}*/
+	/*.time-table tbody tr td p .mbl-show{*/
+	/*display: block;*/
+	/*}*/
+
+	/*.time-table tbody tr td p span ,.time-table tbody tr td button span{*/
+	/*display: inline-block;*/
+	/*transform: scale(0.5);*/
+	/*transform-origin: left top;*/
+	/*}*/
+
+	/*.time-table thead tr td p span {*/
+	/*display: block;*/
+	/*width: 200%;*/
+	/*transform: scale(0.5);*/
+	/*transform-origin: left top;*/
+	/*}*/
+
+	.time-table {
+		font-size: 12px;
+	}
+
+	.teacher-warpper {
+		padding: 0px 0 10px !important;
+	}
+	.teacher-info .col-sm-4{
+		margin-top: 20px;
+	}
+	.teacher-info .infos h4{
+		padding-top: 20px;
+	}
+}
+
+
+/*解决table在手机上的显示问题，当宽度小于指定值后，出现进度条*/
+@media (max-width: 768px) {
+	.timetable{
+		overflow-x: scroll;
+	}
+	.timetableData{
+		width: 750px;
+	}
+}

@@ -1,0 +1,326 @@
+/*教师详情*/
+.tutor-details{
+    max-width: 1220px;
+    padding: 20px 10px;
+    margin: 0 auto;
+}
+/*教师信息*/
+.tutor-details .tutor-info{
+    position: relative;
+    padding: 10px;
+    background: white;
+}
+/*教师信息 - 头像*/
+.tutor-details .tutor-info .head-portrait{
+    text-align: center;
+}
+.tutor-details .tutor-info .head-portrait img{
+    height: 150px;
+}
+/*教师信息 - 基本信息*/
+.tutor-details .tutor-info .tutor-count ul li{
+    padding-left: 0;
+}
+.tutor-details .tutor-info .tutor-count ul li div{
+    background: rgb(236, 241, 245) !important;
+    padding: 10px 0 10px 10px;
+}
+
+/*教师信息 - 操作功能区*/
+.tutor-details .tutor-info .tutor-order{
+    /*letter-spacing:10px;*/
+    padding: 0 50px;
+    color: white;
+}
+.tutor-details .tutor-info .tutor-order span{
+    display: block;
+    height: 50px;
+    border-radius: 25px;
+    margin-top: 45px;
+    line-height: 40px;
+    font-size: 18px;
+}
+.tutor-details .tutor-info .tutor-order span:hover{
+    color: white;
+    background: #1691a5;
+}
+
+/*收藏*/
+.tutor-details .tutor-info .tutor-collection{
+    position: absolute;
+    font-size: 12px;
+    right: 10px;
+    top: 10px;
+    padding:0 10px;
+    cursor: pointer;
+    border: 1px solid rgb(236, 241, 245);
+}
+
+/*教师简介*/
+.tutor-details .tutor-content{
+    margin: 20px 0;
+    padding: 10px;
+    background: white;
+}
+.tutor-details .tutor-content .content{
+    padding: 10px 5px;
+}
+/*手机端样式*/
+@media (max-width: 768px) {
+    .tutor-details .tutor-info .tutor-order span{
+        margin-top: 25px;
+    }
+    .tutor-details{
+        padding-top: 0;
+    }
+}
+.avator-box{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.avator-box>img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+
+.feedback-list{
+    width: 100%;
+    overflow: hidden;
+}
+.feedback-item{
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+}
+.feedback-user{
+    width: 120px;
+    padding-top: 10px;
+}
+.feedback-content{
+    width: 100%;
+}
+.feedback-item .avatar{
+    margin: 0 auto;
+    max-width: 80px;
+}
+.feedback-item .name{
+    text-align: center;
+}
+.feedback-content{
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+.rating_box{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.floatLeft{
+    float:left;
+}
+.floatRight{
+    float:right;
+}
+.displayInblock{
+    display: inline-block !important;
+}
+@media screen and (min-width:768px){
+    .myLeft{
+        text-align: left!important;
+    }
+}
+.search {
+    max-width: 1210px;
+    margin: 5px auto;
+    padding: 15px 5px;
+}
+
+.search .search-info {
+    background: white;
+    margin: 10px 0 20px 0;
+    padding: 5px;
+    /*box-shadow: 2px 2px 1px #ccc;*/
+    border-radius: 2px;
+}
+
+.search .search-info .select-course-type {
+    position: inherit;
+}
+
+.search .search-info .already-sel {
+    background: #49c7db;
+    border-radius: 0;
+    border: none;
+    color: white;
+}
+
+.search .search-info .select-course-type .type-info {
+    position: absolute;
+    width: 238px;
+    border: 1px solid #bdc7ca;
+    box-shadow: 0 0 8px #bdc7ca;
+    background: white;
+    z-index: 999;
+    max-height: 280px;
+    overflow-y: scroll;
+}
+
+.search .search-info .select-course-type .type-info button {
+    border: none;
+    border-bottom: 1px solid #dde6e9;
+    box-shadow: none;
+    border-radius: 0;
+    text-align: left;
+}
+
+.search .search-info .width100 {
+    width: 100px;
+}
+
+.search .search-info .display-inherit {
+    display: inherit;
+}
+
+.search .search-info .width238 {
+    width: 238px;
+}
+
+.search .search-info table tbody tr td span.sel {
+    background: #30a4b6;
+    color: white;
+}
+
+.search .text-white:hover {
+    color: white;
+}
+
+.search .search-info table tbody tr td {
+    padding: 10px 0;
+    border-bottom: 1px dashed gainsboro;
+}
+
+.search-tutor .tutor-item {
+    background: #fff;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    position: relative;
+}
+
+.search-tutor .tutor-item .tutor-pic-box {
+    height: 150px;
+    text-align: center;
+}
+
+.search-tutor .tutor-item .tutor-pic {
+    height: 125px;
+    width: 125px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.search-tutor .tutor-item .tutor-pic img {
+    width: 100%;
+    height: 100%;
+}
+
+.search-tutor .tutor-item .tutor-name {
+    font-size: 24px;
+    color: rgb(238, 118, 80);
+}
+
+.search-tutor .tutor-item .tutor-job {
+    font-size: 14px;
+    color: rgb(247, 180, 80);
+}
+
+.search-tutor .tutor-item .tutor-summary {
+    max-height: 226px;
+    line-height: 20px;
+    overflow: hidden;
+}
+
+.search-tutor .tutor-item .tutor-info {
+    overflow: hidden;
+}
+
+.search-tutor .tutor-item .tutor-info i {
+    margin-right: 5px;
+    color: rgb(49, 163, 181);
+}
+
+.search-tutor .tutor-item .contact {
+    font-size: 30px;
+    color: rgb(49, 164, 177);
+    margin-right: 10px;
+}
+
+.search-tutor .tutor-item .schedule {
+    font-size: 30px;
+    color: rgb(1, 104, 104);
+}
+
+.search-tutor .tutor-item .tutor-more {
+    color: rgb(48, 164, 182);
+    margin-right: 50px;
+}
+
+@media (min-width: 992px) {
+    .search-tutor .tutor-item .btn-box {
+        height: 150px;
+        line-height: 150px;
+    }
+}
+
+.search-tutor .tutor-item .btn {
+    background: rgb(50, 168, 182);
+    font-size: 16px;
+    color: #fff;
+}
+
+.search-tutor .tutor-item .collection {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    border: 1px solid rgb(191, 191, 191);
+    padding: 0 5px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-oval {
+    border-radius: 50px;
+}
+
+.form-control[disabled] {
+    background: white;
+}
+
+.box-shadow-2 {
+    -webkit-box-shadow: 0 0 8px #ccc;
+    -moz-box-shadow: 0 0 8px #ccc;
+    box-shadow: 0 0 8px #ccc;
+}
+
+.mbl-show {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mbl-show {
+        display: block;
+    }
+
+    .web-show {
+        display: none;
+    }
+}
+.breakAll{
+    -ms-word-break:break-all;
+    word-break:break-all;
+}

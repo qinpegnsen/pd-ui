@@ -1,0 +1,159 @@
+.class-coming{
+	position: relative;
+}
+@media (max-width: 767px) {
+	.tutor-center{
+		padding: 20px 5px;
+	}
+}
+.time{
+	position: absolute;
+	width: 70px;
+	height: 60px;
+	top: 10px;
+	left:10px;
+	border-radius: 5px;
+}
+.class-coming .time{
+	background: linear-gradient(rgb(55,235,187), rgb(175,211,230));
+	color: #fff;
+}
+.user-pic{
+	margin-top: 70px;
+}
+
+.willClass .user-pic{
+	margin-top: 70px;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	white-space: nowrap;
+}
+
+/*滚动条样式*/
+.willClass .user-pic::-webkit-scrollbar {/*滚动条整体样式*/
+	height: 4px;
+
+}
+.willClass .user-pic::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+	 border-radius: 5px;
+	 -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+	 background: rgba(0,0,0,0.1);
+ }
+
+.willClass .user-pic::-webkit-scrollbar-track {/*滚动条里面轨道*/
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+	border-radius: 0;
+	background: rgba(0,0,0,0.000000000000001);
+}
+.user_box{
+	display: inline-block;
+	width: 100px;
+}
+.customColor{
+	background: rgba(102, 187, 102, 0.75);
+	color: #fff;
+}
+.user_laout{
+	width: 100%;
+	height: 100px;
+	max-width: 100px;
+	margin: 0 auto;
+}
+.user_laout>div{
+	display: inline-block;
+	width: 100%;
+	height: 100px;
+	border-radius: 50%;
+	overflow: hidden;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.user_laout>div>img{
+	width: 100px;
+	height: 100px;
+}
+.tutor-name{
+	color: rgb(249,181,83);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.tutor-job{
+	color: rgb(237,109,69);
+	font-size: 20px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.look-more{
+
+}
+.btn-oval{
+	border-radius: 50px;
+}
+.agree{
+	background: rgb(50,168,182);
+	color: #fff;
+}
+.disagree{
+	background: rgb(188,35,38);
+	color: #fff;
+}
+.order-handle{
+	position: relative;
+}
+.order-handle .time{
+	background: rgb(233,236,241);
+	color: rgb(118,191,203);
+}
+button:focus{
+	outline: none !important;
+}
+button:active{
+	outline: none !important;
+}
+.leaveMsg{
+	position: relative;
+	text-align: left;
+	border-top: 1px solid rgb(242,242,242);
+	border-bottom: 1px solid rgb(242,242,242);
+	padding: 5px 20px;
+	line-height:20px;
+	height: 50px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.leaveMsg i{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #30a4b6;
+	cursor: pointer;
+	z-index: 999;
+}
+.goDetail{
+	cursor: pointer;
+}
+.no-message{
+	width: 100%;
+	height: 300px;
+	background: url("/assets/images/no-message.png") no-repeat center;
+	background-size: 150px 150px;
+}
+a{
+	color: inherit !important;
+}
+.more{
+	margin-right: 10px;
+	margin-top: 10px;
+	font-size: 16px;
+	color: rgb(62,171,185);
+}
+.border-main{
+	border:1px solid #81c3cb;
+}
+.myImg:hover{
+	border-radius: 50%;
+	border: 2px solid #81c3cb;
+}

@@ -1,0 +1,63 @@
+.sidenav {
+    display: block;
+    height: 100%;
+    overflow: auto;
+    position: fixed;
+    right: -30em;
+    font-size: 15px;
+    top: 0;
+    width: 200px;
+    z-index: 999;
+    background-color: #30a4b6;
+    transition: right 0.3s ease-in-out 0s;
+    -webkit-transition: right 0.3s ease-in-out 0s;
+    -moz-transition: right 0.3s ease-in-out 0s;
+    -o-transition: right 0.3s ease-in-out 0s;
+}
+
+.sidenav.slide {
+    right: 0;
+}
+
+.sidenav ul li {
+    font-size: 18px;
+    padding: 12px;
+    font-family: 'Proxima-Nova-Semibold', 'Roboto-Medium';
+    text-transform: uppercase;
+    margin-left: 0px;
+    font-weight: 600;
+}
+
+.sidenav ul li a {
+    cursor: pointer;
+    color: white;
+}
+
+.sidenav ul li.tit {
+    text-align: right;
+}
+
+.sidenav ul li a.nav-close {
+    font-family: 'Proxima-Nova-Semibold', 'Roboto-Medium';
+    font-weight: 200;
+    font-size: 18px;
+    padding-top: 2px;
+    padding-right: 8px;
+    padding-left: 7px;
+    border-style: solid;
+}
+
+/*用户信息*/
+.sidenav .user-info{
+
+}
+
+.sidenav .user-info img{
+    width: 80px;
+    height:80px;
+    border-radius: 50%;
+    margin: 20px 60px 10px 60px;
+}
+.sidenav .user-info p{
+    color: white;
+}

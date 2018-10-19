@@ -1,0 +1,54 @@
+.order-public{
+    margin: 0 20px;
+}
+.order-step{
+    max-width: 1180px;
+    margin: 50px auto;
+    position: relative;
+}
+.order-step div.col-xs-6{
+    background: white;
+    height: 10px;
+}
+
+.order-step .step-one,.order-step .step-two,.order-step .step-three{
+    position: absolute;
+    width: 60px;
+    top: -25px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: #777;
+    /*letter-spacing: 1px;*/
+    background: white;
+    border-radius: 30px;
+}
+.order-step .step-one{
+    left: -10px;
+}
+.order-step .step-two{
+    left: calc(50% - 25px);
+}
+.order-step .step-three{
+    right: -10px;
+}
+.order-step .step-one.sel,.order-step .step-two.sel,.order-step .step-three.sel,.order-step div.sel{
+    background: #30a4b6;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .order-step{
+        margin: 40px 0;
+    }
+    .order-step .step-one,.order-step .step-two,.order-step .step-three{
+        width: 40px;
+        height: 40px;
+        top: -15px;
+        border-radius: 20px;
+        letter-spacing: normal;
+        line-height: 40px;
+        font-size: 12px;
+    }
+}
+

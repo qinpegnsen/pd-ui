@@ -1,0 +1,81 @@
+<header class="header_main" id="header_main">
+    <div class="header_left">
+        <a class="menu-btn" href="javascript:;" (click)="clickSlide()"> <span></span> <span></span> <span></span> </a>
+        <div class="btn-group pull-right" dropdown>
+            <a class="avatar" dropdownToggle>
+                <img src="{{settings.user?.avatar}}" onerror="javascript:this.src='../../../../assets/images/user.png'"/>
+            </a>
+            <!--<ul *dropdownMenu class="dropdown-menu animated flipInX" role="menu">-->
+            <!--<li *ngFor="let item of menu">-->
+            <!--<a [routerLink]="item.link" [attr.route]="item.link"><i class="fa fa-building-o mr"></i>{{item.text}}</a>-->
+            <!--</li>-->
+            <!--&lt;!&ndash;<li><a [routerLink]="/manage/tutor"><i class="fa fa-gear mr"></i>设置</a></li>&ndash;&gt;-->
+
+            <!--</ul>-->
+        </div>
+        <!--<div class="left-logo"><a href="#"><img src="../../../../assets/images/play-logo.png" alt=""></a></div>-->
+        <div class="logo"><a routerLink="/goods" (click)="selMenu('/goods')"><img src="../../../../assets/images/logo.png" alt=""></a></div>
+        <!--<div class="numbers">-->
+        <!--<a href="#"><i class="rzh-icon-buy"></i></a>-->
+        <!--<a href="#"><i class="rzh-icon-book"></i></a>-->
+        <!--</div>-->
+
+    </div>
+    <div class="header_right">
+        <ul class="box-placeholder">
+            <!--<li>-->
+            <!--<span class="icon"><img src="../../../../assets/images/puzzle-icon.png" alt=""></span>-->
+            <!--<span class="text">34</span>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<span class="icon"><img src="../../../../assets/images/trophy-icon.png" alt=""></span>-->
+            <!--<span class="text">22</span>-->
+            <!--</li>-->
+            <li class="pt0 flat-menu">
+				<span class="text cursor" title="Menu" (click)="clickSlide()">
+					<i class="fa fa-reorder"></i>
+				</span>
+            </li>
+            <li>
+				<span class="text cursor" title="Buy" routerLink="/goods" (click)="selMenu('/goods')">
+					<i class="rzh-icon-buy"></i>
+				</span>
+            </li>
+            <li>
+				<span class="text cursor" title="Bespeak" routerLink="/search" (click)="selMenu('/search')">
+					<i class="rzh-icon-book"></i>
+				</span>
+            </li>
+            <!--<li>-->
+                <!--<a class="notify" data-toggle="dropdown">-->
+                    <!--<img src="../../../../assets/images/bell-icon.png" alt="">-->
+                    <!--<span></span>-->
+                <!--</a>-->
+                <!--&lt;!&ndash;<ul class="dropdown-menu">&ndash;&gt;-->
+                <!--&lt;!&ndash;<li><a href="#">First Message</a></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li><a href="#">Second Message</a></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li><a href="#">Third Message</a></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+            <!--</li>-->
+            <li class="btn-group" dropdown (click)="goInfo()">
+                <a class="avatar" dropdownToggle>
+                    <img src="{{settings.user?.avatar}}" title="{{settings.user.name}}"
+                         onerror="javascript:this.src='../../../../assets/images/user.png'"/>
+                </a>
+                <!--<ul *dropdownMenu class="dropdown-menu animated flipInX" role="menu">-->
+                <!--<li *ngFor="let item of menu">-->
+                <!--<a [routerLink]="item.link"><i class="{{item.icon}} mr"></i>{{item.text}}</a>-->
+                <!--</li>-->
+                <!--&lt;!&ndash;<li><a href="#"><i class="fa fa-gear mr"></i>设置</a></li>&ndash;&gt;-->
+                <!--</ul>-->
+            </li>
+        </ul>
+    </div>
+    <!--<div class="mobile_nav">-->
+    <!--<a class="menu-btn" href="javascript:;" (click)="clickSlide()"> <span></span> <span></span> <span></span> </a>-->
+    <!--<div class="left-logo"><a href="#"><img src="../../../../assets/images/play-logo.png" alt=""></a></div>-->
+    <!--<div class="numbers">-->
+    <!--<a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a>-->
+    <!--</div>-->
+    <!--</div>-->
+</header>

@@ -1,0 +1,37 @@
+<div class="wrapper-no-sidebar wrapper-gray ">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="simple-form">
+          <div class="form-header text-center">
+            <img src="../../../../assets/images/logo.b90301619d64.png" alt="LOGO">
+          </div>
+          <div class="panel panel-transparent">
+            <div class="form-body">
+              <h2 class="text-center">{{'pages.login.send-email'|translate}}</h2>
+              <form novalidate="novalidate" #emailInfo="ngForm" (ngSubmit)="sendEmail(emailInfo)">
+                <!--输入邮件 start-->
+                <div class="form-group">
+                  <label class="control-label" for="email">{{'pages.login.email'|translate}}</label>
+                  <input class="form-control required" id="email" [pattern]="patterns.email" name="email" ngModel placeholder="{{'pages.login.email-title'|translate}}" #email="ngModel" required="required" title="{{'pages.login.email-title'|translate}}" type="text" />
+                  <div [hidden]="email.valid||email.untouched"
+                       class="text-danger">
+                    {{'ts.swat.e103'|translate}}
+                  </div>
+                </div>
+                <!--输入邮件 end-->
+                <!--发送 start-->
+                <div class="text-center">
+                  <button class="btn btn-green btn-rounded-lg ladda-button" type="submit"
+                          data-style="expand-right"><span class="ladda-label">{{'pages.login.send'|translate}}</span><span
+                          class="ladda-spinner"></span></button>
+                </div>
+                <!--发送 end-->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<!--支付信息 begin-->
+<div class="goods-pay">
+    <div class="pay-alt">
+        <div class="pay-content">
+            <div class="pay-close">
+                <span class="cursor" (click)="toBack()"><i class="fa fa-close"></i></span>
+            </div>
+            <div class="pay-tit">
+                <h2>{{'goods.pay.pay' | translate}}</h2>
+            </div>
+            <div class="pay-info">
+                <ul>
+                    <li>
+                        <div class="col-xs-4 text-right text-muted pr0">{{'goods.pay.goods' | translate}}：</div>
+                        <div class="col-xs-8" title="{{goods.goodsName}}">{{goods.goodsName}}</div>
+                    </li>
+                    <!--<li>-->
+                        <!--<div class="col-xs-4 text-right text-muted pr0">{{'goods.pay.term' | translate}}：</div>-->
+                        <!--<div class="col-xs-8">{{goods.validityPeriod}} {{'goods.pay.termCompany' | translate}}</div>-->
+                    <!--</li>-->
+                    <li>
+                        <div class="col-xs-4 text-right text-muted pr0">{{'goods.pay.price' | translate}}：</div>
+                        <div class="col-xs-8 text-money">
+                            <b>${{goods.goodsPrice}}</b>
+                        </div>
+                    </li>
+                    <!--<li>-->
+                        <!--<div class="col-xs-4 text-right text-muted pr0">{{'goods.pay.pricePromotion' |-->
+                            <!--translate}}：-->
+                        <!--</div>-->
+                        <!--<div class="col-xs-8 text-money">-->
+                            <!--<b>${{goods.promotionPrice}}</b>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <li *ngIf="goods.promotionType=='Coupon'">
+                        <div class="col-xs-4 text-right text-muted pr0">{{'goods.goods.couponCode' | translate}}：
+                        </div>
+                        <div class="col-xs-8 mt">
+                            <input type="text" class="form-control" (keyup)="inputCoupon($event)"
+                                   placeholder="{{'goods.goods.optional' | translate}}"  maxlength="36"
+                                   aria-describedby="basic-addon1">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="pay-btn">
+                <button class="btn btn-info form-control" (click)="pay()">
+                    <i class="fa fa-paypal"></i>{{'goods.pay.pay' | translate}}
+                </button>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<!--支付信息 end-->

@@ -1,0 +1,228 @@
+/***** Sidenav Start *****/
+
+
+.sidenav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 115;
+    width: 222px;
+    min-height: 696px;
+    background-color: #31a4b2;
+    border-bottom-right-radius: 28px;
+    -ms-border-bottom-right-radius: 28px;
+    -webkit-border-bottom-right-radius: 28px;
+    box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.08);
+    -ms-box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.08);
+    -webkit-box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.08);
+    transition: all ease-in-out 300ms;
+    -ms-transition: all ease-in-out 300ms;
+    -webkit-transition: all ease-in-out 300ms;
+}
+
+.sidenav .logo {
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 30px 35px 24px 30px;
+    background: #fff;
+}
+
+.sidenav .logo a { display: block; }
+
+.sidenav .header_right { display: none; }
+
+.sidenav .navbar {
+    position: relative;
+    float: left;
+    width: 100%;
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 35px;
+    border: none;
+    border-bottom-right-radius: 0;
+    -ms-border-bottom-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+}
+
+.sidenav .navbar ul {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+.sidenav .navbar ul li {
+    position: relative;
+    display: block;
+    float: left;
+    width: 100%;
+    border-bottom: solid 1px rgba(255,255,255,0.10);
+}
+
+.sidenav .navbar ul li:last-child { border-bottom: none; }
+
+.sidenav .navbar ul li a {
+    display: block;
+    padding-top: 21px;
+    padding-bottom: 19px;
+    padding-left: 21px;
+    font-family: 'Avenir Medium';
+    font-size: 16px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.sidenav .navbar ul li a:hover { background-color: #2f9ca9; }
+
+.sidenav .navbar ul li a .icon {
+    display: inline-block;
+    min-width: 30px;
+    min-height: 29px;
+    line-height: 29px;
+    text-align: center;
+    vertical-align: middle;
+    opacity: 0.6;
+}
+
+.sidenav .navbar ul li a .text {
+    display: inline-block;
+    margin-left: 9px;
+    vertical-align: middle;
+}
+
+.sidenav .navbar ul li a .font22{
+    font-size: 22px;
+}
+
+.close {
+    display: none;
+    float: left;
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 24px;
+    color: #fff;
+    text-shadow: none;
+    opacity: 1;
+}
+
+.header_right {
+    position: relative;
+    float: right;
+}
+
+.header_right > ul {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+.header_right > ul > li {
+    position: relative;
+    display: inline-block;
+    min-height: 59px;
+    padding-top: 12px;
+    padding-right: 16px;
+    padding-left: 16px;
+    vertical-align: middle;
+}
+
+.header_right > ul > li:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    background-color: rgba(49,164,178,.10);
+    content: "";
+}
+
+.header_right > ul > li:last-child { padding-top: 0 !important; }
+
+.header_main .header_right > ul > li:last-child { padding-top: 0; }
+
+.header_right .notify-block {}
+
+.header_right a.notify {
+    position: relative;
+    display: block;
+}
+
+.header_right a.notify span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 13px;
+    height: 13px;
+    background-color: #ffb400;
+    border-radius: 100%;
+    -ms-border-radius: 100%;
+    -webkit-border-radius: 100%;
+}
+
+.header_right .icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.header_right .text {
+    display: inline-block;
+    font-family: 'Avenir Medium';
+    font-size: 20px;
+    color: #58b5c1;
+    vertical-align: middle;
+}
+
+.header_right .avatar {
+    position: relative;
+    display: block;
+    width: 59px;
+    border: solid 3px #58b4c0;
+    border-radius: 100%;
+    -ms-border-radius: 100%;
+    -webkit-border-radius: 100%;
+}
+
+.header_right .avatar img {
+    width: 100%;
+    border-radius: 100%;
+    -ms-border-radius: 100%;
+    -webkit-border-radius: 100%;
+}
+
+.header_right > ul > li .dropdown-menu {
+    right: 0;
+    left: auto;
+    margin-top: 15px;
+    padding: 0;
+    border: none;
+    border-top: solid 1px #58b5c1;
+    box-shadow: none;
+    -ms-box-shadow: none;
+    -webkit-box-shadow: none;
+    border-radius: 0;
+    -ms-border-radius: 0;
+    -webkit-border-radius: 0;
+    transition: all ease-in-out 300ms;
+    -ms-transition: all ease-in-out 300ms;
+    -webkit-transition: all ease-in-out 300ms;
+}
+
+.header_right > ul > li .dropdown-menu li {
+    border-bottom: solid 1px #fff;
+}
+
+.header_right > ul > li .dropdown-menu li a {
+    font-size: 14px;
+    color: #fff;
+    background: none;
+    background-color: #58b5c1;
+}
+
+.header_right > ul > li .dropdown-menu li a:hover {
+    color: #58b5c1;
+    background-color: #fff;
+}
+
+/***** Sidenav End *****/

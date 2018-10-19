@@ -1,0 +1,61 @@
+<!--订单详情 begin-->
+<div class="order-confirm">
+    <!--教师基本信息 begin-->
+    <div class="tutor-info">
+        <div class="head-portrait pull-left">
+            <img src="{{tutor?.avatar}}" class="timeTableImg" onerror="javascript:this.src='../../../../assets/images/user.png'"/>
+        </div>
+        <div class="pr0 pl0">
+            <h3 class="text-main">{{tutor?.name}}</h3>
+            <p>{{'order.confirm.nativeLanguage'|translate}}：{{tutor?.nativeLanguage}}</p>
+        </div>
+        <!--<div class="tutor-collection">-->
+            <!--<i class="fa fa-heart-o text-money mr-5"></i>{{'order.confirm.collection'|translate}}-->
+        <!--</div>-->
+        <div class="clear"></div>
+    </div>
+    <!--教师基本信息 end-->
+
+    <!--预约列表 begin-->
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th class="text-center">{{'order.confirm.course'|translate}}</th>
+                <th class="text-center">{{'order.confirm.date'|translate}}</th>
+                <th class="text-center">{{'order.confirm.time'|translate}}</th>
+                <th class="text-center">{{'order.confirm.courseHour'|translate}}</th>
+                <th class="text-center">{{'order.confirm.operation'|translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let info of timetable">
+                <td class="text-center">{{info.course}}</td>
+                <td class="text-center">{{info.courseTime | date:"yyyy-MM-dd"}}</td>
+                <td class="text-center">{{info.courseTime | date:"shortTime"}} - {{info.courseEndTime |
+                    date:"shortTime"}}
+                </td>
+                <td class="text-center">{{info.courseHour}}</td>
+                <td class="text-center">
+                    <i (click)="todelete()" class="fa fa-trash-o text-danger"></i>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--预约列表 end-->
+
+    <div class="leave-msg">
+        <p class="mb0">{{'order.confirm.leaveMsg'|translate}}：</p>
+        <input class="form-control" type="text" [(ngModel)]="leaveMsg">
+    </div>
+
+    <!--确认 begin-->
+    <div class="order-btn" (click)="toSubmit()">
+        <span class="btn form-control bg-pay">
+            {{'order.confirm.confirm'|translate}}
+        </span>
+    </div>
+    <!--确认 end-->
+</div>
+<!--订单详情 end-->

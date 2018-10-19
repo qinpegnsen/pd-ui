@@ -1,0 +1,86 @@
+/*课件显示*/
+.courseware {
+    max-width: 1200px;
+    margin: 15px auto;
+    position: relative;
+}
+
+/*左侧消息功能*/
+.left-msg {
+    padding: 5px;
+    position: fixed;
+    left: 0;
+    top: 100px;
+    /*width: 135px;*/
+    background: white;
+    z-index: 998;
+    border-top: 1px solid #30a4b6;
+    border-right: 1px solid #30a4b6;
+    border-bottom: 1px solid #30a4b6;
+}
+.left-msg .left-msg-close{
+    position: fixed;
+    z-index: 999;
+    top: 90px;
+    left: 115px;
+    cursor: pointer;
+}
+.left-msg hr {
+    border-top: 1px solid #a9e3ec;
+}
+
+.left-msg ul li {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px dashed #edf1f2;
+    cursor: pointer;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.left-msg ul li:hover {
+    font-size: 15px;
+}
+
+.left-msg-min{
+    padding: 5px;
+    position: fixed;
+    left: -2px;
+    top: 100px;
+    height: 35px;
+    width: 45px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    background: #30a4b6;
+    border-radius: 2px;
+}
+
+/*操作功能*/
+.operation {
+    position: absolute;
+    top: 0;
+    right: -45px;
+}
+
+.operation ul {
+    width: 42px;
+}
+
+.operation ul li {
+    cursor: pointer;
+    margin: 2px;
+    height: 35px;
+    line-height: 35px;
+    background: #30a4b6;
+    color: white;
+    text-align: center;
+    border: 1px solid #30a4b6;
+}
+
+.operation ul li:hover {
+    color: #30a4b6;
+    background: white;
+}

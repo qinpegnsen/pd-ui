@@ -1,0 +1,99 @@
+/*订单确认*/
+.order-confirm {
+    max-width: 1220px;
+    padding: 20px 10px;
+    margin: 0 auto;
+}
+
+/*教师信息*/
+.order-confirm .tutor-info {
+    position: relative;
+    padding: 10px;
+    background: white;
+}
+
+/*教师信息 - 头像*/
+.order-confirm .tutor-info .head-portrait {
+    text-align: center;
+    margin: 0 50px;
+
+}
+
+.timeTableImg{
+    border-radius: 50%!important;
+    width: 100px !important;
+    height: 100px !important;
+}
+
+.order-confirm .tutor-info .head-portrait img {
+    height: 100px;
+}
+
+/*收藏*/
+.order-confirm .tutor-info .tutor-collection {
+    position: absolute;
+    font-size: 12px;
+    right: 10px;
+    top: 10px;
+    padding: 0 10px;
+    cursor: pointer;
+    border: 1px solid rgb(236, 241, 245);
+}
+
+/*信息列表*/
+.order-confirm table {
+    margin: 20px 0;
+    background: white;
+}
+
+.order-confirm table thead tr th {
+    height: 60px;
+    line-height: 60px;
+    font-size: 16px;
+    background: #ebebeb;
+}
+
+.order-confirm table tbody tr td {
+    height: 50px;
+    font-size: 16px;
+    line-height: 50px;
+}
+
+.order-confirm table tbody tr td i {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/*确认按钮*/
+.order-confirm .order-btn {
+    width: 300px;
+    margin: 30px auto;
+}
+
+.order-confirm .order-btn .btn {
+    background: #30a4b6;
+    color: white;
+    height: 50px;
+    line-height: 38px;
+    font-size: 18px;
+    /*letter-spacing: 5px;*/
+    border-radius: 25px;
+}
+
+.order-confirm .order-btn .btn:hover {
+    background: #198fa2;
+}
+
+@media (max-width: 768px) {
+    .order-confirm {
+        padding: 0px 10px;
+    }
+
+    .order-confirm .tutor-info .head-portrait {
+        margin: 0 20px;
+    }
+
+    .order-confirm table tbody tr td{
+        font-size: 13px;
+    }
+}

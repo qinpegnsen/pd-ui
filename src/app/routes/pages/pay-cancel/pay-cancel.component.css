@@ -1,0 +1,17 @@
+.pay-cancel{
+    padding:15px 20px;
+    margin: 100px auto;
+    max-width: 500px;
+    background: white;
+    text-align: center;
+}
+.pay-cancel p .btn{
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .pay-cancel{
+        width: 94%;
+        margin: 20px 3%;
+    }
+}

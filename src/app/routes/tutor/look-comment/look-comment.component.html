@@ -1,0 +1,132 @@
+<!--学生详情 begin-->
+<div class="tutor-details mt">
+    <p class="font24 floatLeft">{{'tutor.comment.stuDetail'|translate}}</p>
+    <p class="text-right">
+        <u>
+            <span class="cursor" (click)="toBack()">{{'search.tutorDetail.back'|translate}}</span>
+        </u>
+    </p>
+    <!--学生基本信息 begin-->
+    <div class="tutor-info mt-20">
+        <div class="col-sm-3 head-portrait myLeft">
+            <span class="avator-box displayInblock">
+                <img src="{{studentData?.avatar}}" onerror="javascript:this.src='../../../../assets/images/user.png'"/>
+            </span>
+        </div>
+        <div class="col-sm-6 pr0 pl0">
+            <h3 class="text-main">{{studentData.name}}</h3>
+            <p>
+                <span>{{'tutor.comment.timeZone'|translate}}：{{studentData.timeZone}}</span>
+                <span class="ml-20">{{'tutor.comment.studyExperience'|translate}}：{{studentData.studyType}}</span>
+            </p>
+            <div class="tutor-count">
+                <ul>
+                    <li class="col-xs-3 pr">
+                        <div>
+                            <i class="fa fa-bar-chart mr-5 text-main"></i>
+                            {{studentData?.classroomNum}}
+                            <!--<b>{{tutor.classroomTutor?.classroomTutorTotal}}</b>-->
+                            <!--{{'search.tutorDetail.courseHour'|translate}}-->
+                        </div>
+                    </li>
+                    <li class="col-xs-3 pr">
+                        <div>
+                            <i class="fa fa-comments-o mr-5 text-main"></i>
+                            {{studentData?.classroomFeedback?.feedbackTotal}}
+                            <!--<b>{{tutor?.classroomFeedback?.feedbackTotal}}</b>-->
+                            <!--{{'search.tutorDetail.feedback'|translate}}-->
+                        </div>
+                    </li>
+                    <li class="col-xs-3 pr">
+                        <div>
+                            <i class="fa fa-heart mr-5 text-main"></i>
+                            {{studentData.tutorFavorites.length}}
+                            <!--<b>{{tutor?.tutorFavorite?.favoriteTotal}}</b> -->
+                            <!--{{'search.tutorDetail.favorite'|translate}}-->
+                        </div>
+                    </li>
+                    <li class="col-xs-3 pr0">
+                        <div>
+                            <i class="fa fa-star mr-5 text-main"></i>
+                            {{studentData.starLevel*20}}%
+                            <!--<b>{{tutor.starLevel*20}}%</b> -->
+                            <!--{{'search.tutorDetail.Applause'|translate}}-->
+                        </div>
+                    </li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <!--学生基本信息 end-->
+    <!--老师给学生的评价 begin-->
+    <div class="tutor-content search">
+        <!-- <h4><i class="fa fa-newspaper-o mr ml-5 text-main"></i>{{'search.tutorDetail.introduction'|translate}}</h4>
+        <hr class="mt mb"/>
+        <div class="content">
+            <div [innerHTML]="tutor.introduction"></div>
+        </div> -->
+        <md-tab-group>
+            <md-tab #buy label="{{'tutor.comment.teacherEvaluation'|translate}}">
+                <div class="content search-info">
+                    <ul class="container-fluid search-tutor">
+                        <li class="row tutor-item box-shadow-2 mb-15 pb-20"
+                            *ngFor="let item of feedbackData;let i=index;">
+                            <div class="col-md-3 tutor-pic-box">
+                                <div class="tutor-pic">
+                                    <img src="{{item.classroomTutors[0]?.tutor?.avatar}}"
+                                         onerror="javascript:this.src='../../../../assets/images/user.png'"/>
+                                </div>
+                                <p>
+                                    <span>{{item.classroomTutors[0].tutor?.name}}</span>
+                                </p>
+                            </div>
+                            <div class="col-md-7">
+                                <p class="tutor-name mb0">{{item.course}}</p>
+                                <ng-container *ngFor="let every of item.classroomStudentses;let i=index;">
+                                    <div class="tutor-summary" *ngIf="every.studentCode==studentCode;">
+                                        <ng-container
+                                                *ngIf="every.classroomFeedback?.feedback&&every.classroomFeedback?.schedule&&every.classroomFeedback?.remark">
+                                            <p class="breakAll" *ngIf="every.classroomFeedback?.schedule"
+                                               [innerHTML]="every.classroomFeedback?.schedule |questionSplit |safeHtml"></p>
+                                            <p class="breakAll" *ngIf="every.classroomFeedback?.feedback"
+                                               [innerHTML]="every.classroomFeedback?.feedback |questionSplit |safeHtml"></p>
+                                            <p class="breakAll" *ngIf="every.classroomFeedback?.remark"
+                                               [innerHTML]="every.classroomFeedback?.remark |questionSplit |safeHtml"></p>
+                                        </ng-container>
+                                        <ng-container
+                                                *ngIf="!every.classroomFeedback?.feedback||!every.classroomFeedback?.schedule||!every.classroomFeedback?.remark">
+                                            {{'tutor.comment.noEvaluation'|translate}}
+                                        </ng-container>
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <span class="floatLeft tutor-info">
+                                <i class="fa fa-calendar"></i>{{item.courseTime}}
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="w100 mt-20">
+                        <button class="form-control" *ngIf="!page?.lastPage" (click)="loadMore()">
+                            +{{'search.search.loadMore'|translate}} （{{'search.search.row'|translate}}
+                            {{page?.totalRow}} {{'search.search.strip'|translate}}）
+                        </button>
+                        <button disabled class="form-control" *ngIf="page?.lastPage">
+                            <span class="text-muted">{{'search.search.loadAll'|translate}} （{{'search.search.row'|translate}} {{page?.totalRow}} {{'search.search.strip'|translate}}）</span>
+                        </button>
+                        <!--<button class="form-control" *ngIf="!page.lastPage" (click)="loadMore()">-->
+                        <!--+{{'search.search.loadMore'|translate}} （{{'search.search.row'|translate}} {{page.totalRow}}-->
+                        <!--{{'search.search.strip'|translate}}）-->
+                        <!--</button>-->
+                        <!--<button disabled class="form-control" *ngIf="page.lastPage">-->
+                        <!--<span class="text-muted">{{'search.search.loadAll'|translate}} （{{'search.search.row'|translate}} {{page.totalRow}} {{'search.search.strip'|translate}}）</span>-->
+                        <!--</button>-->
+                    </div>
+                </div>
+            </md-tab>
+        </md-tab-group>
+    </div>
+    <!--老师给学生的评价 end-->
+</div>
+<!--学生详情 end-->

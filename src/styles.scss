@@ -1,0 +1,26 @@
+/*载入公共样式*/
+@import "./app/shared/styles/public.css";
+/*载入公共核心样式*/
+@import "./app/shared/styles/utils.css";
+/*载入公共动画样式*/
+@import "./app/shared/styles/animate";
+/*载入字体图标样式*/
+@import "./app/shared/styles/fonts.css";
+@import '../node_modules/simple-line-icons/css/simple-line-icons.css';
+//载入sweetalert样式
+@import "../node_modules/sweetalert/dist/sweetalert.css";
+/*载入字体图标样式*/
+@import "../node_modules/font-awesome/css/font-awesome.css";
+//载入日期样式
+@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
+/*Bootstrap 样式*/
+//@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+/*Bootstrap 样式*/
+@import "./app/shared/styles/bootstrap.scss";
+/*angluar-material主题样式*/
+@import "./app/shared/angular-material/ponddy.scss";
+/* 第三方插件样式中心*/
+@import "./app/shared/styles/app.scss";
+//日期插件，支持ie
+@import "./app/shared/styles/datepicker.css";
+@import '../node_modules/angular2-toaster/toaster.css'; //消息提醒样式

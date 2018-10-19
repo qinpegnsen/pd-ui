@@ -1,0 +1,103 @@
+<div class="m-5">
+    <!--教师信息及课程表状态标示  begin-->
+    <div class="teacher-warpper">
+        <div class="teacher-box container">
+            <div class="teacher-info row">
+                <div class="col-sm-8">
+                    <img class="pull-left ml mr timeTableImg" height="80" src="{{tutor?.avatar}}"
+                         onerror="javascript:this.src='../../../../assets/images/user.png'"/>
+                    <div class="ml mt infos">
+                        <h4 class="text-main">{{tutor?.name}}</h4>
+                        <p><i class="fa fa-language mr-5"></i>{{'order.timetable.nativeLanguage'|translate}}：{{tutor?.nativeLanguage}}
+                        </p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="col-sm-4">
+                    <p class="font16"><i class="fa fa-globe mr"></i>{{'order.timetable.timeZoneSelection'|translate}}
+                    </p>
+                    <select class="form-control" [(ngModel)]="selTimeZone" (change)="timetableForTimeZone()">
+                        <option *ngFor="let tz of timeZones" value="{{tz.zoneId}}">{{tz.timezone}}</option>
+                    </select>
+                </div>
+            </div>
+            <ul class="timetable-status row mt mb0">
+                <li class="col-sm-4">
+                    <p>{{'order.timetable.Available'|translate}}</p>
+                </li>
+                <li class="col-sm-4">
+                    <p>{{'order.timetable.Selected'|translate}}</p>
+                </li>
+                <li class="col-sm-4">
+                    <p>{{'order.timetable.Unavailable'|translate}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--教师信息及课程表状态标示  begin-->
+
+    <!--课程表 begin-->
+    <div class="time-div">
+        <!--功能操作 begin-->
+        <div class="mb mt">
+            <button class="btn-sm btn btn-success btn-outline" (click)="prevTimeTable()"><i
+                    class="fa fa-mail-reply mr"></i>{{'timetable.prev'|translate}}
+            </button>
+            <button class="btn-sm btn btn-success btn-outline" (click)="nextTimeTable()">{{'timetable.next'|translate}}<i
+                    class="fa fa-mail-forward ml"></i></button>
+            <ng-container *ngIf="!settings.user.tutorCode">
+                <span class="btn bg-pay pull-right timetable-submit-top" (click)="onSubmit()">{{'order.timetable.submit'|translate}}</span>
+            </ng-container>
+        </div>
+        <!--功能操作 end-->
+        <!--课程表信息 begin-->
+        <div class="timetable">
+            <div class="timetableData">
+                <div *ngFor="let tt of timetableData" class="pull-left time-table p-1">
+                    <div class="table-lyout">
+                        <table width="100%">
+                            <thead>
+                            <tr class="">
+                                <td class="blightblue p-5 text-center text-white">
+                                    <div>
+                                        <p class="mb0"><span><strong>{{tt.week}}</strong></span></p>
+                                        <p class="mb0"><span><strong>{{tt.date}}</strong></span></p>
+                                    </div>
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let times of tt.times;let i=index">
+                                <td>
+                                    <p class="plannergrey mt-2 mb0 text-center"
+                                       tooltip="{{'order.timetable.course'|translate}}：{{times.course}}"
+                                       [ngClass]="{'times-select':times.sel,'times-unavailable':times.state=='Unavailable'}"
+                                       *ngIf="!times.overTime">
+                                        <span>{{times.courseTime|moment:'HH:mm'}} - {{times.courseEndTime|moment:'HH:mm'}}</span>
+                                        <input type="checkbox" [disabled]="!times.disabled" class="times-input"
+                                               (click)="selTimetable(times)">
+                                    </p>
+                                    <p class="plannergrey mt-2 mb0 text-center times-unavailable"
+                                       tooltip="{{'order.timetable.course'|translate}}：{{times.course }}（{{'order.timetable.overTime'|translate}}）"
+                                       *ngIf="times.overTime">
+                                        <span>{{times.courseTime|moment:'HH:mm'}} - {{times.courseEndTime|moment:'HH:mm'}}</span>
+                                        <input type="checkbox" class="times-input">
+                                    </p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="timetable-submit" *ngIf="!settings.user.tutorCode">
+            <span class="btn bg-pay pull-right timetable-submit-bottom form-control" (click)="onSubmit()">{{'order.timetable.submit'|translate}}</span>
+            <div class="clear"></div>
+        </div>
+        <!--课程表信息 end-->
+    </div>
+    <!--课程表 end-->
+</div>
+

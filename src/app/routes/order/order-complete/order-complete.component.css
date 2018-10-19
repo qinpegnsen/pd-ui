@@ -1,0 +1,49 @@
+/*预约课时完成*/
+.order-component{
+    padding: 30px 5px;
+}
+.order-component-content{
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    background: white;
+}
+.order-component-content table{
+    background: rgb(247, 250, 253) !important;
+}
+.order-component-content table tbody tr td {
+    height: 30px;
+    font-size: 15px;
+    line-height: 30px;
+    border: none;
+    border-bottom: 1px solid white;
+    border-right: 2px solid white;
+}
+.order-component .component-mag{
+    margin: 50px auto 20px auto;
+    text-align: center;
+    font-size: 25px;
+}
+.order-component .component-mag i{
+    font-size: 35px;
+    margin-right: 10px;
+}
+.order-component .component-mag .component-navigation{
+    font-size: 14px;
+    color: grey;
+    margin-top: 25px;
+}
+
+/*手机端*/
+@media (max-width: 768px) {
+    .order-component{
+        padding: 0 5px;
+    }
+    .order-component-content table tbody tr td{
+        height: 25px;
+        line-height: 25px;
+    }
+    .order-component .component-mag{
+        margin-top: 20px;
+    }
+}

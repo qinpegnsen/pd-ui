@@ -1,0 +1,45 @@
+.simple-form {
+    padding-top: 40px;
+}
+.form-body{
+    padding: 30px;
+}
+.simple-form .form-header {
+    padding-bottom: 30px;
+}
+.btn-green {
+    background-color: #31a7b6;
+    color: #fff;
+}
+.btn-gray {
+    background-color: #dde3e4;
+    color: #565656;
+}
+.btn-rounded-lg {
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+.forgot-password{
+    overflow: hidden;
+}
+.btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
+    outline: none;
+}
+.student-name:first-child{
+    padding-left: 0 !important;
+}
+.student-name:nth-of-type(2){
+    padding-right: 0 !important;
+}
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+}
+.gray{
+    color:gray;
+}

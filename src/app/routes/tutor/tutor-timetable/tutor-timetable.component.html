@@ -1,0 +1,75 @@
+<div class="m-5">
+  <!--教师信息及课程表状态标示  begin-->
+  <div class="teacher-warpper">
+    <div class="teacher-box container">
+      <div class="teacher-info row" *ngIf="courses">
+        <div class="col-sm-2 font18">{{'tutor.timetable.myTimetable'|translate}}：</div>
+        <ul class="course-list col-sm-10">
+          <li *ngFor="let course of courses">{{course.course.course}}</li>
+        </ul>
+      </div>
+      <ul class="timetable-status row mt mb0">
+        <li class="col-sm-4">
+          <p>{{'tutor.timetable.Available'|translate}}</p>
+        </li>
+        <li class="col-sm-4" style="display: none">
+          <p>{{'tutor.timetable.Selected'|translate}}</p>
+        </li>
+        <li class="col-sm-4">
+          <p>{{'tutor.timetable.Unavailable'|translate}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--教师信息及课程表状态标示  begin-->
+
+  <!--课程表 begin-->
+  <div class="time-div">
+    <!--功能操作 begin-->
+    <div class="mb mt">
+      <button class="btn-sm btn btn-success btn-outline" (click)="prevTimeTable()"><i
+      class="fa fa-mail-reply mr"></i>prev
+      </button>
+      <button class="btn-sm btn btn-success btn-outline" (click)="nextTimeTable()">next<i
+      class="fa fa-mail-forward ml"></i></button>
+    </div>
+    <!--功能操作 end-->
+    <!--课程表信息 begin-->
+    <div class="timetable">
+      <div class="timetableData">
+        <div *ngFor="let tt of timetableData" class="pull-left time-table p-1">
+          <div class="table-lyout">
+            <table width="100%">
+              <thead>
+              <tr class="">
+                <td class="blightblue p-5 text-center text-white">
+                  <div>
+                    <p class="mb0"><span><strong>{{tt.week}}</strong></span></p>
+                    <p class="mb0"><span><strong>{{tt.date}}</strong></span></p>
+                  </div>
+                </td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let times of tt.times">
+                <td>
+                  <p class="plannergrey mt-2 mb0 text-center" tooltip="{{times.course}}"
+                  [ngClass]="{'times-select':times.sel,'times-unavailable':times.state=='Unavailable'}">
+                    <!--我会告诉你，加了给substring是为了兼容ie11吗！！！-->
+                    <span>{{times.courseTime|moment:'HH:mm'|substring:[0,5]}} - {{times.courseEndTime|moment:'HH:mm'|substring:[0,5]}}</span>
+                    <input type="checkbox"  class="times-input">
+                  </p>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <!--课程表信息 end-->
+  </div>
+  <!--课程表 end-->
+</div>
+

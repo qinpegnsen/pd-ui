@@ -1,0 +1,9 @@
+<div class="footer">
+  <div class="container">
+    Copyright ©2017 Ponddy Education Inc.&nbsp;
+    <br>龎帝教育集團
+    <select class="sel-language" [(ngModel)]="selLanguage" (change)="editLanguage()">
+      <option *ngFor="let language of languageList" value="{{language.key}}">{{language.val}}</option>
+    </select>
+  </div>
+</div>

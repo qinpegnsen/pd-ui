@@ -1,0 +1,109 @@
+.order-handle{
+	position: relative;
+}
+.order-handle .time {
+	background: rgb(233, 236, 241);
+	color: rgb(118, 191, 203);
+}
+.time{
+	position: absolute;
+	width: 70px;
+	height: 60px;
+	top: 10px;
+	left:10px;
+	border-radius: 5px;
+}
+
+button:focus{
+	outline: none !important;
+}
+button:active{
+	outline: none !important;
+}
+.leaveMsg{
+	position: relative;
+	text-align: left;
+	border-top: 1px solid rgb(242,242,242);
+	border-bottom: 1px solid rgb(242,242,242);
+	padding: 5px 20px;
+	line-height:20px;
+	height: 50px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.leaveMsg i{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #30a4b6;
+	cursor: pointer;
+	z-index: 999;
+}
+.user-pic{
+	margin-top: 70px;
+}
+.user_box{
+	display: inline-block;
+
+}
+.customColor{
+	background: rgba(102, 187, 102, 0.75);
+	color: #fff;
+}
+.user_laout{
+	width: 100%;
+	height: 100px;
+	max-width: 100px;
+	margin: 0 auto;
+}
+.user_laout>div{
+	display: inline-block;
+	width: 100%;
+	height: auto;
+	border-radius: 50%;
+	overflow: hidden;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.user_laout>div>img{
+	width: 100px;
+	height: 100px;
+}
+.tutor-name{
+	color: rgb(249,181,83);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.tutor-job{
+	color: rgb(237,109,69);
+	font-size: 20px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.agree{
+	background: rgb(50,168,182);
+	color: #fff;
+}
+.disagree{
+	color: rgb(237,109,69);
+	text-decoration: underline !important;
+}
+.no-message{
+	width: 100%;
+	height: 300px;
+	background: url("/assets/images/no-message.png") no-repeat center;
+	background-size: 150px 150px;
+}
+.more{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	font-size: 16px;
+	color: rgb(62,171,185);
+}
+.border-main{
+	border:1px solid #81c3cb;
+}

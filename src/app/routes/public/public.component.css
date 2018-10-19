@@ -1,0 +1,35 @@
+/*页面最上层div*/
+/*.wrapper{*/
+    /*position: relative;*/
+    /*width: 100%;*/
+    /*height: auto;*/
+    /*min-height: 100%;*/
+    /*overflow-x: hidden;*/
+/*}*/
+
+/*中间内容信息*/
+.content_wrapper{
+    margin-bottom: -100px;
+    height: auto;
+    min-height: 100vh;
+    position: relative;
+    padding-top: 93px;
+    padding-left: 222px;
+}
+
+/*页头样式*/
+/*app-header {*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*top: 0;*/
+    /*height: 60px;*/
+    /*border-bottom: 1px solid #e4eaec;*/
+    /*padding: 20px;*/
+/*}*/
+
+/*页尾样式*/
+app-footer {
+    height: 100px;
+    border-top: 1px solid #e4eaec;
+}

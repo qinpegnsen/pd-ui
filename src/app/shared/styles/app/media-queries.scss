@@ -1,0 +1,20 @@
+/* ========================================================================
+     Component: media-queries
+ ========================================================================== */ 
+
+// Taken from bootstrap variables
+// to match all components media queries
+
+$mq-desktop-lg:                           1200px; // Usually 1200px
+$mq-desktop:                              992px;    // Usually 992px
+$mq-tablet:                               768px;     // Usually 768px
+$mq-mobile:                               480px;      // Usually 480px
+
+// Inverse version media queries (for use with max-width)
+// Some components needs to be strictly defined only for mobile
+
+$mq-up-to-desktop-lg:                           (1200px - 1); // Usually 1199px
+$mq-up-to-desktop:                              (992px - 1);    // Usually 991px
+$mq-up-to-tablet:                               (768px - 1);     // Usually 767px
+$mq-up-to-mobile:                               (480px - 1);      // Usually 479px
+

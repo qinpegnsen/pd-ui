@@ -1,0 +1,255 @@
+<div class="custom">
+    <!--自定义需求流程 begin-->
+    <div class="custom-sel-tutor" *ngIf="tutorList.length <= 0">
+        <div class="search-step">
+            <p class="font16 text-main ml-15"><i class="fa fa-list-ol mr"></i>{{'student.custom.customTitle'|translate}}
+            </p>
+            <div class="step-info ml">
+                <ul>
+                    <li>{{'student.custom.customBody1'|translate}}</li>
+                    <li>{{'student.custom.customBody2'|translate}}</li>
+                    <li>{{'student.custom.customBody3'|translate}}</li>
+                    <li>{{'student.custom.customBody4'|translate}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--自定义需求流程 end-->
+
+    <!--创建需求 begin-->
+    <div class="custom-info">
+        <p class="ml-15 font16 text-main"><i class="fa fa-edit mr"></i>{{'student.custom.creatCustom'|translate}}</p>
+        <hr class="mt"/>
+        <fieldset class="m border-bottom-ccc" *ngIf="isShowCourseType">
+            <div class="form-group mb">
+                <div class="col-sm-6 fixed_left">
+                    <label class="fixed_left_label text-right pr0">{{'student.custom.courseType'|translate}}</label>
+                    <div class="fixed_left_box select-course-type">
+                        <input class="form-control" [value]="selectCourseTypeInfo" (click)="showOrHideSelectType()"
+                               placeholder="{{'search.search.selectCourseType'|translate}}"/>
+                        <div class="type-info" *ngIf="showSelectType">
+                            <div *ngFor="let info of coursesTypeList">
+                                <button *ngIf="info.children.length > 0" disabled class="btn btn-default form-control">
+                                    {{info.category}}
+                                </button>
+                                <button *ngIf="info.children.length < 1"
+                                        (click)="selectCourseType(info.categoryCode,info.category)"
+                                        class="btn btn-default form-control">{{info.category}}
+                                </button>
+                                <div *ngIf="info.children.length > 0" class="ml-15">
+                                    <button *ngFor="let children of info.children"
+                                            (click)="selectCourseType(children.categoryCode,info.category+' - '+children.category)"
+                                            class="btn btn-default form-control">
+                                        <i class="fa fa-level-up mr transform-90deg"></i>{{children.category}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </fieldset>
+        <fieldset class="m border-bottom-ccc" *ngIf="coursesList.length > 0">
+            <div class="form-group mb">
+                <div class="col-sm-12">
+                    <label class="col-sm-1 text-right pr0">{{'student.custom.course'|translate}}</label>
+                    <div class="col-sm-11 select-course-type">
+                        <span *ngFor="let course of coursesList" (click)="selCourse(course)"
+                              [ngClass]="{'sel':course.sel}"
+                              class="mb-sm btn-sm btn btn-default m-3">{{course.course}}</span>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </fieldset>
+        <fieldset class="m border-bottom-ccc">
+            <div class="form-group mb">
+                <div class="col-sm-6 fixed_left">
+                    <label class="fixed_left_label text-right pr0">{{'student.custom.date'|translate}}</label>
+                    <div class="fixed_left_box">
+                        <div class="input-group">
+                            <input type="text" readonly class="form-control" [(ngModel)]="selDate" bsDatepicker
+                                   #dp="bsDatepicker" [bsConfig]="bsConfig">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" (click)="dp.show()">Date</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="col-sm-6 fixed_left">
+                    <label class="fixed_left_label text-right pr0">{{'student.custom.time'|translate}}</label>
+                    <div class="fixed_left_box">
+                        <div class="width100 pull-left mr">
+                            <select class="form-control" [(ngModel)]="selStartTime">
+                                <option *ngFor="let time of timeList" value="{{time.val}}">{{time.val}}</option>
+                            </select>
+                        </div>
+                        <!--<div class="pull-left ml mr">~</div>-->
+                        <!--<div class="width100 pull-left">-->
+                            <!--<select class="form-control" [(ngModel)]="selEndTime">-->
+                                <!--<option *ngFor="let time of timeList" value="{{time.val}}">{{time.val}}</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </fieldset>
+        <fieldset class="m border-bottom-ccc">
+            <div class="form-group mb">
+                <div class="col-sm-6 fixed_left">
+                    <label class="fixed_left_label text-right pr0">{{'student.custom.timeZone'|translate}}</label>
+                    <div class="fixed_left_box">
+                        <select class="form-control" [(ngModel)]="sel.timeZone">
+                            <option *ngFor="let timeZone of timeZoneList" value="{{timeZone.zoneId}}">
+                                {{timeZone.timezone}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </fieldset>
+        <fieldset class="m border-bottom-ccc" *ngIf="alreadySelectCourse.length > 0">
+            <div class="form-group mb">
+                <div class="col-sm-12">
+                    <label class="col-sm-1 text-right pr0">{{'student.custom.alreadySelectCourse'|translate}}</label>
+                    <div class="col-sm-11">
+                        <span *ngFor="let course of alreadySelectCourse" (click)="delSelCourse(course)"
+                              class="mb-sm btn-sm btn btn-default m-3 already-select">
+                            {{course.course}}<i class="fa fa-remove text-danger ml-5"></i>
+                        </span>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </fieldset>
+        <div class="sel-tutor">
+            <button class="btn bg-pay text-white pull-right" (click)="toSearchTutor()"><i class="fa fa-search mr"></i>{{'student.custom.searchTeacher'|translate}}
+            </button>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <!--创建需求 end-->
+
+    <!--选择老师 begin-->
+    <div class="custom-sel-tutor" *ngIf="tutorList.length > 0">
+        <div class="font16 search-tit text-main"><i class="fa fa-users mr"></i>{{'student.custom.selectTeacher'|translate}}
+        </div>
+        <div class="search-tutor">
+            <ul class="container-fluid mb0">
+                <li class="row tutor-item box-shadow-2 mb-15" *ngFor="let tutor of tutorList">
+                    <div class="col-md-3 tutor-pic-box">
+                        <div class="tutor-pic">
+                            <img src="{{tutor?.avatar}}"
+                                 onerror="javascript:this.src='../../../../assets/images/user.png'"/>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <p class="tutor-name mb0">{{tutor.name}}</p>
+                        <p class="tutor-job" title="{{'student.custom.nativeLanguage'|translate}}"><i
+                                class="fa fa-language mr-5"></i>{{tutor.nativeLanguage}}
+                        </p>
+                        <p class="tutor-summary text-muted" *ngIf="tutor.introduction">
+                            {{tutor.introduction}}</p>
+                        <p class="tutor-summary text-muted" *ngIf="!tutor.introduction">
+                            （{{'student.custom.noIntroduction'|translate}}）</p>
+                        <!--<p>-->
+                        <!--<span class="contact rzh-icon-contact"></span>-->
+                        <!--<span class="schedule rzh-icon-schedule"></span>-->
+                        <!--</p>-->
+                    </div>
+                    <div class="col-md-2 btn-box">
+                        <button class="form-control btn btn-oval" *ngIf="!tutor.isAdd"
+                                (click)="toAdd(tutor)">{{'student.custom.select'|translate}}
+                        </button>
+                        <button class="form-control btn btn-oval already-add" disabled *ngIf="tutor.isAdd">
+                            {{'student.custom.isSelect'|translate}}
+                        </button>
+                    </div>
+                    <a class="details" target="_blank" routerLink="/search/details"
+                       [queryParams]="{code:tutor.tutorCode}">
+                        <i class="fa fa-file-text-o mr-5"></i>{{'student.custom.detail'|translate}}
+                    </a>
+                    <span class="collection" *ngIf="tutor.tutorFavorite">
+                        <i class="fa fa-heart mr-5"></i>{{'student.custom.isFavorite'|translate}}
+                    </span>
+                </li>
+            </ul>
+            <div class="w100">
+                <button class="form-control" (click)="loadMore()" *ngIf="!page.lastPage">
+                    +{{'student.custom.loadMore'|translate}} （{{'student.custom.row'|translate}} {{page.totalRow}}
+                    {{'student.custom.strip'|translate}}）
+                </button>
+                <button disabled class="form-control" *ngIf="page.lastPage">
+                    <span class="text-muted">{{'student.custom.loadAll'|translate}} （{{'student.custom.row'|translate}} {{page.totalRow}} {{'student.custom.strip'|translate}}）</span>
+                </button>
+            </div>
+        </div>
+        <div class="search-already text-center cursor" (click)="showOrHideSelectTutor()">
+            <div class="search-num" *ngIf="addTutorNum>0">{{addTutorNum}}</div>
+            <i class="fa fa-male fa-2x"></i><br/>
+            <span class="font12">{{'student.custom.isSelect'|translate}}</span>
+        </div>
+    </div>
+    <!--选择老师 end-->
+
+    <!--已选择老师处理 begin-->
+    <div class="already-sel" *ngIf="showSelect">
+        <div class="alt">
+            <div class="alt-title pl-5 pr">
+                <div class="font16 pull-left text-main">
+                    <i class="fa fa-users mr-5"></i>{{'student.custom.isSelectTeacher'|translate}}
+                </div>
+                <div class="pull-right cursor" (click)="showOrHideSelectTutor()">
+                    <i class="fa fa-close text-danger"></i>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <hr class="mt mb0"/>
+            <div class="alt-content">
+                <table class="table table-striped mb0">
+                    <thead>
+                    <tr>
+                        <th class="text-center">{{'student.custom.avator'|translate}}</th>
+                        <th class="text-center">{{'student.custom.name'|translate}}</th>
+                        <th class="text-center">{{'student.custom.nativeLanguage'|translate}}</th>
+                        <th class="text-center">{{'student.custom.operation'|translate}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let tutor of selectTutorList">
+                        <td class="w25 text-center">
+                            <img height="50px" src="{{tutor?.avatar}}"
+                                 onerror="javascript:this.src='../../../../assets/images/user.png'"/>
+                        </td>
+                        <td class="w35 text-center">
+                            <span>{{tutor.name}}</span>
+                        </td>
+                        <td class="w25 text-center">
+                            <span>{{tutor.nativeLanguage}}</span>
+                        </td>
+                        <td class="w15 text-center">
+                            <i class="fa fa-trash text-orange cursor" (click)="delSelectTutor(tutor)"></i>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <!--<input class="form-control" type="text">-->
+                    <label class="mt">{{'student.custom.leaveMsg'|translate}}：</label>
+                    <textarea class="form-control" [(ngModel)]="leaveMsg"></textarea>
+                </div>
+            </div>
+            <div class="alt-bottom">
+                <button class="btn bg-pay" (click)="seekHelp()">{{'student.custom.getHelp'|translate}}</button>
+            </div>
+        </div>
+    </div>
+    <!--已选择老师处理 end-->
+</div>

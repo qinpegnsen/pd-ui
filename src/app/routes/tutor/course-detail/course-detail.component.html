@@ -1,0 +1,652 @@
+<div class="cDatainer-fluid course-detail">
+    <p>
+        <button class="pull-right goback cursor btn btn-info" (click)="goBack()">
+            <i class="fa fa-mail-reply mr-5"></i>{{'tutor.courseDetail.back'|translate}}
+        </button>
+    </p>
+    <!--<a class="pull-right goback" (click)="goBack()">{{'tutor.courseDetail.back'|translate}}</a>-->
+    <div class="w100 table-box" style="width: 100%; overflow-x: scroll">
+        <table class="course-table text-center">
+            <thead>
+            <tr>
+                <td>{{'tutor.courseDetail.course'|translate}}</td>
+                <td>{{'tutor.courseDetail.time'|translate}}</td>
+                <td>{{'student.courseDetail.attendStudent'|translate}}</td>
+                <td>{{'tutor.courseDetail.classroomState'|translate}}</td>
+                <!--<td>{{'tutor.courseDetail.videoPass'|translate}}</td>-->
+                <td>{{'tutor.courseDetail.operation'|translate}}</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{classroomData.course}}</td>
+                <td>{{classroomData.startTime|moment:'YYYY-MM-DD HH:mm'}}</td>
+                <td>
+                    <ul class="students-box mb0" *ngIf="attendStudentList">
+                        <ng-container *ngFor="let student of attendStudentList">
+                            <li class="students">
+                                <div class="pic">
+                                    <img src="{{student.student?.avatar}}" *ngIf="student.student?.avatar"
+                                         onerror="javascript:this.src='../../../../assets/images/user.png'"
+                                    />
+                                </div>
+                                <p class="name mb0">{{student.studentName}}</p>
+                            </li>
+                        </ng-container>
+                    </ul>
+                </td>
+                <ng-container [ngSwitch]="classroomData.state">
+                    <td class="text-muted" *ngSwitchCase="'Cancel'">
+                        {{'enum.classroomState.Cancel'|translate}}
+                    </td>
+                    <td class="text-muted" *ngSwitchCase="'Overdue'">
+                        {{'enum.classroomState.Overdue'|translate}}
+                    </td>
+                    <td class="text-muted" *ngSwitchCase="'AssistantCancel'">
+                        {{'enum.classroomState.AssistantCancel'|translate}}
+                    </td>
+                    <td class="text-info" *ngSwitchCase="'Started'">
+                        {{'enum.classroomState.Started'|translate}}
+                    </td>
+                    <td class="text-info" *ngSwitchCase="'Book'">
+                        {{'enum.classroomState.Book'|translate}}
+                    </td>
+                    <td class="text-info" *ngSwitchCase="'CustomBook'">
+                        {{'enum.classroomState.CustomBook'|translate}}
+                    </td>
+                    <td class="text-success" *ngSwitchCase="'Confirmed'">
+                        {{'enum.classroomState.Confirmed'|translate}}
+                    </td>
+                    <td class="text-success" *ngSwitchCase="'Ended'">
+                        {{'enum.classroomState.Ended'|translate}}
+                    </td>
+                    <td class="text-success" *ngSwitchCase="'Premature'">
+                        {{'enum.classroomState.Premature'|translate}}
+                    </td>
+                </ng-container>
+                <!--<td>{{classroomData.videoPass}}</td>-->
+                <td>
+                    <!--<ng-container [ngSwitch]="classroomData.state">-->
+                    <a class="btn btn-oval w60 agree"
+                       *ngIf="!isMobile &&(classroomData.state == 'Confirmed'|| classroomData.state == 'Started')&& classroomData.classroomZoom && classroomData.classroomZoom.startUrl != ''"
+                       target="_blank" (click)="start()">{{'tutor.courseDetail.goClass'|translate}}</a>
+                    <!--href="{{classroomData.classroomZoom && classroomData.classroomZoom.startUrl}}"-->
+
+                    <button class="btn w60" disabled
+                            *ngIf="isMobile ||(classroomData.state != 'Confirmed'&&classroomData.state != 'Started') || !classroomData.classroomZoom || classroomData.classroomZoom.startUrl == ''">
+                        {{'tutor.courseDetail.goClass'|translate}}
+                    </button>
+                    <!--</ng-container>-->
+                    <p class="mt-5 mb0 cursor text-info" (click)="notice()">
+                        <u>{{'tutor.courseDetail.classInfo'|translate}}</u>
+                    </p>
+                    <p class="mb0 cursor text-info">
+                        <a href="javascript:;"
+                           (click)="linkToMessage()">{{'student.courseDetail.goMessage'|translate}}</a>
+                    </p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--课件类别 begin-->
+    <div *ngIf="log.Confirmed && classroomData.courseTimetable && classroomData.courseTimetable.courseCourseWares && classroomData.courseTimetable.courseCourseWares.length > 0"
+         class="panel mt-20">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th class="w50 pl">{{'tutor.courseDetail.coursewareName'|translate}}</th>
+                <th class="w30 text-center">{{'tutor.courseDetail.coursewareSize'|translate}}</th>
+                <!--<th class="w20 text-center">{{'tutor.courseDetail.coursewareType'|translate}}</th>-->
+                <th class="w20 text-center">{{'tutor.courseDetail.operation'|translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let coursewares of classroomData.courseTimetable.courseCourseWares">
+                <td class="pl pt pb">{{coursewares.courseWare.title}}</td>
+                <td class="text-center pt pb">{{(coursewares.courseWare.size > 1024 ? coursewares.courseWare.size/1024 :
+                    coursewares.courseWare.size)
+                    | number: '1.2-2'}}
+                    <span class="text-muted font12">{{coursewares.courseWare.size > 1024 ? 'MB' : 'KB'}}</span>
+                </td>
+                <!--<td class="text-center pt pb">{{coursewares.courseWare.type.toLowerCase()}}</td>-->
+                <td class="text-center pt pb">
+                    <!--<a class="btn-sm btn-info" href="{{coursewares.courseWare.downloadUrl}}" >-->
+                    <span class="btn-sm btn-info cursor" (click)="courseware(coursewares)">
+                            {{'tutor.courseDetail.courseware'|translate}}
+                            <i class="fa fa-eye ml-5"></i>
+                        </span>
+                    <!--</a>-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--课件类别 end-->
+
+    <!--timeline start-->
+    <ul [ngClass]="timelineAlt ? 'timeline-alt' : 'timeline'" class="mt-20">
+        <li class="timeline-separator" data-datetime="Start"></li>
+        <!-- START 预约上课-->
+        <li *ngIf="log.Book">
+            <div class="timeline-badge primary">
+                <em class="fa fa-calendar"></em>
+            </div>
+            <div class="timeline-panel">
+                <div class="popover left">
+                    <h4 class="popover-title text-right">
+                        {{'tutor.courseDetail.bookClass'|translate}}
+                        <!--<span class="text-muted pull-left">{{log.Book.createTime|moment:'YYYY-MM-DD HH:mm'}}</span>-->
+                    </h4>
+                    <div class="arrow"></div>
+                    <div class="popover-content">
+                        <div class="order-class">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td>{{'tutor.courseDetail.studentTime'|translate}}</td>
+                                    <td>
+                                        <ng-container
+                                                *ngFor="let student of classroomData.classroomStudentses;let i=index;">
+                                            <div [class.displayNo]="student.state == 'StuCancel'">
+                                                <span>{{student.studentName }}(
+                                                    <ng-container *ngFor="let every of classroomData.classroomTraces;">
+                                                        <span class="text-muted"
+                                                              *ngIf="every.event=='Book'&&every.optCode==student.studentCode">{{every.createTime|moment:'YYYY-MM-DD HH:mm'}}</span>
+                                                    </ng-container>
+                                                    )</span>
+                                            </div>
+                                        </ng-container>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{'tutor.courseDetail.course'|translate}}</td>
+                                    <td>{{classroomData.course}}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{'tutor.courseDetail.time'|translate}}</td>
+                                    <td>{{classroomData.startTime | moment:'YYYY-MM-DD HH:mm'}}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{'tutor.courseDetail.duration'|translate}}</td>
+                                    <td>{{classroomData.duration}} {{'tutor.courseDetail.minute'|translate}}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{'tutor.courseDetail.costHour'|translate}}</td>
+                                    <td>{{classroomData.costHour}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--<ng-container *ngFor="let msg of classroomData.classroomLeavemessages">-->
+                        <!--<div class="leaveMsg mt" style="word-break: break-all"-->
+                        <!--*ngIf="msg.classroomStudents.state != studentCancel">-->
+                        <!--{{msg.classroomStudents.studentName}}：{{msg.leaveMessage}}-->
+                        <!--</div>-->
+                        <!--</ng-container>-->
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!-- END 预约上课-->
+        <!-- START 预约结果-->
+        <li class="timeline-inverted" *ngIf="log.Confirmed">
+            <div class="timeline-badge success">
+                <em class="fa fa-comment-o"></em>
+            </div>
+            <div class="timeline-panel">
+                <div class="popover right">
+                    <h4 class="popover-title text-left">{{'tutor.courseDetail.result'|translate}}
+                        <span class="text-muted pull-right">{{log.Confirmed.createTime|moment:'YYYY-MM-DD HH:mm'}}</span>
+                    </h4>
+                    <div class="arrow"></div>
+                    <div class="popover-content">
+                        <div class="order-result text-center bg">
+                            <table>
+                                <ng-container *ngFor="let every of classroomData.classroomTraces;let i=index;">
+                                    <tr *ngIf="(every.event=='Confirmed'||every.event=='Cancel')&&every.optType=='Tutor'">
+                                        <td class="examine-tutor">{{every?.optedName}}</td>
+                                        <td class="examine-result text-orange" *ngIf="every.event=='Cancel'">
+                                            <i class="rzh-icon-error mr"></i>{{'tutor.courseDetail.cancelTeacher'|translate}}
+                                        </td>
+                                        <td class="examine-result text-success" *ngIf="every.event=='Confirmed'">
+                                            <i class="rzh-icon-success mr"></i>{{'tutor.courseDetail.bookSuccess'|translate}}
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!-- END 预约结果-->
+        <!-- START 上课记录-->
+        <li *ngIf="log.Started">
+            <div class="timeline-badge info">
+                <em class="fa fa-file-text-o"></em>
+            </div>
+            <div class="timeline-panel">
+                <div class="popover left">
+                    <h4 class="popover-title text-right">
+                        {{'tutor.courseDetail.classRecord'|translate}}
+                        <span class="text-muted pull-left">{{log.Started.createTime|moment:'YYYY-MM-DD HH:mm'}}</span>
+                    </h4>
+                    <div class="arrow"></div>
+                    <div class="popover-content">
+                        <div class="course-record">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td>{{'tutor.courseDetail.teacher'|translate}}</td>
+                                    <td>{{classroomData.classroomTutors[0].tutorName}}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{'student.courseDetail.attendStudent'|translate}}</td>
+                                    <td>
+                                        <ng-container
+                                                *ngFor="let student of attendStudentList;let i=index;">
+                                            <span>{{student.studentName}}</span>
+                                            <span *ngIf="i!=attendStudentList.length-1">、</span>
+                                        </ng-container>
+                                        <!--{{classroomData.classroomStudentses[0].studentName}}-->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{'student.courseDetail.absentStudent'|translate}}</td>
+                                    <td>
+                                        <ng-container
+                                                *ngFor="let student of absnetStudentList;let i=index;">
+                                            <span>{{student.studentName}}</span>
+                                            <span *ngIf="i!=absnetStudentList.length-1">、</span>
+                                        </ng-container>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{'tutor.courseDetail.course'|translate}}</td>
+                                    <td>{{classroomData.course}}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{'tutor.courseDetail.startAndEnd'|translate}}</td>
+                                    <td>
+                                        {{classroomData.startTime|moment:'HH:mm'}}-{{classroomData.endTime|moment:'HH:mm'}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{'tutor.courseDetail.state'|translate}}</td>
+                                    <ng-container [ngSwitch]="classroomData.state">
+                                        <td class="text-muted" *ngSwitchCase="'Cancel'">
+                                            {{'enum.classroomState.Cancel'|translate}}
+                                            <!--{{classroomData.state | state:classroomState}}-->
+                                        </td>
+                                        <td class="text-muted" *ngSwitchCase="'Overdue'">
+                                            {{'enum.classroomState.Overdue'|translate}}
+                                            {{classroomData.state | state:classroomState}}
+                                        </td>
+                                        <td class="text-muted" *ngSwitchCase="'AssistantCancel'">
+                                            {{'enum.classroomState.AssistantCancel'|translate}}
+                                            <!--{{classroomData.state | state:classroomState}}-->
+                                        </td>
+                                        <td class="text-info" *ngSwitchCase="'Started'">
+                                            {{'enum.classroomState.Started'|translate}}
+                                        </td>
+                                        <td class="text-info" *ngSwitchCase="'Book'">
+                                            {{'enum.classroomState.Book'|translate}}
+                                        </td>
+                                        <td class="text-info" *ngSwitchCase="'CustomBook'">
+                                            {{'enum.classroomState.CustomBook'|translate}}
+                                        </td>
+                                        <td class="text-success" *ngSwitchCase="'Confirmed'">
+                                            {{'enum.classroomState.Confirmed'|translate}}
+                                        </td>
+                                        <td class="text-success" *ngSwitchCase="'Ended'">
+                                            {{'enum.classroomState.Ended'|translate}}
+                                        </td>
+                                        <td class="text-success" *ngSwitchCase="'Premature'">
+                                            {{'enum.classroomState.Premature'|translate}}
+                                        </td>
+                                    </ng-container>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!-- END 上课记录-->
+        <!-- START 视频记录 item-->
+        <li class="timeline-inverted" *ngIf="log.Ended">
+            <div class="timeline-badge info">
+                <em class="fa fa-video-camera"></em>
+            </div>
+            <div class="timeline-panel">
+                <div class="popover right">
+                    <h4 class="popover-title text-left">{{'tutor.courseDetail.videoRecord'|translate}}
+                        <span class="text-muted pull-right">{{ log.Ended.createTime|moment:'YYYY-MM-DD HH:mm'}}</span>
+                    </h4>
+                    <div class="arrow"></div>
+                    <div class="popover-content">
+                        <p *ngIf="classroomData.classroomVideoList==0"
+                           class="text-muted text-center mt">{{'student.courseDetail.noVideoTip'|translate}}</p>
+                        <ng-container *ngIf="classroomData.classroomVideoList.length>0">
+                            <div class="mb-5" *ngFor="let item of classroomData.classroomVideoList;let i=index;">
+                                <p *ngIf="!item.embeddedCode"
+                                   class="text-muted text-center mt">{{'student.courseDetail.noVideoTip'|translate}}</p>
+                                <iframe class='sproutvideo-player'
+                                        *ngIf="item.embeddedCode"
+                                        [src]='item.embeddedCode | videoSrc' width='100%' height='auto' frameborder='0'
+                                        allowfullscreen></iframe>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!-- END 视频记录 item-->
+        <!--学生评价 start-->
+        <li *ngIf="log.Ended">
+            <div class="timeline-badge info">
+                <em class="fa fa-paint-brush"></em>
+            </div>
+            <div class="timeline-panel">
+                <div class="popover left">
+                    <h4 class="popover-title text-right">
+                        {{'tutor.courseDetail.studentEvaluate'|translate}}
+                        <span class="text-muted pull-left">{{log.Ended.createTime|moment:'YYYY-MM-DD HH:mm'}}</span>
+                    </h4>
+                    <div class="arrow"></div>
+                    <div class="popover-content">
+                        <ng-container *ngIf="studentFeedback && studentFeedback.length > 0">
+                            <!--单选题 start-->
+                            <div class="panel panel-default table-mbl border0"
+                                 *ngIf="stuData.questionNaireRecord.length>0">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th class="unselectable text-center sort-num w10 border-bottom-w0">
+                                            {{'questionnaire.detail.number'|translate}}
+                                        </th>
+                                        <th class="w70  unselectable text-center border-bottom-w0">
+                                            {{'questionnaire.detail.question'|translate}}
+                                        </th>
+                                        <!--<th class="w10  unselectable text-center">-->
+                                        <!--{{'questionnaire.detail.score'|translate}}-->
+                                        <!--</th>-->
+                                        <th class="w20  unselectable text-center border-bottom-w0">
+                                            {{'questionnaire.detail.detail'|translate}}
+                                        </th>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="text-left"
+                                        *ngFor="let item of stuData.questionNaireRecord;let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{item.questionContent}}</td>
+                                        <!--<td>{{item.questionStar | number:'1.2-2'}}</td>-->
+                                        <td class="pr-15">
+                                            <div *ngFor="let every of item?.score;let j=index">
+                                                {{every.studentName}}({{every.questionStar}})
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--单选题 end-->
+                            <!--问答题 start-->
+                            <ng-container *ngFor="let feedback of studentFeedback;let i=index;">
+                                <p>{{feedback.studentName}}：
+                                    <!--<rating [(ngModel)]="feedback.starLevel" [max]="5" [readonly]="isReadonly"-->
+                                    <!--stateOn="fa fa-star" stateOff="fa fa-star-o"-->
+                                    <!--style="color: #f5e61b; font-size: 20px"></rating>-->
+                                </p>
+                                <p class="breakAl"
+                                   [innerHTML]="feedback.remark |questionSplit :true |safeHtml"></p>
+                                <rating [(ngModel)]="feedback.starLevel" [max]="5" [readonly]="isReadonly"
+                                        stateOn="fa fa-star" stateOff="fa fa-star-o"
+                                        style="color: #f5e61b; font-size: 20px"></rating>
+                                <!--<p class="breakAll fontBold">{{feedback.feedback |questionSplit |safeHtml}}</p>-->
+                                <p class="breakAll mt myBg" [ngClass]="{'borderBottom':i!=studentFeedback.length-1}"
+                                   [innerHTML]="feedback.feedback |questionSplit |safeHtml"></p>
+                            </ng-container>
+                            <!--问答题 end-->
+                        </ng-container>
+                        <ng-container *ngIf="!studentFeedback || studentFeedback.length === 0">
+                            <p class="text-muted text-center mt">{{'tutor.courseDetail.noEvaluate'|translate}}！</p>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!-- 学生评价 end-->
+        <!-- 教师评价 start-->
+        <li class="timeline-inverted" *ngIf="log.Ended">
+            <div class="timeline-badge primary">
+                <em class="fa fa-paint-brush"></em>
+            </div>
+            <div class="timeline-panel">
+                <div class="popover right">
+                    <h4 class="popover-title text-left">
+                        {{'tutor.courseDetail.teacherEvaluate'|translate}}
+                        <span class="text-muted pull-right">{{log.Ended.createTime|moment:'YYYY-MM-DD HH:mm'}}</span>
+                    </h4>
+                    <div class="arrow"></div>
+                    <div class="popover-content">
+                        <!--评论信息 begin  现在的需求是不让老师看到自己的评论-->
+                        <ng-container *ngFor="let back of tutorFeedBack;let i=index;">
+                            <p>@ {{back.studentName}}：</p>
+                            <p class="breakAll" *ngIf="back.schedule"
+                               [innerHTML]="back.schedule |questionSplit |safeHtml"></p>
+                            <p class="breakAll" *ngIf="back.feedback"
+                               [innerHTML]="back.feedback |questionSplit |safeHtml"></p>
+                            <p class="breakAll" *ngIf="back.remark"
+                               [ngClass]="{'borderBottom':i!=tutorFeedBack.length-1}"
+                               [innerHTML]="back.remark |questionSplit  |safeHtml"></p>
+                        </ng-container>
+                        <!--评论信息 end-->
+                        <!--存在需要评论的学员，显示评论区域 begin-->
+                        <!-- <ng-container *ngIf="feedbackStudents && feedbackStudents.length > 0">
+                            <div class="mt">
+                                <span>Student<font color="red"> *</font>：</span>
+                                <select class="mb w40" [(ngModel)]="selFeedbackStudent">
+                                    <option *ngFor="let student of feedbackStudents" [value]="student.studentCode">
+                                        {{student.studentName}}
+                                    </option>
+                                </select>
+                            </div>
+                            <textarea class="form-control" row="4" name="introduction" maxlength="512"
+                                      placeholder="{{'tutor.courseDetail.evaluateTitle'|translate}}" #msg></textarea>
+                            <button class="btn pull-right btn-primary btn-oval mt" (click)="leaveMsg(msg)">
+                                {{'tutor.courseDetail.submit'|translate}}
+                            </button>
+                        </ng-container> -->
+                        <!--存在需要评论的学员，显示评论区域 end-->
+
+                        <ng-container *ngIf="feedbackStudents && feedbackStudents.length > 0">
+                            <div *ngFor="let student of feedbackStudents" class="feedback-item">
+                                <span>{{student.studentName}}：</span>
+                                <button class="btn pull-right btn-primary btn-oval mt"
+                                        *ngIf="student.state=='Attend'"
+                                        (click)="openBox(student.studentCode)">
+                                    {{'tutor.courseDetail.goFeedback'|translate}}
+                                </button>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="feedbackStudents.length == 0&&tutorFeedBack.length==0">
+                            <p class="text-muted text-center mt">{{'tutor.courseDetail.tutorEvaluate'|translate}}</p>
+                        </ng-container>
+                        <!--<template #template>-->
+                        <!--<div class="modal-header">-->
+                        <!--<h4 class="modal-title pull-left">-->
+                        <!--{{'student.courseDetail.courseFeeling'|translate}}</h4>-->
+                        <!--<button type="button" class="close pull-right" aria-label="Close"-->
+                        <!--(click)="modalRef.hide()">-->
+                        <!--<span aria-hidden="true">&times;</span>-->
+                        <!--</button>-->
+                        <!--</div>-->
+                        <!--<div class="modal-body" style="text-align: center">-->
+                        <!--<div class="rating-box">-->
+                        <!--<rating class="outline-no" [(ngModel)]="starLevel" [max]="5" [readonly]="false"-->
+                        <!--stateOn="fa fa-star" stateOff="fa fa-star-o"-->
+                        <!--style="color: #f5e61b; font-size: 20px"></rating>-->
+                        <!--<span> {{'tutor.courseDetail.stuMark'|translate}}</span>-->
+                        <!--</div>-->
+                        <!--<textarea class="form-control" row="4" name="introduction" maxlength="512"-->
+                        <!--placeholder="{{'tutor.courseDetail.evaluateTitle'|translate}}"-->
+                        <!--#msg></textarea>-->
+                        <!--<button class="btn btn-primary btn-oval mt" (click)="leaveMsg(msg)">-->
+                        <!--{{'tutor.courseDetail.submit'|translate}}-->
+                        <!--</button>-->
+                        <!--</div>-->
+                        <!--</template>-->
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!-- 教师评价 end-->
+
+
+        <!--学生参加评估课程结束后 对学生进行评级 start-->
+        <li *ngIf="log.Ended && isAssess">
+            <div class="timeline-badge info">
+                <em class="fa fa-paint-brush"></em>
+            </div>
+            <div class="timeline-panel">
+                <div class="popover left">
+                    <h4 class="popover-title text-right">
+                        {{'tutor.courseDetail.studentAssess'|translate}}
+                        <span class="text-muted pull-left">{{log.Ended.createTime|moment:'YYYY-MM-DD HH:mm'}}</span>
+                    </h4>
+                    <div class="arrow"></div>
+                    <div class="popover-content">
+                        <ng-container
+                                *ngIf="classroomData.classroomStudentses[0].student.chineseLevel === -1 && !classroomData.classroomStudentses[0].student.assessmentSummary">
+                            <form class="form-validate form-horizontal" novalidate #addAssess="ngForm"
+                                  (ngSubmit)="assess(addAssess)">
+                                <div class="assess">
+                                    <table>
+                                        <tbody class="text-left">
+                                        <tr>
+                                            <td style="width: 80px">{{'tutor.courseDetail.chineseLevel'|translate}}</td>
+                                            <td class="p">
+                                                <select class="form-control" name="chineseLevel" required ngModel>
+                                                    <option *ngFor="let item of levels" value="{{item.val}}">
+                                                        {{item.val}}
+                                                    </option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 80px">{{'tutor.courseDetail.assess'|translate}}</td>
+                                            <td class="p">
+                                                    <textarea class="form-control" style="width: 100%;resize: vertical;"
+                                                              maxlength="512" row="4" name="assessmentSummary" required
+                                                              ngModel></textarea>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <button class="btn btn-primary btn-oval mt pull-right" type="submit">
+                                    {{'tutor.courseDetail.submit'|translate}}
+                                </button>
+                            </form>
+
+                        </ng-container>
+                        <ng-container
+                                *ngIf="classroomData.classroomStudentses[0].student.chineseLevel !== -1 && classroomData.classroomStudentses[0].student.assessmentSummary">
+                            <div class="assess">
+                                <table>
+                                    <tbody class="text-left">
+                                    <tr>
+                                        <td style="width: 80px">{{'tutor.courseDetail.chineseLevel'|translate}}</td>
+                                        <td>{{classroomData.classroomStudentses[0].student.chineseLevel}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 80px">{{'tutor.courseDetail.assess'|translate}}</td>
+                                        <td>{{classroomData.classroomStudentses[0].student.assessmentSummary}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!--学生参加评估课程结束后 对学生进行评级 end-->
+
+
+        <!--留言 star-->
+        <li id="message" *ngIf="log.Confirmed">
+            <div class="timeline-badge success">
+                <em class="fa fa-comment-o"></em>
+            </div>
+            <div class="timeline-panel">
+                <div class="popover right">
+                    <h4 class="popover-title text-right">{{'student.courseDetail.message'|translate}}
+                        <!--<span class="text-muted pull-right">{{log.Confirmed.createTime|moment:'YYYY-MM-DD HH:mm'}}</span>-->
+                    </h4>
+                    <div class="arrow"></div>
+                    <div class="popover-content">
+                        <input [(ngModel)]="inputMessageAll"
+                               placeholder="{{'student.courseDetail.messagePlaceholderAll'|translate}}"
+                               (keyup.enter)="messageSubmitAll()"
+                               maxlength="124"
+                               class="form-control mt0 mb">
+                        <ng-container *ngFor="let item of messageArrLsit;let i=index;">
+                            <p>{{item.studentName}}</p>
+                            <div class="order-result text-center bg pl pr messageScoll p0"
+                                 style="max-height: 300px;overflow-y: auto">
+                                <ul class="messageBox">
+                                    <ng-container *ngFor="let obj of item.messageInfo;let j=index;">
+                                        <li class="relative pb0 pt-5" *ngIf="splitStr(obj.createTime,item.messageInfo,j)"
+                                            [ngClass]="{'pt':i==0}"
+                                        >
+                                            <div class="text-center">
+                                                <span class="myTime pl-5 pr-5">{{splitStr(obj.createTime,item.messageInfo,j)}}</span>
+                                            </div>
+                                        </li>
+                                        <li class="relative">
+                                            <div class="text-left"
+                                                 [ngClass]="{'text-left':obj.sender=='STUDENT','text-right':obj.sender=='TUTOR'}"
+                                            >
+                                                <img src="{{obj.img}}" class="messagePic"
+                                                     [ngClass]="{'floatRight':obj.sender=='TUTOR'}"
+                                                     onerror="javascript:this.src='../../../../assets/images/user.png'"/>
+                                                <span [ngClass]="{'floatRight':obj.sender=='TUTOR','mt-6':obj.sender=='TUTOR','pr-5':obj.sender=='TUTOR','lineHeight30':obj.sender=='STUDENT'}">{{obj.messageContent}}</span>
+                                                <span class="clearfix"></span>
+                                            </div>
+                                        </li>
+                                    </ng-container>
+                                </ul>
+                            </div>
+                            <div class="relative mb-5">
+                                <input #inputMessageTem
+                                       placeholder="{{'student.courseDetail.messagePlaceholder'|translate}}"
+                                       (keyup.enter)="messageSubmit(i,inputMessageTem.value,item.studentCode)"
+                                       maxlength="124"
+                                       class="form-control mt0 inputMessageValue">
+                                <span class="clearfix"></span>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!--留言 end-->
+
+
+        <!-- 时间线结束 start-->
+        <li class="timeline-end">
+            <a class="timeline-badge">
+                <em class="fa fa-power-off" [ngClass]=" log.Ended?'fa-power-off':'fa-ellipsis-h'"></em>
+            </a>
+        </li>
+        <!-- 时间线结束 end-->
+    </ul>
+    <!-- timeline END-->
+
+</div>

@@ -1,0 +1,50 @@
+.avatar{
+	display: inline-block;
+	border-radius: 50%;
+	overflow: hidden;
+	width: 150px;
+	height: 150px;
+	position: relative;
+}
+.avatar img{
+	width: 100%;
+	height: 100%;
+}
+.addPic{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.5);
+}
+.addPic img{
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+}
+.file-upload [type=file] {
+	cursor: pointer;
+	display: block;
+	filter: alpha(opacity=0);
+	min-height: 100%;
+	min-width: 100%;
+	opacity: 0;
+	position: absolute;
+	right: 0;
+	text-align: right;
+	top: 0;
+}
+#introduction{
+	min-height: 150px;
+}
+.myTitle{
+	color: #31a4b2;
+	font-weight: bold;
+	line-height:24px;
+}
+.myCustom{
+	background: #31a4b2 !important;
+	border-color: #31a4b2 !important;
+}
